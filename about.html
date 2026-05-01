@@ -145,7 +145,7 @@
             text-align: center;
             font-size: clamp(1.6rem, 3vw, 2.4rem);
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             margin-bottom: 12px;
         }
 
@@ -216,7 +216,7 @@
         .stat-number {
             font-size: 2.2rem;
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             display: block;
         }
 
@@ -296,7 +296,7 @@
             top: 0;
             width: 56px;
             height: 56px;
-            background: var(--navy);
+            background: var(--navy-blue);
             border-radius: 50%;
             border: 3px solid var(--gold);
             display: flex;
@@ -311,7 +311,7 @@
 
         .tl-item:hover .tl-icon {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             transform: translateX(-50%) scale(1.1);
         }
 
@@ -346,7 +346,7 @@
         .tl-badge {
             display: inline-block;
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             font-size: 11px;
             font-weight: 700;
             padding: 4px 14px;
@@ -358,7 +358,7 @@
         .tl-card h3 {
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--navy);
+            color: var(--navy-blue);
             margin-bottom: 10px;
         }
 
@@ -370,7 +370,7 @@
 
         /* ─── VISION & MISSION ─── */
         .vm-section {
-            background: var(--navy);
+            background: var(--navy-blue);
         }
 
         .vm-section .section-title {
@@ -499,7 +499,7 @@
         .company-icon {
             width: 60px;
             height: 60px;
-            background: var(--navy);
+            background: var(--navy-blue);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -517,7 +517,7 @@
         .company-card h3 {
             font-size: 1.05rem;
             font-weight: 700;
-            color: var(--navy);
+            color: var(--navy-blue);
             margin-bottom: 14px;
             line-height: 1.4;
         }
@@ -535,7 +535,7 @@
             margin-top: 20px;
             background: rgba(201, 168, 76, 0.1);
             border: 1px solid var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             font-size: 12px;
             font-weight: 700;
             padding: 6px 16px;
@@ -631,7 +631,7 @@
         }
 
         .cred-section .section-title {
-            color: var(--navy);
+            color: var(--navy-blue);
             position: relative;
         }
 
@@ -760,7 +760,7 @@
 
         .cert-logo.gold-bg {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         .cert-card:hover .cert-logo {
@@ -774,7 +774,7 @@
         .cert-issuer-name {
             font-size: 0.72rem;
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             text-transform: uppercase;
             letter-spacing: 0.8px;
             line-height: 1.3;
@@ -830,7 +830,7 @@
         .cert-company-name {
             font-size: 0.82rem;
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 14px;
@@ -855,7 +855,7 @@
         .cert-standard {
             font-size: 1.6rem;
             font-weight: 900;
-            color: var(--navy);
+            color: var(--navy-blue);
             letter-spacing: 1px;
             line-height: 1;
             margin-bottom: 6px;
@@ -925,12 +925,12 @@
         .cert-meta-item span {
             font-size: 0.72rem;
             font-weight: 700;
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         /* bottom strip */
         .cert-footer-strip {
-            background: var(--navy);
+            background: var(--navy-blue);
             color: var(--gold);
             font-size: 0.65rem;
             font-weight: 700;
@@ -957,12 +957,12 @@
 
         .cert-footer-strip.gold-ft {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         .cert-card:hover .cert-footer-strip {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         /* verified tick overlay on hover */
@@ -980,7 +980,7 @@
 
         .cert-verified-badge {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             font-size: 0.7rem;
             font-weight: 800;
             padding: 6px 16px;
@@ -1119,7 +1119,7 @@
             justify-content: center;
             cursor: pointer;
             font-size: 1rem;
-            color: var(--navy);
+            color: var(--navy-blue);
             transition: background 0.2s;
             z-index: 2;
         }
@@ -1142,7 +1142,13 @@
                 <li><a href="#about" class="nav-link">About Us</a></li>
                 <li><a href="#companies" class="nav-link">Our Journey</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#news" class="nav-link">News &amp; Media</a></li>
+                <li class="has-submenu">
+                    <a href="#news" class="nav-link" aria-haspopup="true" aria-expanded="false">News &amp; Media</a>
+                    <ul class="nav-submenu" aria-label="submenu">
+                        <li><a href="#news" class="nav-link">News</a></li>
+                        <li><a href="#media" class="nav-link">Media</a></li>
+                    </ul>
+                </li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="mobile-menu-toggle" id="mobileMenuToggle">
@@ -1154,14 +1160,19 @@
     </header>
     <!-- ─── HERO ─── -->
 
-    <section class="hero" style="padding-top: 220px;">
+    <section class="hero"
+        style="padding-top: 220px; background-image: url('images/banner/about.jpeg'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="hero-shape hs1"></div>
         <div class="hero-shape hs2"></div>
-        <div class="hero-badge">Est. 1983 · Alang, Gujarat</div>
-        <h1>About <span>Sachdeva Group</span></h1>
-        <p class="hero-sub">A cornerstone in the ship recycling industry — combining decades of expertise with an
-            unwavering commitment to sustainability, safety, and global standards.</p>
-        <div class="hero-divider"></div>
+        <div
+            style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13, 27, 42, 0.75) 0%, rgba(26, 53, 83, 0.7) 60%, rgba(13, 27, 42, 0.75) 100%); pointer-events: none;">
+        </div>
+        <div class="hero-badge" style="position: relative; z-index: 1;">Est. 1983 · Alang, Gujarat</div>
+        <h1 style="position: relative; z-index: 1;">About <span>Sachdeva Group</span></h1>
+        <p class="hero-sub" style="position: relative; z-index: 1;">A cornerstone in the ship recycling industry —
+            combining decades of expertise with an unwavering commitment to sustainability, safety, and global
+            standards.</p>
+        <div class="hero-divider" style="position: relative; z-index: 1;"></div>
     </section>
 
     <!-- ─── GROUP PROFILE INTRO ─── -->
@@ -1170,7 +1181,7 @@
             <div class="intro-grid">
                 <div class="intro-text fade-up">
                     <div class="hero-badge"
-                        style="background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy);font-size:11px;display:inline-block;margin-bottom:16px;">
+                        style="background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy-blue);font-size:11px;display:inline-block;margin-bottom:16px;">
                         Group Profile</div>
                     <h2 class="section-title" style="text-align:left;margin-bottom:16px;">Sachdeva Group
                         <span>Profile</span>
@@ -1211,7 +1222,7 @@
     <!-- <section class="section timeline-wrap">
         <div class="section-inner">
             <p class="hero-badge"
-                style="text-align:center;display:block;width:fit-content;margin:0 auto 12px;background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy);font-size:11px;">
+                style="text-align:center;display:block;width:fit-content;margin:0 auto 12px;background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy-blue);font-size:11px;">
                 Our Journey</p>
             <h2 class="section-title">Sachdeva Group <span>Journey</span></h2>
             <div class="gold-line"></div>
@@ -1371,7 +1382,7 @@
      ══════════════════════════════════════════════════ -->
     <section class="cred-section">
         <div style="max-width:1100px;margin:0 auto;position:relative;">
-            <h2 class="section-title" style="color:var(--navy);">Our <span>Credentials</span></h2>
+            <h2 class="section-title" style="color:var(--navy-blue);">Our <span>Credentials</span></h2>
             <div class="gold-line"></div>
             <p class="section-sub" style="color:var(--muted);">Certified by the world's most respected maritime and
                 international standards bodies.</p>

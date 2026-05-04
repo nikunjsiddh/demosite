@@ -102,31 +102,34 @@
 }
 
 /* ─── MAIN BAR (light translucent frosted-glass) ─── */
-/* ─── INITIAL state: warm cream glass with subtle gold radial glow ─── */
+/* ─── INITIAL state: medium blue LEFT → deep ocean blue RIGHT (translucent gradient) ─── */
 .marine-header .mh-main {
     background:
-        radial-gradient(ellipse 60% 80% at 78% 50%,
-            rgba(244, 198, 110, 0.30) 0%,
-            rgba(244, 198, 110, 0.10) 40%,
-            transparent 70%),
-        linear-gradient(135deg,
-            rgba(248, 240, 218, 0.92) 0%,
-            rgba(245, 233, 200, 0.90) 45%,
-            rgba(240, 222, 178, 0.92) 100%);
-    backdrop-filter: blur(18px) saturate(1.25);
-    -webkit-backdrop-filter: blur(18px) saturate(1.25);
-    border-bottom: 1px solid rgba(201, 146, 42, 0.35);
+        radial-gradient(ellipse 50% 90% at 75% 50%,
+            rgba(120, 180, 230, 0.18) 0%,
+            rgba(70, 130, 200, 0.06) 55%,
+            transparent 85%),
+        linear-gradient(90deg,
+            rgba(150, 185, 220, 0.78) 0%,
+            rgba(120, 165, 205, 0.75) 18%,
+            rgba(85, 140, 190, 0.72) 38%,
+            rgba(50, 105, 165, 0.72) 60%,
+            rgba(22, 55, 100, 0.78) 82%,
+            rgba(12, 38, 75, 0.82) 100%);
+    backdrop-filter: blur(20px) saturate(1.5);
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    border-bottom: 1px solid rgba(201, 146, 42, 0.40);
     height: 130px;
     transition: height 0.35s ease, background 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
     position: relative;
     overflow: visible;
     box-shadow:
-        0 10px 32px rgba(13, 27, 42, 0.18),
-        inset 0 1px 0 rgba(255, 255, 255, 0.55),
-        inset 0 -1px 0 rgba(201, 146, 42, 0.20);
+        0 10px 32px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(200, 220, 240, 0.45),
+        inset 0 -1px 0 rgba(201, 146, 42, 0.25);
 }
 
-/* Subtle gold glow line at the top edge — soft cream feel */
+/* Premium gold accent line at the top edge */
 .marine-header .mh-main::after {
     content: '';
     position: absolute;
@@ -136,11 +139,11 @@
     height: 1px;
     background: linear-gradient(90deg,
         transparent,
-        rgba(201, 146, 42, 0.45),
-        rgba(245, 217, 139, 0.65),
-        rgba(201, 146, 42, 0.45),
+        rgba(201, 146, 42, 0.50),
+        rgba(245, 217, 139, 0.75),
+        rgba(201, 146, 42, 0.50),
         transparent);
-    opacity: 0.85;
+    opacity: 0.9;
     pointer-events: none;
 }
 
@@ -165,13 +168,21 @@
 
 .marine-header.scrolled .mh-main {
     height: 96px;
-    background: linear-gradient(135deg,
-        rgba(225, 218, 204, 0.98) 0%,
-        rgba(232, 225, 212, 0.97) 50%,
-        rgba(220, 212, 192, 0.98) 100%);
-    backdrop-filter: blur(18px) saturate(1.2);
-    -webkit-backdrop-filter: blur(18px) saturate(1.2);
-    box-shadow: 0 10px 28px rgba(13, 27, 42, 0.22);
+    background:
+        radial-gradient(ellipse 50% 90% at 75% 50%,
+            rgba(120, 180, 230, 0.22) 0%,
+            rgba(70, 130, 200, 0.08) 55%,
+            transparent 85%),
+        linear-gradient(90deg,
+            rgba(140, 178, 215, 0.85) 0%,
+            rgba(110, 158, 200, 0.82) 18%,
+            rgba(75, 130, 185, 0.80) 38%,
+            rgba(45, 100, 160, 0.80) 60%,
+            rgba(20, 52, 95, 0.85) 82%,
+            rgba(12, 38, 72, 0.88) 100%);
+    backdrop-filter: blur(22px) saturate(1.5);
+    -webkit-backdrop-filter: blur(22px) saturate(1.5);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.30);
 }
 
 .marine-header.scrolled .mh-main::before {
@@ -181,60 +192,13 @@
 .marine-header.scrolled .mh-main::before { opacity: 1; }
 
 /* ════════════════════════════════════════════════
-   SCROLLED STATE OVERRIDES — flip text/elements to dark navy
-   so they read crisp against the cream background
+   SCROLLED STATE — same rich blue theme, slightly darker
    ════════════════════════════════════════════════ */
-.marine-header.scrolled .mh-nav-list > li > a {
-    color: rgba(13, 27, 42, 0.88);
-}
-.marine-header.scrolled .mh-nav-list > li > a:hover {
-    color: var(--mh-gold);
-    background: rgba(201, 146, 42, 0.12);
-}
-.marine-header.scrolled .mh-nav-list > li > a.active {
-    color: var(--mh-gold);
-}
-.marine-header.scrolled .mh-nav-list > li > a i.fa-chevron-down {
-    color: rgba(13, 27, 42, 0.6);
-}
 .marine-header.scrolled .mh-toggle {
-    background: rgba(201, 146, 42, 0.14);
-    border-color: rgba(201, 146, 42, 0.55);
+    background: rgba(201, 146, 42, 0.18);
+    border-color: rgba(245, 217, 139, 0.6);
 }
-.marine-header.scrolled .mh-toggle span {
-    background: #0a1628;
-}
-
-/* Submenu — light themed when scrolled */
-.marine-header.scrolled .mh-submenu {
-    background: linear-gradient(135deg,
-        rgba(248, 244, 234, 0.98) 0%,
-        rgba(238, 230, 212, 0.98) 100%);
-    border-color: rgba(201, 146, 42, 0.5);
-    box-shadow: 0 18px 40px rgba(13, 27, 42, 0.20);
-}
-.marine-header.scrolled .mh-submenu::before {
-    background: rgba(248, 244, 234, 0.98);
-    border-left-color: rgba(201, 146, 42, 0.5);
-    border-top-color: rgba(201, 146, 42, 0.5);
-}
-.marine-header.scrolled .mh-submenu li a {
-    color: rgba(13, 27, 42, 0.88);
-}
-.marine-header.scrolled .mh-submenu li a::before {
-    color: var(--mh-gold);
-}
-.marine-header.scrolled .mh-submenu li a:hover {
-    background: rgba(201, 146, 42, 0.16);
-    color: var(--mh-gold);
-}
-.marine-header.scrolled .mh-submenu li a:hover::before {
-    color: var(--mh-gold);
-}
-.marine-header.scrolled .mh-submenu li a.active {
-    color: var(--mh-gold);
-    background: rgba(201, 146, 42, 0.10);
-}
+/* Nav text + chevron + submenu inherit the initial dark-blue theme — already light/gold */
 
 .marine-header .mh-main-inner {
     max-width: 1400px;
@@ -260,16 +224,16 @@
     height: 100px;
     width: auto;
     transition: transform 0.4s ease, filter 0.4s ease, height 0.35s ease;
-    filter: drop-shadow(0 2px 6px rgba(13, 27, 42, 0.18))
-            drop-shadow(0 0 18px rgba(201, 146, 42, 0.20));
+    filter: drop-shadow(0 2px 6px rgba(13, 27, 42, 0.20))
+            drop-shadow(0 0 18px rgba(201, 146, 42, 0.35));
 }
 
 .marine-header.scrolled .mh-logo img { height: 76px; }
 
 .marine-header .mh-logo:hover img {
     transform: scale(1.05);
-    filter: drop-shadow(0 4px 10px rgba(13, 27, 42, 0.25))
-            drop-shadow(0 0 26px rgba(201, 146, 42, 0.35));
+    filter: drop-shadow(0 4px 10px rgba(13, 27, 42, 0.28))
+            drop-shadow(0 0 26px rgba(201, 146, 42, 0.55));
 }
 
 .marine-header .mh-logo-text {
@@ -295,13 +259,14 @@
     align-items: center;
     gap: 6px;
     padding: 10px 16px;
-    color: rgba(13, 27, 42, 0.88);
+    color: rgba(245, 240, 232, 0.95);
     text-decoration: none;
     font-size: 0.92rem;
     font-weight: 600;
     letter-spacing: 0.3px;
     border-radius: 8px;
     transition: color 0.35s ease, background 0.35s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
     position: relative;
     transition: color 0.3s ease, background 0.3s ease;
 }
@@ -321,8 +286,8 @@
 }
 
 .marine-header .mh-nav-list > li > a:hover {
-    color: var(--mh-gold);
-    background: rgba(201, 146, 42, 0.16);
+    color: var(--mh-gold-light);
+    background: rgba(201, 146, 42, 0.20);
 }
 
 .marine-header .mh-nav-list > li > a:hover::after,
@@ -331,11 +296,11 @@
 }
 
 .marine-header .mh-nav-list > li > a.active {
-    color: var(--mh-gold);
+    color: var(--mh-gold-light);
 }
 
 .marine-header .mh-nav-list > li > a i.fa-chevron-down {
-    color: rgba(13, 27, 42, 0.6);
+    color: rgba(245, 217, 139, 0.85);
     transition: color 0.35s ease, transform 0.3s ease;
 }
 
@@ -372,21 +337,21 @@
     transform: translateX(-50%) translateY(-10px);
     min-width: 200px;
     background:
-        radial-gradient(ellipse 60% 80% at 78% 50%,
-            rgba(244, 198, 110, 0.28) 0%,
-            rgba(244, 198, 110, 0.08) 40%,
-            transparent 70%),
-        linear-gradient(135deg,
-            rgba(250, 244, 224, 0.96) 0%,
-            rgba(245, 233, 200, 0.96) 100%);
-    border: 1px solid rgba(201, 146, 42, 0.45);
-    border-radius: 12px;
-    padding: 8px;
+        linear-gradient(180deg,
+            rgba(255, 255, 255, 0.98) 0%,
+            rgba(248, 251, 255, 0.97) 100%);
+    backdrop-filter: blur(22px) saturate(1.3);
+    -webkit-backdrop-filter: blur(22px) saturate(1.3);
+    border: 1px solid rgba(201, 146, 42, 0.40);
+    border-radius: 14px;
+    padding: 10px;
     list-style: none;
     margin: 0;
-    box-shadow: 0 18px 40px rgba(13, 27, 42, 0.20);
-    backdrop-filter: blur(18px) saturate(1.2);
-    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    box-shadow:
+        0 18px 48px rgba(13, 27, 42, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 0 0 4px rgba(255, 255, 255, 0.05);
+    overflow: hidden;
     opacity: 0;
     visibility: hidden;
     /* Slow exit so cursor has time to reach submenu; faster reveal */
@@ -405,9 +370,10 @@
     transform: translateX(-50%) rotate(45deg);
     width: 12px;
     height: 12px;
-    background: rgba(250, 244, 224, 0.96);
-    border-left: 1px solid rgba(201, 146, 42, 0.45);
-    border-top: 1px solid rgba(201, 146, 42, 0.45);
+    background: rgba(255, 255, 255, 0.98);
+    border-left: 1px solid rgba(201, 146, 42, 0.40);
+    border-top: 1px solid rgba(201, 146, 42, 0.40);
+    box-shadow: -2px -2px 6px rgba(13, 27, 42, 0.06);
 }
 
 .marine-header .mh-has-submenu:hover .mh-submenu {
@@ -425,11 +391,12 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 14px;
-    color: rgba(13, 27, 42, 0.88);
+    padding: 12px 16px;
+    color: rgba(13, 27, 42, 0.92);
     text-decoration: none;
     font-size: 0.88rem;
-    font-weight: 500;
+    font-weight: 600;
+    border-radius: 8px;
     border-radius: 8px;
     transition: 0.3s;
     position: relative;
@@ -446,19 +413,21 @@
 }
 
 .marine-header .mh-submenu li a:hover {
-    background: rgba(201, 146, 42, 0.18);
+    background: linear-gradient(135deg, rgba(201, 146, 42, 0.16), rgba(245, 217, 139, 0.14));
     color: var(--mh-gold);
-    padding-left: 18px;
+    padding-left: 22px;
+    transform: translateX(2px);
 }
 
 .marine-header .mh-submenu li a:hover::before {
     opacity: 1;
     color: var(--mh-gold);
+    transform: translateX(2px);
 }
 
 .marine-header .mh-submenu li a.active {
     color: var(--mh-gold);
-    background: rgba(201, 146, 42, 0.12);
+    background: linear-gradient(135deg, rgba(201, 146, 42, 0.12), rgba(245, 217, 139, 0.08));
 }
 
 /* ─── CTA BUTTON (hidden globally) ─── */
@@ -530,7 +499,7 @@
     display: block;
     width: 22px;
     height: 2px;
-    background: #0a1628;
+    background: #f5d98b;
     border-radius: 2px;
     transition: transform 0.35s ease, opacity 0.3s ease, background 0.35s ease;
     transform-origin: center;

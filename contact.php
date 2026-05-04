@@ -116,16 +116,21 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(180deg, rgba(6, 14, 28, 0.55) 0%, rgba(6, 14, 28, 0.82) 100%),
-                url('images/banner/about.jpeg') center/cover no-repeat,
-                url('images/Environmental-Concerns.jpg') center/cover no-repeat;
+                linear-gradient(180deg, rgba(6, 14, 28, 0.45) 0%, rgba(6, 14, 28, 0.78) 100%),
+                /* url('images/banner/aboutusbanner.png') center/cover no-repeat; */
+                url('images/banner/contacus .png') center/cover no-repeat;
             animation: heroZoom 22s ease-in-out infinite alternate;
             transform-origin: center;
         }
 
         @keyframes heroZoom {
-            from { transform: scale(1); }
-            to   { transform: scale(1.1); }
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
         }
 
         .hero-overlay {
@@ -158,30 +163,41 @@
             animation: wave-shift 22s linear infinite;
         }
 
-        .hero-wave-svg.w2 { animation-duration: 30s; opacity: 0.6; }
-        .hero-wave-svg.w3 { animation-duration: 38s; opacity: 0.4; }
+        .hero-wave-svg.w2 {
+            animation-duration: 30s;
+            opacity: 0.6;
+        }
+
+        .hero-wave-svg.w3 {
+            animation-duration: 38s;
+            opacity: 0.4;
+        }
 
         @keyframes wave-shift {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         /* Sailing ship across hero */
-        .hero-ship {
-            position: absolute;
-            bottom: 100px;
-            left: 0;
-            width: 110px;
-            z-index: 2;
-            animation: ship-sail 38s linear infinite;
-            opacity: 0.85;
-            filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.4));
-        }
+
 
         @keyframes ship-sail {
-            0%   { transform: translateX(-130%) translateY(0) rotate(0); }
-            50%  { transform: translateX(50%) translateY(-6px) rotate(-1.5deg); }
-            100% { transform: translateX(220%) translateY(0) rotate(0); }
+            0% {
+                transform: translateX(-130%) translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateX(50%) translateY(-6px) rotate(-1.5deg);
+            }
+
+            100% {
+                transform: translateX(220%) translateY(0) rotate(0);
+            }
         }
 
         /* Bubble container */
@@ -203,9 +219,19 @@
         }
 
         @keyframes bubble-up {
-            0%   { transform: translateY(0); opacity: 0; }
-            10%  { opacity: 1; }
-            100% { transform: translateY(-110vh); opacity: 0; }
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
         }
 
         /* rust/steel ship silhouette decorative line */
@@ -335,7 +361,9 @@
         .stats-bar::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
             background-size: 200% auto;
@@ -388,10 +416,21 @@
             transform: translateY(0);
         }
 
-        .stat-card:nth-child(1).in { transition-delay: 0.05s; }
-        .stat-card:nth-child(2).in { transition-delay: 0.18s; }
-        .stat-card:nth-child(3).in { transition-delay: 0.30s; }
-        .stat-card:nth-child(4).in { transition-delay: 0.42s; }
+        .stat-card:nth-child(1).in {
+            transition-delay: 0.05s;
+        }
+
+        .stat-card:nth-child(2).in {
+            transition-delay: 0.18s;
+        }
+
+        .stat-card:nth-child(3).in {
+            transition-delay: 0.30s;
+        }
+
+        .stat-card:nth-child(4).in {
+            transition-delay: 0.42s;
+        }
 
         /* Glow blob behind */
         .stat-card::before {
@@ -411,7 +450,9 @@
         .stat-card::after {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
             transform: scaleX(0);
@@ -427,10 +468,18 @@
             transform: translateY(-6px);
         }
 
-        .stat-card:hover::after { transform: scaleX(1); }
-        .stat-card:hover::before { transform: scale(1.6); }
+        .stat-card:hover::after {
+            transform: scaleX(1);
+        }
 
-        .stat-card > * { position: relative; z-index: 1; }
+        .stat-card:hover::before {
+            transform: scale(1.6);
+        }
+
+        .stat-card>* {
+            position: relative;
+            z-index: 1;
+        }
 
         .stat-icon {
             width: 56px;
@@ -500,13 +549,24 @@
         }
 
         @media (max-width: 980px) {
-            .stats-inner { grid-template-columns: repeat(2, 1fr); }
+            .stats-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 540px) {
-            .stats-inner { grid-template-columns: 1fr; gap: 16px; }
-            .stats-bar { padding: 50px 6%; }
-            .stat-number { font-size: 2.6rem; }
+            .stats-inner {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .stats-bar {
+                padding: 50px 6%;
+            }
+
+            .stat-number {
+                font-size: 2.6rem;
+            }
         }
 
         /* ─── MAIN CONTENT WRAPPER ─── */
@@ -521,7 +581,10 @@
         .main-content::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-image:
                 radial-gradient(circle at 50% 0%, rgba(201, 146, 42, 0.06), transparent 60%);
             pointer-events: none;
@@ -996,14 +1059,19 @@
         .form-panel::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
             background-size: 200% auto;
             animation: shimmer 4s linear infinite;
         }
 
-        .form-panel > * { position: relative; z-index: 1; }
+        .form-panel>* {
+            position: relative;
+            z-index: 1;
+        }
 
         .form-panel h3 {
             font-family: 'Inter', sans-serif;
@@ -1163,7 +1231,9 @@
         .map-panel::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
             background-size: 200% auto;
@@ -1276,7 +1346,8 @@
         .hours-section::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 4px;
             height: 100%;
             background: linear-gradient(180deg, var(--gold), var(--gold-light), var(--gold));
@@ -1460,12 +1531,24 @@
             animation: ftr-wave-shift 24s linear infinite;
         }
 
-        .footer-wave-stack svg.fw2 { animation-duration: 32s; opacity: 0.55; }
-        .footer-wave-stack svg.fw3 { animation-duration: 40s; opacity: 0.35; }
+        .footer-wave-stack svg.fw2 {
+            animation-duration: 32s;
+            opacity: 0.55;
+        }
+
+        .footer-wave-stack svg.fw3 {
+            animation-duration: 40s;
+            opacity: 0.35;
+        }
 
         @keyframes ftr-wave-shift {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         /* Sailing ship at the top of the footer */
@@ -1481,9 +1564,17 @@
         }
 
         @keyframes ftr-ship-sail {
-            0%   { transform: translateX(-130%) translateY(0) rotate(0); }
-            50%  { transform: translateX(50%) translateY(-5px) rotate(-1.2deg); }
-            100% { transform: translateX(220%) translateY(0) rotate(0); }
+            0% {
+                transform: translateX(-130%) translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateX(50%) translateY(-5px) rotate(-1.2deg);
+            }
+
+            100% {
+                transform: translateX(220%) translateY(0) rotate(0);
+            }
         }
 
         /* Bubbles inside the footer */
@@ -1505,16 +1596,29 @@
         }
 
         @keyframes ftr-bubble-up {
-            0%   { transform: translateY(0); opacity: 0; }
-            10%  { opacity: 0.5; }
-            100% { transform: translateY(-700px); opacity: 0; }
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-700px);
+                opacity: 0;
+            }
         }
 
         /* Glow blobs */
         .marine-footer::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-image:
                 radial-gradient(circle at 18% 30%, rgba(201, 146, 42, 0.13), transparent 40%),
                 radial-gradient(circle at 82% 70%, rgba(46, 125, 79, 0.12), transparent 40%);
@@ -1541,7 +1645,8 @@
             position: relative;
         }
 
-        .ftr-brand-strip::before, .ftr-brand-strip::after {
+        .ftr-brand-strip::before,
+        .ftr-brand-strip::after {
             content: '';
             flex: 1;
             max-width: 220px;
@@ -1549,7 +1654,9 @@
             background: linear-gradient(90deg, transparent, rgba(201, 146, 42, 0.45));
         }
 
-        .ftr-brand-strip::after { background: linear-gradient(90deg, rgba(201, 146, 42, 0.45), transparent); }
+        .ftr-brand-strip::after {
+            background: linear-gradient(90deg, rgba(201, 146, 42, 0.45), transparent);
+        }
 
         .ftr-anchor-wrap {
             position: relative;
@@ -1585,13 +1692,25 @@
         }
 
         @keyframes ftr-pulse {
-            0%   { transform: scale(0.95); opacity: 0.6; }
-            100% { transform: scale(1.6); opacity: 0; }
+            0% {
+                transform: scale(0.95);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(1.6);
+                opacity: 0;
+            }
         }
 
         @keyframes ftr-spin {
-            from { transform: rotate(0); }
-            to   { transform: rotate(360deg); }
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .ftr-anchor-wrap i {
@@ -1599,8 +1718,15 @@
         }
 
         @keyframes ftr-sway {
-            0%, 100% { transform: rotate(-6deg); }
-            50%      { transform: rotate(6deg); }
+
+            0%,
+            100% {
+                transform: rotate(-6deg);
+            }
+
+            50% {
+                transform: rotate(6deg);
+            }
         }
 
         /* ─── GRID ─── */
@@ -1642,8 +1768,7 @@
         .ftr-logo img {
             height: 50px;
             width: auto;
-            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.18))
-                    drop-shadow(0 0 22px rgba(201, 146, 42, 0.25));
+            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.18)) drop-shadow(0 0 22px rgba(201, 146, 42, 0.25));
         }
 
         .ftr-logo .ftr-logo-text {
@@ -1702,8 +1827,15 @@
         }
 
         @keyframes ftr-trust-pulse {
-            0%   { transform: scale(0.95); opacity: 0.6; }
-            100% { transform: scale(1.12); opacity: 0; }
+            0% {
+                transform: scale(0.95);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(1.12);
+                opacity: 0;
+            }
         }
 
         /* Quick Links */
@@ -1859,7 +1991,9 @@
             transition: color 0.3s;
         }
 
-        .ftr-contact .ci-meta a:hover { color: var(--gold-light); }
+        .ftr-contact .ci-meta a:hover {
+            color: var(--gold-light);
+        }
 
         /* Social row */
         .ftr-social-row {
@@ -1945,19 +2079,31 @@
             transition: color 0.3s;
         }
 
-        .ftr-bottom-links a:hover { color: var(--gold-light); }
+        .ftr-bottom-links a:hover {
+            color: var(--gold-light);
+        }
 
         .ftr-bottom-links span {
             color: rgba(201, 146, 42, 0.4);
         }
 
         @media (max-width: 980px) {
-            .marine-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .marine-footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
         }
 
         @media (max-width: 600px) {
-            .marine-footer-grid { grid-template-columns: 1fr; gap: 32px; }
-            .marine-footer-bottom { flex-direction: column; text-align: center; }
+            .marine-footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .marine-footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         /* ─── TOAST ─── */
@@ -2071,60 +2217,7 @@
 
     <!-- ─── NAVBAR ─── -->
 
-    <!-- ─── MARINE HEADER ─── -->
-    <header id="header" class="marine-header">
-        <div class="mh-topbar">
-            <div class="mh-topbar-inner">
-                <div class="mh-topbar-left">
-                    <a href="mailto:info@sachdevagroup.in"><i class="fas fa-envelope"></i> info@sachdevagroup.in</a>
-                    <a href="tel:+919925499123"><i class="fas fa-phone"></i> +91 99254 99123</a>
-                </div>
-                <div class="mh-topbar-right">
-                    <span class="mh-tb-label">Follow:</span>
-                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://wa.me/919925499123" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="mh-main">
-            <div class="mh-main-inner">
-                <a href="index.php" class="mh-logo">
-                    <img src="images/logo.png" alt="Sachdeva Group">
-                    <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
-                </a>
-                <nav class="mh-nav">
-                    <ul class="mh-nav-list">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.php">About Us</a></li>
-                        <li class="mh-has-submenu">
-                            <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu" style="min-width: 300px;">
-                                <li><a href="sspsb.php">Sachdeva Steel Products (Ship Breakers)</a></li>
-                                <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
-                            </ul>
-                        </li>
-                        <li class="mh-has-submenu">
-                            <a href="javascript:void(0)" role="button" aria-haspopup="true">News &amp; Media <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu">
-                                <li><a href="news.php">News</a></li>
-                                <li><a href="gallery.php">Media</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.php" class="active">Contact</a></li>
-                    </ul>
-                </nav>
-                <a href="contact.php" class="mh-cta">
-                    <i class="fas fa-anchor"></i> Get Quote
-                </a>
-                <button class="mh-toggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-    <script src="js/marine-header.js"></script>
+    <?php include __DIR__ . '/includes/menu.php'; ?>
     <!-- ─── HERO ─── -->
     <section class="hero">
         <div class="hero-bg"></div>
@@ -2132,29 +2225,27 @@
         <div class="hero-bubbles" id="heroBubbles"></div>
 
         <!-- Sailing ship -->
-        <svg class="hero-ship" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-            <g>
-                <polygon points="80,20 80,70 130,70" fill="rgba(255,255,255,0.7)"/>
-                <polygon points="85,30 85,68 122,68" fill="rgba(201,146,42,0.65)"/>
-                <line x1="80" y1="20" x2="80" y2="80" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
-                <path d="M40,80 L160,80 L150,95 L50,95 Z" fill="rgba(10,22,40,0.95)" stroke="rgba(201,146,42,0.6)" stroke-width="1"/>
-                <rect x="60" y="72" width="80" height="10" fill="rgba(245,217,139,0.6)"/>
-            </g>
-        </svg>
+
 
         <!-- Animated waves -->
         <div class="hero-waves">
             <svg class="hero-wave-svg w3" viewBox="0 0 1440 140" preserveAspectRatio="none">
-                <path d="M0,80 C240,40 480,120 720,80 C960,40 1200,120 1440,80 L1440,140 L0,140 Z" fill="rgba(201,146,42,0.10)"/>
-                <path d="M1440,80 C1680,40 1920,120 2160,80 C2400,40 2640,120 2880,80 L2880,140 L1440,140 Z" fill="rgba(201,146,42,0.10)"/>
+                <path d="M0,80 C240,40 480,120 720,80 C960,40 1200,120 1440,80 L1440,140 L0,140 Z"
+                    fill="rgba(201,146,42,0.10)" />
+                <path d="M1440,80 C1680,40 1920,120 2160,80 C2400,40 2640,120 2880,80 L2880,140 L1440,140 Z"
+                    fill="rgba(201,146,42,0.10)" />
             </svg>
             <svg class="hero-wave-svg w2" viewBox="0 0 1440 140" preserveAspectRatio="none">
-                <path d="M0,95 C240,60 480,130 720,95 C960,60 1200,130 1440,95 L1440,140 L0,140 Z" fill="rgba(46,125,79,0.22)"/>
-                <path d="M1440,95 C1680,60 1920,130 2160,95 C2400,60 2640,130 2880,95 L2880,140 L1440,140 Z" fill="rgba(46,125,79,0.22)"/>
+                <path d="M0,95 C240,60 480,130 720,95 C960,60 1200,130 1440,95 L1440,140 L0,140 Z"
+                    fill="rgba(46,125,79,0.22)" />
+                <path d="M1440,95 C1680,60 1920,130 2160,95 C2400,60 2640,130 2880,95 L2880,140 L1440,140 Z"
+                    fill="rgba(46,125,79,0.22)" />
             </svg>
             <svg class="hero-wave-svg w1" viewBox="0 0 1440 140" preserveAspectRatio="none">
-                <path d="M0,110 C220,85 440,135 720,110 C1000,85 1220,135 1440,110 L1440,140 L0,140 Z" fill="rgba(6,14,28,0.92)"/>
-                <path d="M1440,110 C1660,85 1880,135 2160,110 C2440,85 2660,135 2880,110 L2880,140 L1440,140 Z" fill="rgba(6,14,28,0.92)"/>
+                <path d="M0,110 C220,85 440,135 720,110 C1000,85 1220,135 1440,110 L1440,140 L0,140 Z"
+                    fill="rgba(6,14,28,0.92)" />
+                <path d="M1440,110 C1660,85 1880,135 2160,110 C2440,85 2660,135 2880,110 L2880,140 L1440,140 Z"
+                    fill="rgba(6,14,28,0.92)" />
             </svg>
         </div>
 
@@ -2590,7 +2681,8 @@
                         <a href="#" class="ftr-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="ftr-social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
                         <a href="#" class="ftr-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
@@ -2598,7 +2690,10 @@
 
         <!-- Bottom bar -->
         <div class="marine-footer-bottom">
-            <p>© <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
+            <p>©
+                <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights
+                reserved.
+            </p>
             <div class="ftr-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <span>•</span>

@@ -17,10 +17,6 @@
     <link rel="stylesheet" href="css/marine-footer.css">
     <link rel="stylesheet" href="css/marine-header.css">
 
-    <!-- GSAP core + ScrollTrigger (free) — drives the hero parallax + reveal animations -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
     <!-- ─── INDEX-ONLY HEADER (sailing ship + wave ripple) ─── -->
     <style>
         /* Ship sailing across the header */
@@ -73,30 +69,7 @@
         /* Confine the parallax video shift inside the hero only */
         .hero-section .video-background { overflow: hidden; }
 
-        /* ──────────────────────────────────────
-           PARALLAX layers
-           ────────────────────────────────────── */
-        .hero-section .video-background {
-            will-change: transform;
-        }
-
-        .hero-section .video-background video {
-            /* Slight zoom so parallax shift never reveals the edge */
-            transform: scale(1.08);
-            transform-origin: center;
-        }
-
-        .hero-section .hero-content {
-            will-change: transform, opacity;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero-section .video-background,
-            .hero-section .hero-content {
-                transform: none !important;
-                will-change: auto;
-            }
-        }
+        /* Native scroll — no parallax. Hero video sits naturally. */
 
         /* ──────────────────────────────────────
            INDEX-ONLY LIGHT HEADER THEME
@@ -699,45 +672,7 @@
         </div>
     </div>
 
-    <!-- ─── MARINE HEADER (same as About Us page — cream gold-glow style) ─── -->
-    <header id="header" class="marine-header">
-        <div class="mh-main">
-            <div class="mh-main-inner">
-                <a href="index.php" class="mh-logo">
-                    <img src="images/logo.png" alt="Sachdeva Group">
-                    <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
-                </a>
-                <nav class="mh-nav">
-                    <ul class="mh-nav-list">
-                        <li><a href="index.php" class="active">Home</a></li>
-                        <li><a href="about.php">About Us</a></li>
-                        <li class="mh-has-submenu">
-                            <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu" style="min-width: 300px;">
-                                <li><a href="sspsb.php">Sachdeva Steel Products (Ship Breakers)</a></li>
-                                <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
-                            </ul>
-                        </li>
-                        <li class="mh-has-submenu">
-                            <a href="javascript:void(0)" role="button" aria-haspopup="true">News &amp; Media <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu">
-                                <li><a href="news.php">News</a></li>
-                                <li><a href="gallery.php">Media</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </nav>
-                <a href="contact.php" class="mh-cta">
-                    <i class="fas fa-anchor"></i> Get Quote
-                </a>
-                <button class="mh-toggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-    <script src="js/marine-header.js"></script>
+    <?php include __DIR__ . '/includes/menu.php'; ?>
 
     <!-- HERO SECTION WITH VIDEO BACKGROUND -->
     <section id="home" class="hero-section">
@@ -1488,77 +1423,9 @@
     <!-- ─── INDEX SCROLL-REVEAL + HERO WORD ANIMATION ─── -->
     <script>
         // ──────────────────────────────────────
-        //  GSAP SCROLLTRIGGER PARALLAX (native scroll)
-        //  No smooth-scroll lib — page scrolls natively, GSAP only drives parallax
+        //  NATIVE SCROLL — no parallax library, no GSAP.
+        //  Just regular browser scrolling.
         // ──────────────────────────────────────
-        function initParallax() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-                console.warn('[parallax] GSAP not loaded — open via http://localhost/demosite/');
-                return;
-            }
-            gsap.registerPlugin(ScrollTrigger);
-
-            // HERO — video drifts down, content rises and fades
-            const heroSec = document.querySelector('.hero-section');
-            const videoBg = document.querySelector('.hero-section .video-background');
-            const heroContent = document.querySelector('.hero-section .hero-content');
-
-            if (heroSec && videoBg) {
-                gsap.to(videoBg, {
-                    yPercent: 30,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: heroSec,
-                        start: 'top top',
-                        end: 'bottom top',
-                        scrub: 0.6,
-                    }
-                });
-            }
-
-            if (heroSec && heroContent) {
-                gsap.to(heroContent, {
-                    yPercent: -25,
-                    opacity: 0,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: heroSec,
-                        start: 'top top',
-                        end: '75% top',
-                        scrub: 0.6,
-                    }
-                });
-            }
-
-            // data-speed parallax for any element
-            gsap.utils.toArray('[data-speed]').forEach((el) => {
-                const speed = parseFloat(el.dataset.speed);
-                if (!speed || speed === 1) return;
-                gsap.fromTo(el,
-                    { y: 0 },
-                    {
-                        y: () => (1 - speed) * window.innerHeight * 0.4,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 0.6,
-                            invalidateOnRefresh: true,
-                        }
-                    }
-                );
-            });
-
-            window.addEventListener('load', () => ScrollTrigger.refresh());
-            console.info('[parallax] GSAP ScrollTrigger initialized');
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initParallax);
-        } else {
-            initParallax();
-        }
 
         // Hero word-by-word reveal — splits each word in .title-line into spans
         (function () {

@@ -1133,64 +1133,11 @@
 </head>
 
 <body>
-    <!-- ─── MARINE HEADER ─── -->
-    <header id="header" class="marine-header">
-        <div class="mh-topbar">
-            <div class="mh-topbar-inner">
-                <div class="mh-topbar-left">
-                    <a href="mailto:info@sachdevagroup.in"><i class="fas fa-envelope"></i> info@sachdevagroup.in</a>
-                    <a href="tel:+919925499123"><i class="fas fa-phone"></i> +91 99254 99123</a>
-                </div>
-                <div class="mh-topbar-right">
-                    <span class="mh-tb-label">Follow:</span>
-                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://wa.me/919925499123" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="mh-main">
-            <div class="mh-main-inner">
-                <a href="index.php" class="mh-logo">
-                    <img src="images/logo.png" alt="Sachdeva Group">
-                    <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
-                </a>
-                <nav class="mh-nav">
-                    <ul class="mh-nav-list">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="about.php" class="active">About Us</a></li>
-                        <li class="mh-has-submenu">
-                            <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu" style="min-width: 300px;">
-                                <li><a href="sspsb.php">Sachdeva Steel Products (Ship Breakers)</a></li>
-                                <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
-                            </ul>
-                        </li>
-                        <li class="mh-has-submenu">
-                            <a href="javascript:void(0)" role="button" aria-haspopup="true">News &amp; Media <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu">
-                                <li><a href="news.php">News</a></li>
-                                <li><a href="gallery.php">Media</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.php">Contact</a></li>
-                    </ul>
-                </nav>
-                <a href="contact.php" class="mh-cta">
-                    <i class="fas fa-anchor"></i> Get Quote
-                </a>
-                <button class="mh-toggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-    <script src="js/marine-header.js"></script>
+    <?php include __DIR__ . '/includes/menu.php'; ?>
     <!-- ─── HERO ─── -->
 
     <section class="hero"
-        style="padding-top: 220px; background-image: url('images/banner/about.jpeg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        style="padding-top: 220px; background-image: url('images/banner/aboutusbanner.png'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="hero-shape hs1"></div>
         <div class="hero-shape hs2"></div>
         <div

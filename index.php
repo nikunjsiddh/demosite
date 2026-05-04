@@ -66,21 +66,12 @@
         /* Lift the inner content above the ship */
         .marine-header--hero .mh-main-inner { position: relative; z-index: 2; }
 
-        /* Index-only: remove body padding so hero video flows behind the
-           transparent fixed header. Other pages keep the standard padding. */
-        body.has-marine-header { padding-top: 0 !important; }
-
-        /* Push the video hero down so its visible content isn't hidden under header */
+        /* Index hero: video starts below the standard fixed header (130px) */
         .hero-section {
-            padding-top: 130px;
             position: relative;
         }
         /* Confine the parallax video shift inside the hero only */
         .hero-section .video-background { overflow: hidden; }
-
-        @media (max-width: 700px) {
-            .hero-section { padding-top: 96px; }
-        }
 
         /* ──────────────────────────────────────
            PARALLAX layers
@@ -112,111 +103,208 @@
            (so the color logo shows properly)
            ────────────────────────────────────── */
 
-        /* Very translucent — mostly see-through with frosted glass */
+        /* ════════════════════════════════════════════════
+           ADAPTIVE HEADER — dark over hero, light when scrolled
+           ════════════════════════════════════════════════ */
+
+        /* ─── INITIAL STATE: warm cream glass with subtle gold glow (matches submenu) ─── */
         .marine-header--hero .mh-main {
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.18) 0%,
-                rgba(250, 251, 253, 0.16) 50%,
-                rgba(253, 245, 220, 0.22) 100%);
-            backdrop-filter: blur(18px) saturate(1.2);
-            -webkit-backdrop-filter: blur(18px) saturate(1.2);
-            border-bottom: 1px solid rgba(201, 146, 42, 0.28);
-            box-shadow: 0 4px 18px rgba(13, 27, 42, 0.08);
+            background:
+                radial-gradient(ellipse 60% 80% at 78% 50%,
+                    rgba(244, 198, 110, 0.30) 0%,
+                    rgba(244, 198, 110, 0.10) 40%,
+                    transparent 70%),
+                linear-gradient(135deg,
+                    rgba(248, 240, 218, 0.92) 0%,
+                    rgba(245, 233, 200, 0.90) 45%,
+                    rgba(240, 222, 178, 0.92) 100%);
+            backdrop-filter: blur(18px) saturate(1.25);
+            -webkit-backdrop-filter: blur(18px) saturate(1.25);
+            border-bottom: 1px solid rgba(201, 146, 42, 0.35);
+            box-shadow:
+                0 10px 32px rgba(13, 27, 42, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55),
+                inset 0 -1px 0 rgba(201, 146, 42, 0.20);
+            transition: background 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+            position: relative;
         }
 
-        .marine-header--hero.scrolled .mh-main {
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.40) 0%,
-                rgba(250, 251, 253, 0.36) 50%,
-                rgba(253, 245, 220, 0.45) 100%);
-            backdrop-filter: blur(22px) saturate(1.25);
-            -webkit-backdrop-filter: blur(22px) saturate(1.25);
-            box-shadow: 0 8px 24px rgba(13, 27, 42, 0.18);
+        /* Subtle gold glow line at the top edge — soft cream feel */
+        .marine-header--hero .mh-main::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(201, 146, 42, 0.45),
+                rgba(245, 217, 139, 0.65),
+                rgba(201, 146, 42, 0.45),
+                transparent);
+            opacity: 0.85;
+            pointer-events: none;
         }
 
-        /* Submenu — same light translucent style as header */
-        .marine-header--hero .mh-submenu {
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.85) 0%,
-                rgba(253, 245, 220, 0.85) 100%);
-            backdrop-filter: blur(18px) saturate(1.2);
-            -webkit-backdrop-filter: blur(18px) saturate(1.2);
-            border: 1px solid rgba(201, 146, 42, 0.45);
-            box-shadow: 0 18px 40px rgba(13, 27, 42, 0.18);
-        }
-
-        /* Triangle arrow above submenu — match light background */
-        .marine-header--hero .mh-submenu::before {
-            background: rgba(255, 255, 255, 0.92);
-            border-left-color: rgba(201, 146, 42, 0.45);
-            border-top-color: rgba(201, 146, 42, 0.45);
-        }
-
-        /* Submenu items: dark navy text on light translucent bg */
-        .marine-header--hero .mh-submenu li a {
-            color: rgba(13, 27, 42, 0.88);
-            font-weight: 500;
-        }
-
-        .marine-header--hero .mh-submenu li a::before {
-            color: #c9922a;
-        }
-
-        .marine-header--hero .mh-submenu li a:hover {
-            background: rgba(201, 146, 42, 0.16);
-            color: #c9922a;
-        }
-
-        .marine-header--hero .mh-submenu li a:hover::before {
-            color: #c9922a;
-        }
-
-        .marine-header--hero .mh-submenu li a.active {
-            color: #c9922a;
-            background: rgba(201, 146, 42, 0.10);
-        }
-
-        .marine-header--hero.scrolled .mh-main::before {
-            background: linear-gradient(90deg, transparent, #c9922a, transparent);
-        }
-
-        /* Color logo stays sharp on the light background */
+        /* Logo — color version with soft drop shadow on cream bg */
         .marine-header--hero .mh-logo img {
             filter:
-                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.18))
-                drop-shadow(0 0 18px rgba(201, 146, 42, 0.20));
+                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.20))
+                drop-shadow(0 0 18px rgba(201, 146, 42, 0.28));
+            transition: filter 0.4s ease;
         }
         .marine-header--hero .mh-logo:hover img {
             filter:
-                drop-shadow(0 4px 10px rgba(13, 27, 42, 0.25))
-                drop-shadow(0 0 26px rgba(201, 146, 42, 0.32));
+                drop-shadow(0 4px 10px rgba(13, 27, 42, 0.28))
+                drop-shadow(0 0 26px rgba(201, 146, 42, 0.42));
         }
 
-        /* Nav links: dark navy text on light background */
+        /* Nav links — DARK navy text on cream bg */
         .marine-header--hero .mh-nav-list > li > a {
-            color: rgba(13, 27, 42, 0.85);
+            color: rgba(13, 27, 42, 0.88);
             font-weight: 600;
+            transition: color 0.35s ease, background 0.35s ease;
         }
         .marine-header--hero .mh-nav-list > li > a:hover {
             color: #c9922a;
-            background: rgba(201, 146, 42, 0.10);
+            background: rgba(201, 146, 42, 0.16);
         }
         .marine-header--hero .mh-nav-list > li > a.active {
             color: #c9922a;
         }
 
-        /* Chevron icon dark on light bg */
+        /* Chevron — dark navy on cream */
         .marine-header--hero .mh-nav-list > li > a i.fa-chevron-down {
             color: rgba(13, 27, 42, 0.6);
+            transition: color 0.35s ease;
         }
 
-        /* Mobile hamburger lines — dark gold for contrast on light bg */
+        /* Mobile hamburger — dark navy on cream */
         .marine-header--hero .mh-toggle {
-            background: rgba(201, 146, 42, 0.12);
-            border-color: rgba(201, 146, 42, 0.5);
+            background: rgba(201, 146, 42, 0.14);
+            border-color: rgba(201, 146, 42, 0.55);
+            transition: background 0.35s ease, border-color 0.35s ease;
         }
         .marine-header--hero .mh-toggle span {
             background: #0a1628;
+            transition: background 0.35s ease;
+        }
+
+        /* Submenu — light cream themed (matches the screenshot reference) */
+        .marine-header--hero .mh-submenu {
+            background:
+                radial-gradient(ellipse 60% 80% at 78% 50%,
+                    rgba(244, 198, 110, 0.28) 0%,
+                    rgba(244, 198, 110, 0.08) 40%,
+                    transparent 70%),
+                linear-gradient(135deg,
+                    rgba(250, 244, 224, 0.96) 0%,
+                    rgba(245, 233, 200, 0.96) 100%);
+            backdrop-filter: blur(20px) saturate(1.2);
+            -webkit-backdrop-filter: blur(20px) saturate(1.2);
+            border: 1px solid rgba(201, 146, 42, 0.45);
+            box-shadow:
+                0 18px 40px rgba(13, 27, 42, 0.20),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55);
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+        .marine-header--hero .mh-submenu::before {
+            background: rgba(250, 244, 224, 0.96);
+            border-left-color: rgba(201, 146, 42, 0.45);
+            border-top-color: rgba(201, 146, 42, 0.45);
+            transition: background 0.4s ease, border-color 0.4s ease;
+        }
+        .marine-header--hero .mh-submenu li a {
+            color: rgba(13, 27, 42, 0.88);
+            font-weight: 500;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+        .marine-header--hero .mh-submenu li a::before {
+            color: #c9922a;
+        }
+        .marine-header--hero .mh-submenu li a:hover {
+            background: rgba(201, 146, 42, 0.18);
+            color: #c9922a;
+        }
+        .marine-header--hero .mh-submenu li a:hover::before {
+            color: #c9922a;
+        }
+        .marine-header--hero .mh-submenu li a.active {
+            color: #c9922a;
+            background: rgba(201, 146, 42, 0.12);
+        }
+
+        /* Get Quote CTA — gold pill */
+        .marine-header--hero .mh-cta {
+            background: linear-gradient(135deg, #c9922a, #f0b94a);
+            color: #0a1628;
+            border: 1px solid rgba(201, 146, 42, 0.6);
+            transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        /* ─── SCROLLED STATE: page scrolled past hero → CREAM bg + DARK text ─── */
+        .marine-header--hero.scrolled .mh-main {
+            background: linear-gradient(135deg,
+                rgba(225, 218, 204, 0.98) 0%,
+                rgba(232, 225, 212, 0.97) 50%,
+                rgba(220, 212, 192, 0.98) 100%);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            box-shadow: 0 10px 28px rgba(13, 27, 42, 0.22);
+        }
+        .marine-header--hero.scrolled .mh-main::before {
+            background: linear-gradient(90deg, transparent, #c9922a, transparent);
+        }
+        .marine-header--hero.scrolled .mh-logo img {
+            filter:
+                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.20))
+                drop-shadow(0 0 18px rgba(201, 146, 42, 0.25));
+        }
+        .marine-header--hero.scrolled .mh-nav-list > li > a {
+            color: rgba(13, 27, 42, 0.88);
+        }
+        .marine-header--hero.scrolled .mh-nav-list > li > a:hover {
+            color: #c9922a;
+            background: rgba(201, 146, 42, 0.12);
+        }
+        .marine-header--hero.scrolled .mh-nav-list > li > a.active {
+            color: #c9922a;
+        }
+        .marine-header--hero.scrolled .mh-nav-list > li > a i.fa-chevron-down {
+            color: rgba(13, 27, 42, 0.6);
+        }
+        .marine-header--hero.scrolled .mh-toggle {
+            background: rgba(201, 146, 42, 0.14);
+            border-color: rgba(201, 146, 42, 0.55);
+        }
+        .marine-header--hero.scrolled .mh-toggle span {
+            background: #0a1628;
+        }
+
+        /* Submenu when scrolled — light themed */
+        .marine-header--hero.scrolled .mh-submenu {
+            background: linear-gradient(135deg,
+                rgba(248, 244, 234, 0.98) 0%,
+                rgba(238, 230, 212, 0.98) 100%);
+            border-color: rgba(201, 146, 42, 0.5);
+            box-shadow: 0 18px 40px rgba(13, 27, 42, 0.20);
+        }
+        .marine-header--hero.scrolled .mh-submenu::before {
+            background: rgba(248, 244, 234, 0.98);
+            border-left-color: rgba(201, 146, 42, 0.5);
+            border-top-color: rgba(201, 146, 42, 0.5);
+        }
+        .marine-header--hero.scrolled .mh-submenu li a {
+            color: rgba(13, 27, 42, 0.88);
+        }
+        .marine-header--hero.scrolled .mh-submenu li a:hover {
+            background: rgba(201, 146, 42, 0.16);
+            color: #c9922a;
+        }
+        .marine-header--hero.scrolled .mh-submenu li a.active {
+            color: #c9922a;
+            background: rgba(201, 146, 42, 0.10);
         }
 
         /* Hide the sailing ship — its white sail is invisible on light bg */
@@ -611,53 +699,36 @@
         </div>
     </div>
 
-    <!-- ─── MARINE HEADER (index variant — ship animation, taller bar) ─── -->
-    <header id="header" class="marine-header marine-header--hero">
-        <!-- Sailing ship animation (index only) -->
-        <div class="mh-ship-track" aria-hidden="true">
-            <svg class="mh-sailing-ship" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-                <g>
-                    <polygon points="80,20 80,70 130,70" fill="rgba(255,255,255,0.55)"/>
-                    <polygon points="85,30 85,68 122,68" fill="rgba(201,146,42,0.55)"/>
-                    <line x1="80" y1="20" x2="80" y2="80" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
-                    <path d="M40,80 L160,80 L150,95 L50,95 Z" fill="rgba(10,22,40,0.95)" stroke="rgba(201,146,42,0.55)" stroke-width="1"/>
-                    <rect x="60" y="72" width="80" height="10" fill="rgba(245,217,139,0.5)"/>
-                </g>
-            </svg>
-            <!-- Wave ripple at the bottom edge -->
-            <svg class="mh-ripple" viewBox="0 0 1440 22" preserveAspectRatio="none">
-                <path d="M0,12 C240,2 480,22 720,12 C960,2 1200,22 1440,12 L1440,22 L0,22 Z" fill="rgba(46,125,79,0.18)"/>
-                <path d="M1440,12 C1680,2 1920,22 2160,12 C2400,2 2640,22 2880,12 L2880,22 L1440,22 Z" fill="rgba(46,125,79,0.18)"/>
-            </svg>
-        </div>
+    <!-- ─── MARINE HEADER (same as About Us page — cream gold-glow style) ─── -->
+    <header id="header" class="marine-header">
         <div class="mh-main">
             <div class="mh-main-inner">
-                <a href="index.html" class="mh-logo">
+                <a href="index.php" class="mh-logo">
                     <img src="images/logo.png" alt="Sachdeva Group">
                     <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
                 </a>
                 <nav class="mh-nav">
                     <ul class="mh-nav-list">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.php" class="active">Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
                         <li class="mh-has-submenu">
                             <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
                             <ul class="mh-submenu" style="min-width: 300px;">
-                                <li><a href="sspsb.html">Sachdeva Steel Products (Ship Breakers)</a></li>
-                                <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
+                                <li><a href="sspsb.php">Sachdeva Steel Products (Ship Breakers)</a></li>
+                                <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
                             </ul>
                         </li>
                         <li class="mh-has-submenu">
-                            <a href="news.html">News &amp; Media <i class="fas fa-chevron-down"></i></a>
+                            <a href="javascript:void(0)" role="button" aria-haspopup="true">News &amp; Media <i class="fas fa-chevron-down"></i></a>
                             <ul class="mh-submenu">
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="gallery.html">Media</a></li>
+                                <li><a href="news.php">News</a></li>
+                                <li><a href="gallery.php">Media</a></li>
                             </ul>
                         </li>
-                        <li><a href="Contact.html">Contact</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </nav>
-                <a href="Contact.html" class="mh-cta">
+                <a href="contact.php" class="mh-cta">
                     <i class="fas fa-anchor"></i> Get Quote
                 </a>
                 <button class="mh-toggle" aria-label="Menu">
@@ -1178,19 +1249,19 @@
             <div class="news-grid">
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
-                    onclick="window.location.href='environment-management.html';">
-                    <a href="environment-management.html" class="news-image"
+                    onclick="window.location.href='environment-management.php';">
+                    <a href="environment-management.php" class="news-image"
                         style="display:block; text-decoration:none;">
                         <img src="images/environment1.jpg" alt="Environment Management">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="environment-management.html"
+                        <h3><a href="environment-management.php"
                                 style="color:inherit; text-decoration:none;">Environment Management</a></h3>
                         <p>We take proactive steps to minimize our ecological footprint. From
                             energy-efficient systems to eco-conscious operations, we integrate sustainable practices at
                             every level.</p>
-                        <a href="environment-management.html" class="read-more">
+                        <a href="environment-management.php" class="read-more">
                             <span>Read More</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1203,19 +1274,19 @@
 
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
-                    onclick="window.location.href='health-safety.html';">
-                    <a href="health-safety.html" class="news-image"
+                    onclick="window.location.href='health-safety.php';">
+                    <a href="health-safety.php" class="news-image"
                         style="display:block; text-decoration:none;">
                         <img src="images/Health&Safety.png" alt="Health & Safety">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="health-safety.html"
+                        <h3><a href="health-safety.php"
                                 style="color:inherit; text-decoration:none;">Health &amp; Safety</a></h3>
                         <p>The health and safety of our people and partners come first. We
                             follow stringent
                             safety protocols and foster a culture of awareness for secure environments.</p>
-                        <a href="health-safety.html" class="read-more">
+                        <a href="health-safety.php" class="read-more">
                             <span>Read More</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1228,20 +1299,20 @@
 
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
-                    onclick="window.location.href='waste-management.html';">
-                    <a href="waste-management.html" class="news-image"
+                    onclick="window.location.href='waste-management.php';">
+                    <a href="waste-management.php" class="news-image"
                         style="display:block; text-decoration:none;">
                         <img src="images/WasteManagement.png" alt="Waste Management">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="waste-management.html"
+                        <h3><a href="waste-management.php"
                                 style="color:inherit; text-decoration:none;">Waste Management</a></h3>
                         <p>Our waste management strategies prioritize reduction, reuse, and
                             recycling. We
                             implement smart disposal methods and ensure compliance with global standards.
                         </p>
-                        <a href="waste-management.html" class="read-more">
+                        <a href="waste-management.php" class="read-more">
                             <span>Read More</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1320,13 +1391,13 @@
                 <div class="ftr-col">
                     <h4>Quick Links</h4>
                     <ul class="ftr-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="sspsb.html">Sachdeva Steel Products</a></li>
-                        <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="gallery.html">Media</a></li>
-                        <li><a href="Contact.html">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="sspsb.php">Sachdeva Steel Products</a></li>
+                        <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
+                        <li><a href="news.php">News</a></li>
+                        <li><a href="gallery.php">Media</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
@@ -1334,7 +1405,7 @@
                     <h4>Our Companies</h4>
                     <ul class="ftr-companies">
                         <li>
-                            <a href="sspsb.html">
+                            <a href="sspsb.php">
                                 <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
                                 <span class="cmp-text">
                                     Sachdeva Steel Products (Ship Breaking Unit) LLP
@@ -1343,7 +1414,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="jjsb.html">
+                            <a href="jjsb.php">
                                 <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
                                 <span class="cmp-text">
                                     Jai Jagdish Ship Breakers Pvt. Ltd.
@@ -1392,7 +1463,7 @@
         </div>
 
         <div class="marine-footer-bottom">
-            <p>© 2026 Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
+            <p>© <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
             <div class="ftr-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <span>•</span>

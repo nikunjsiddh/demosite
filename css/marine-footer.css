@@ -1,0 +1,530 @@
+/* ============================================
+   MARINE ANIMATED FOOTER — shared across pages
+   ============================================ */
+
+.marine-footer {
+    --mf-deep: #060e1c;
+    --mf-navy: #0a1628;
+    --mf-gold: #c9922a;
+    --mf-gold-light: #f0b94a;
+    --mf-gold-pale: #f5d98b;
+    --mf-white: #f5f0e8;
+
+    position: relative;
+    margin-top: 80px;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    /* Same gradient as the marine header (scrolled state) */
+    background: linear-gradient(135deg, rgba(6, 14, 28, 0.97) 0%, rgba(10, 22, 40, 0.98) 50%, rgba(6, 14, 28, 0.97) 100%);
+    color: var(--mf-white);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* ─── BLUE LAYERED WAVE — top of footer, continuous animation ─── */
+.marine-footer .footer-blue-wave {
+    position: relative;
+    height: 130px;
+    background: transparent;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.marine-footer .fbw-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    animation: fbw-flow 28s linear infinite;
+}
+
+/* Light steel-blue accent — peaks the highest (back of stack) */
+.marine-footer .fbw-layer.fbw-accent {
+    animation-duration: 22s;
+    z-index: 1;
+}
+
+/* Medium navy band — middle layer */
+.marine-footer .fbw-layer.fbw-mid {
+    animation-duration: 32s;
+    z-index: 2;
+}
+
+/* Deep navy base — peak the lowest, on top so it anchors the bottom band */
+.marine-footer .fbw-layer.fbw-deep {
+    animation-duration: 40s;
+    z-index: 3;
+}
+
+@keyframes fbw-flow {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+/* Bubbles inside the footer */
+.marine-footer .footer-bubbles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.marine-footer .footer-bubbles span {
+    position: absolute;
+    bottom: -50px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(201, 146, 42, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    animation: ftr-bubble-up linear infinite;
+}
+
+@keyframes ftr-bubble-up {
+    0%   { transform: translateY(0); opacity: 0; }
+    10%  { opacity: 0.5; }
+    100% { transform: translateY(-700px); opacity: 0; }
+}
+
+/* Glow blobs */
+.marine-footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+        radial-gradient(circle at 18% 30%, rgba(201, 146, 42, 0.13), transparent 40%),
+        radial-gradient(circle at 82% 70%, rgba(46, 125, 79, 0.12), transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Inner content wrapper */
+.marine-footer .marine-footer-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 5% 0;
+}
+
+/* ─── GRID ─── */
+.marine-footer .marine-footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.4fr 1.3fr;
+    gap: 44px;
+    padding-bottom: 50px;
+}
+
+.marine-footer .ftr-col h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--mf-gold-light);
+    margin-bottom: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.marine-footer .ftr-col h4::before {
+    content: '';
+    width: 24px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--mf-gold), transparent);
+}
+
+/* About column */
+.marine-footer .ftr-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    position: relative;
+}
+
+.marine-footer .ftr-logo img {
+    height: 78px;
+    width: auto;
+    display: block;
+    /* Soft halo so the transparent logo reads on dark footer */
+    filter:
+        drop-shadow(0 0 14px rgba(255, 255, 255, 0.22))
+        drop-shadow(0 0 24px rgba(201, 146, 42, 0.30));
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.marine-footer .ftr-logo:hover img {
+    transform: scale(1.06);
+    filter:
+        drop-shadow(0 0 20px rgba(255, 255, 255, 0.40))
+        drop-shadow(0 0 34px rgba(201, 146, 42, 0.45));
+}
+
+/* Brand text hidden in footer — logo only */
+.marine-footer .ftr-logo .ftr-logo-text { display: none; }
+
+.marine-footer .ftr-about-text {
+    color: rgba(245, 240, 232, 0.65);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    margin-bottom: 20px;
+}
+
+.marine-footer .ftr-trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: rgba(201, 146, 42, 0.08);
+    border: 1px solid rgba(201, 146, 42, 0.3);
+    border-radius: 50px;
+    color: var(--mf-gold-light);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.marine-footer .ftr-trust-badge i {
+    color: var(--mf-gold);
+    font-size: 0.95rem;
+}
+
+.marine-footer .ftr-trust-badge::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50px;
+    border: 1px solid var(--mf-gold);
+    opacity: 0;
+    animation: ftr-trust-pulse 2.4s ease-out infinite;
+}
+
+@keyframes ftr-trust-pulse {
+    0%   { transform: scale(0.95); opacity: 0.6; }
+    100% { transform: scale(1.12); opacity: 0; }
+}
+
+/* Quick Links */
+.marine-footer .ftr-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.marine-footer .ftr-links li { margin-bottom: 11px; }
+
+.marine-footer .ftr-links a {
+    color: rgba(245, 240, 232, 0.7);
+    text-decoration: none;
+    font-size: 0.92rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease, gap 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.marine-footer .ftr-links a::before {
+    content: '\f0da';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 0.7rem;
+    color: var(--mf-gold);
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.marine-footer .ftr-links a:hover {
+    color: var(--mf-gold-light);
+    gap: 14px;
+    transform: translateX(2px);
+}
+
+.marine-footer .ftr-links a:hover::before {
+    opacity: 1;
+    color: var(--mf-gold-light);
+}
+
+/* Companies */
+.marine-footer .ftr-companies {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.marine-footer .ftr-companies li {
+    position: relative;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(201, 146, 42, 0.04));
+    border: 1px solid rgba(201, 146, 42, 0.18);
+    border-radius: 14px;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+/* Gold accent bar on the left edge */
+.marine-footer .ftr-companies li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--mf-gold), var(--mf-gold-light), var(--mf-gold));
+    transform: scaleY(0.4);
+    transform-origin: center;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+    opacity: 0.55;
+}
+
+/* Right-side chevron arrow that fades in on hover */
+.marine-footer .ftr-companies li::after {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translate(8px, -50%);
+    color: var(--mf-gold-light);
+    font-size: 0.78rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.marine-footer .ftr-companies li:hover {
+    background: linear-gradient(135deg, rgba(201, 146, 42, 0.12), rgba(201, 146, 42, 0.04));
+    border-color: rgba(201, 146, 42, 0.55);
+    transform: translateX(6px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.30), 0 0 22px rgba(201, 146, 42, 0.15);
+}
+
+.marine-footer .ftr-companies li:hover::before {
+    transform: scaleY(1);
+    opacity: 1;
+}
+
+.marine-footer .ftr-companies li:hover::after {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+/* Whole card is the click target */
+.marine-footer .ftr-companies li a {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    padding: 16px 38px 16px 18px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.marine-footer .ftr-companies .cmp-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--mf-gold), var(--mf-gold-light));
+    color: var(--mf-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(201, 146, 42, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.marine-footer .ftr-companies li:hover .cmp-icon {
+    transform: rotate(-8deg) scale(1.06);
+}
+
+.marine-footer .ftr-companies .cmp-text {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: rgba(245, 240, 232, 0.95);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+.marine-footer .ftr-companies .cmp-text small {
+    display: block;
+    color: var(--mf-gold-light);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 6px;
+    opacity: 0.85;
+}
+
+/* Contact Info */
+.marine-footer .ftr-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px;
+}
+
+.marine-footer .ftr-contact li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.marine-footer .ftr-contact .ci-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: 10px;
+    background: rgba(201, 146, 42, 0.12);
+    border: 1px solid rgba(201, 146, 42, 0.3);
+    color: var(--mf-gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.marine-footer .ftr-contact li:hover .ci-icon {
+    background: var(--mf-gold);
+    color: var(--mf-deep);
+    transform: rotate(-8deg) scale(1.05);
+}
+
+.marine-footer .ftr-contact .ci-meta {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: rgba(245, 240, 232, 0.85);
+}
+
+.marine-footer .ftr-contact .ci-meta b {
+    display: block;
+    color: var(--mf-gold-light);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.marine-footer .ftr-contact .ci-meta a {
+    color: rgba(245, 240, 232, 0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.marine-footer .ftr-contact .ci-meta a:hover { color: var(--mf-gold-light); }
+
+/* Social row */
+.marine-footer .ftr-social-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.marine-footer .ftr-social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(201, 146, 42, 0.25);
+    color: rgba(245, 240, 232, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.95rem;
+    position: relative;
+    transition: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.marine-footer .ftr-social-btn::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 1.5px solid var(--mf-gold);
+    opacity: 0;
+    transform: scale(0.85);
+    transition: 0.35s;
+}
+
+.marine-footer .ftr-social-btn:hover {
+    transform: translateY(-4px);
+    background: var(--mf-gold);
+    color: var(--mf-deep);
+    border-color: var(--mf-gold);
+    box-shadow: 0 8px 22px rgba(201, 146, 42, 0.35);
+}
+
+.marine-footer .ftr-social-btn:hover::before {
+    opacity: 0.6;
+    transform: scale(1.18);
+}
+
+/* ─── BOTTOM BAR ─── */
+.marine-footer .marine-footer-bottom {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid rgba(201, 146, 42, 0.18);
+    padding: 22px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 0.82rem;
+    color: rgba(245, 240, 232, 0.55);
+    background: rgba(3, 9, 18, 0.6);
+    backdrop-filter: blur(6px);
+}
+
+.marine-footer .marine-footer-bottom p i {
+    color: var(--mf-gold);
+    margin: 0 6px;
+    animation: ftr-sway 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes ftr-sway {
+    0%, 100% { transform: rotate(-6deg); }
+    50%      { transform: rotate(6deg); }
+}
+
+.marine-footer .ftr-bottom-links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.marine-footer .ftr-bottom-links a {
+    color: rgba(245, 240, 232, 0.65);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.marine-footer .ftr-bottom-links a:hover { color: var(--mf-gold-light); }
+
+.marine-footer .ftr-bottom-links span { color: rgba(201, 146, 42, 0.4); }
+
+@media (max-width: 980px) {
+    .marine-footer .marine-footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 600px) {
+    .marine-footer .marine-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .marine-footer .marine-footer-bottom { flex-direction: column; text-align: center; }
+}

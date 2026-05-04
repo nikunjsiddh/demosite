@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Environment Management – Sachdeva Group | Sustainable Marine Recycling</title>
+    <meta name="description"
+        content="Sachdeva Group's Environment & Waste Management — eco-friendly, HKC, ISO 14001, Basel-compliant marine ship recycling at Alang, Gujarat." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="agentapp_static/180193f0_40d1_70d0_7dcd_e2aaa36334c6/f39xi1f8zu/styles.css">
+    <link rel="stylesheet" href="css/inline_styles.css">
+    <link rel="stylesheet" href="css/marine-footer.css">
+    <link rel="stylesheet" href="css/marine-header.css">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --navy-deep: #061625;
+            --navy: #0d1b2a;
+            --navy-mid: #14304d;
+            --navy-light: #1a3553;
+            --gold: #c9a84c;
+            --gold-bright: #e4c46e;
+            --gold-glow: #ffd966;
+            --teal: #1e7a8c;
+            --teal-light: #46c5d8;
+            --emerald: #2e7d4f;
+            --emerald-light: #4ea36e;
+            --bg: #f3f7fb;
+            --bg-soft: #eaf1f7;
+            --white: #ffffff;
+            --text: #2c3e50;
+            --muted: #64748b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── GLOBAL ANIMATIONS ─── */
+        @keyframes float-up {
+            0% { transform: translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        @keyframes wave-shift {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes ship-sail {
+            0% { transform: translateX(-120%) translateY(0) rotate(0deg); }
+            50% { transform: translateX(50%) translateY(-8px) rotate(-1deg); }
+            100% { transform: translateX(220%) translateY(0) rotate(0deg); }
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes fade-down {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scroll-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes leaf-sway {
+            0%, 100% { transform: rotate(-6deg); }
+            50% { transform: rotate(6deg); }
+        }
+
+        /* ─── HERO ─── */
+        .em-hero {
+            position: relative;
+            min-height: 100vh;
+            padding: 200px 24px 140px;
+            text-align: center;
+            background-image:
+                linear-gradient(135deg, rgba(13, 27, 42, 0.82) 0%, rgba(20, 48, 77, 0.78) 55%, rgba(6, 22, 37, 0.88) 100%),
+                url('images/Environmental-Concerns.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        /* Animated water grid backdrop on top of image */
+        .em-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(70, 197, 216, 0.07) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(70, 197, 216, 0.07) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        .em-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 25%, rgba(46, 125, 79, 0.28), transparent 50%),
+                radial-gradient(ellipse at 80% 75%, rgba(201, 168, 76, 0.22), transparent 55%);
+            pointer-events: none;
+        }
+
+        /* Floating bubbles container */
+        .bubbles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(70, 197, 216, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            animation: float-up linear infinite;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Animated waves at hero bottom */
+        .hero-waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .wave-svg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            animation: wave-shift 18s linear infinite;
+        }
+
+        .wave-svg.w2 { animation-duration: 26s; opacity: 0.55; }
+        .wave-svg.w3 { animation-duration: 34s; opacity: 0.35; }
+
+        /* Sailing ship animation */
+        .sailing-ship {
+            position: absolute;
+            bottom: 110px;
+            left: 0;
+            width: 120px;
+            z-index: 3;
+            animation: ship-sail 32s linear infinite;
+            opacity: 0.85;
+        }
+
+        .em-hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .em-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(201, 168, 76, 0.12);
+            border: 1px solid rgba(201, 168, 76, 0.5);
+            color: var(--gold-bright);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            padding: 9px 24px;
+            border-radius: 50px;
+            margin-bottom: 26px;
+            position: relative;
+            backdrop-filter: blur(8px);
+            animation: fade-down 1s ease both;
+        }
+
+        .em-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold-bright);
+            box-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        .em-hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 4.6rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            animation: fade-down 1.1s ease 0.15s both;
+        }
+
+        .em-hero h1 .gold-shimmer {
+            background: linear-gradient(90deg, var(--gold), var(--gold-bright), var(--gold-glow), var(--gold-bright), var(--gold));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: var(--gold);
+            animation: shimmer 4s linear infinite;
+            display: inline-block;
+        }
+
+        .em-hero p {
+            max-width: 760px;
+            margin: 26px auto 0;
+            color: rgba(230, 240, 255, 0.78);
+            font-size: clamp(1rem, 1.4vw, 1.18rem);
+            line-height: 1.75;
+            animation: fade-down 1.2s ease 0.3s both;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 44px;
+            flex-wrap: wrap;
+            animation: fade-down 1.3s ease 0.5s both;
+        }
+
+        .hero-meta .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.94rem;
+            font-weight: 500;
+        }
+
+        .hero-meta .meta-item i {
+            color: var(--gold-bright);
+            font-size: 1.05rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            z-index: 5;
+            animation: scroll-bounce 2s ease infinite;
+        }
+
+        .scroll-indicator i { display: block; margin-top: 8px; font-size: 16px; }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar {
+            position: relative;
+            margin-top: -70px;
+            z-index: 10;
+            padding: 0 24px;
+        }
+
+        .stats-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--white) 0%, #f8fbff 100%);
+            border-radius: 24px;
+            padding: 36px 28px;
+            box-shadow: 0 30px 80px rgba(13, 27, 42, 0.18), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--emerald), var(--gold), var(--teal-light), var(--gold));
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .stat-cell {
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-cell:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, #e2e8f0, transparent);
+        }
+
+        .stat-icon-wrap {
+            width: 52px;
+            height: 52px;
+            margin: 0 auto 12px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(46, 125, 79, 0.12));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.3rem;
+        }
+
+        .stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.7rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .stat-num small { font-size: 0.7em; color: var(--gold); }
+
+        .stat-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 6px;
+        }
+
+        @media (max-width: 720px) {
+            .stats-inner { grid-template-columns: repeat(2, 1fr); padding: 26px 20px; }
+            .stat-cell:nth-child(2)::after { display: none; }
+        }
+
+        /* ─── SECTION ─── */
+        .section {
+            padding: 120px 24px 90px;
+            position: relative;
+        }
+
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(46, 125, 79, 0.1);
+            color: var(--emerald);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border-radius: 50px;
+            margin-bottom: 18px;
+        }
+
+        .section-tag i { font-size: 13px; }
+
+        .section-tag.gold {
+            background: rgba(201, 168, 76, 0.12);
+            color: var(--gold);
+        }
+
+        .section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1.2;
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-title span { color: var(--gold); }
+
+        .gold-line {
+            display: inline-block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-glow), var(--gold));
+            margin: 8px 0 22px;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .gold-line::before, .gold-line::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .gold-line::before { left: -14px; }
+        .gold-line::after { right: -14px; }
+
+        .section-sub {
+            color: var(--muted);
+            font-size: 1.02rem;
+            max-width: 720px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+
+        /* ─── PRINCIPLE CARDS (light) ─── */
+        .section-light {
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(243, 247, 251, 0.96) 100%),
+                url('images/environment1.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-light::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(46, 125, 79, 0.08), transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(201, 168, 76, 0.08), transparent 40%);
+            pointer-events: none;
+        }
+
+        .section-light .section-inner { position: relative; z-index: 1; }
+
+        .principle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .principle-card {
+            position: relative;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 38px 30px 30px;
+            box-shadow: 0 6px 24px rgba(13, 27, 42, 0.06);
+            border: 1px solid rgba(13, 27, 42, 0.04);
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+            isolation: isolate;
+        }
+
+        .principle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--emerald), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .principle-card::after {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.12), transparent 70%);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: -1;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-12px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(13, 27, 42, 0.14);
+            border-color: rgba(201, 168, 76, 0.4);
+        }
+
+        .principle-card:hover::before { transform: scaleX(1); }
+        .principle-card:hover::after { transform: scale(1.8); }
+
+        .principle-card .icon-wrap {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-bright);
+            font-size: 1.5rem;
+            margin-bottom: 22px;
+            transition: transform 0.4s ease;
+        }
+
+        .principle-card .icon-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 22px;
+            border: 2px solid var(--gold);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .principle-card:hover .icon-wrap { transform: rotate(-6deg) scale(1.05); }
+        .principle-card:hover .icon-wrap::after { opacity: 0.4; inset: -10px; }
+
+        .principle-num-pill {
+            position: absolute;
+            top: 22px;
+            right: 26px;
+            font-family: 'Inter', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: rgba(201, 168, 76, 0.2);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .principle-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .principle-card ul { list-style: none; padding: 0; margin: 0; }
+
+        .principle-card ul li {
+            position: relative;
+            padding-left: 26px;
+            color: var(--text);
+            font-size: 0.94rem;
+            line-height: 1.75;
+            margin-bottom: 12px;
+        }
+
+        .principle-card ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 4px;
+            color: var(--emerald);
+            font-size: 0.78rem;
+            background: rgba(46, 125, 79, 0.12);
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ─── DARK SECTION (waste) ─── */
+        .section-dark {
+            background-image:
+                linear-gradient(180deg, rgba(6, 22, 37, 0.92) 0%, rgba(13, 27, 42, 0.92) 50%, rgba(20, 48, 77, 0.92) 100%),
+                url('images/WasteManagement.png');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-dark::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(46, 125, 79, 0.18), transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(201, 168, 76, 0.14), transparent 50%);
+            pointer-events: none;
+        }
+
+        /* Subtle animated pattern on dark section */
+        .section-dark::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(rgba(201, 168, 76, 0.08) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.4;
+            pointer-events: none;
+            mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+        }
+
+        .section-dark .section-inner { position: relative; z-index: 1; }
+
+        .section-dark .section-title { color: var(--white); }
+        .section-dark .section-title span { color: var(--gold-bright); }
+        .section-dark .section-sub { color: rgba(255, 255, 255, 0.72); }
+
+        .section-dark .section-tag {
+            background: rgba(201, 168, 76, 0.12);
+            color: var(--gold-bright);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .section-dark .principle-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(201, 168, 76, 0.18);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-dark .principle-card::before {
+            background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+        }
+
+        .section-dark .principle-card::after {
+            background: radial-gradient(circle, rgba(70, 197, 216, 0.18), transparent 70%);
+        }
+
+        .section-dark .principle-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(201, 168, 76, 0.55);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .section-dark .principle-card h3 { color: var(--gold-bright); }
+        .section-dark .principle-card ul li { color: rgba(255, 255, 255, 0.8); }
+
+        .section-dark .principle-card ul li::before {
+            background: rgba(201, 168, 76, 0.18);
+            color: var(--gold-bright);
+        }
+
+        .section-dark .principle-card .icon-wrap {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.05));
+            border: 1px solid rgba(201, 168, 76, 0.3);
+        }
+
+        .section-dark .principle-num-pill { color: rgba(201, 168, 76, 0.22); }
+
+        /* ─── ECO TIMELINE SECTION BG ─── */
+        .eco-timeline-section {
+            background-image:
+                linear-gradient(180deg, rgba(234, 243, 238, 0.94) 0%, rgba(243, 247, 251, 0.96) 100%),
+                url('images/environment1.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .eco-timeline-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 0% 50%, rgba(46, 125, 79, 0.1), transparent 35%),
+                radial-gradient(circle at 100% 50%, rgba(201, 168, 76, 0.1), transparent 35%);
+            pointer-events: none;
+        }
+
+        .eco-timeline-section .section-inner { position: relative; z-index: 1; }
+
+        /* ─── ECO TIMELINE ─── */
+        .eco-timeline {
+            position: relative;
+            margin-top: 60px;
+            padding: 0 20px;
+        }
+
+        .timeline-track {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            position: relative;
+        }
+
+        .timeline-track::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 5%;
+            right: 5%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--emerald), var(--gold), var(--teal-light), var(--gold), var(--emerald));
+            background-size: 200% auto;
+            animation: shimmer 6s linear infinite;
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        .timeline-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-step .step-circle {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--navy);
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(13, 27, 42, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+
+        .timeline-step .step-circle::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            opacity: 0.4;
+            animation: pulse-ring 2.6s ease-out infinite;
+        }
+
+        .timeline-step:hover .step-circle {
+            transform: translateY(-6px) scale(1.08);
+            box-shadow: 0 14px 30px rgba(201, 168, 76, 0.4);
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--white);
+        }
+
+        .timeline-step h4 {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .timeline-step p {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 820px) {
+            .timeline-track { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .timeline-track::before { display: none; }
+        }
+
+        /* ─── CERTIFICATIONS BAND ─── */
+        .certs-band {
+            background-image:
+                linear-gradient(135deg, rgba(13, 27, 42, 0.92) 0%, rgba(20, 48, 77, 0.88) 60%, rgba(13, 27, 42, 0.92) 100%),
+                url('images/Environmental-Concerns.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            padding: 80px 24px;
+            overflow: hidden;
+        }
+
+        .certs-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 30% 50%, rgba(46, 125, 79, 0.2), transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(201, 168, 76, 0.18), transparent 50%);
+            pointer-events: none;
+        }
+
+        .certs-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            color: #fff;
+        }
+
+        .certs-inner > p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 18px;
+        }
+
+        .cert-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 16px;
+            padding: 22px 18px;
+            transition: 0.4s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .cert-chip:hover {
+            transform: translateY(-6px);
+            background: rgba(201, 168, 76, 0.1);
+            border-color: var(--gold);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-chip i {
+            font-size: 1.8rem;
+            color: var(--gold-bright);
+            margin-bottom: 10px;
+        }
+
+        .cert-chip .ct {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.92rem;
+            margin-bottom: 4px;
+        }
+
+        .cert-chip .cs {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* ─── COMPANIES ─── */
+        .companies-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        @media(max-width:740px) { .companies-grid { grid-template-columns: 1fr; } }
+
+        .company-card {
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+            border-radius: 24px;
+            padding: 44px 38px;
+            box-shadow: 0 8px 28px rgba(13, 27, 42, 0.08);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+            overflow: hidden;
+            border: 1px solid rgba(13, 27, 42, 0.05);
+        }
+
+        .company-card::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.18), transparent 70%);
+            transition: transform 0.6s ease;
+        }
+
+        .company-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 28px 60px rgba(13, 27, 42, 0.16);
+        }
+
+        .company-card:hover::before {
+            transform: scale(1.6);
+        }
+
+        .company-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-bright);
+            font-size: 1.6rem;
+            margin-bottom: 22px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 20px rgba(13, 27, 42, 0.18);
+        }
+
+        .company-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .company-card .since {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.75;
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-stats {
+            display: flex;
+            gap: 24px;
+            margin-top: 22px;
+            padding-top: 22px;
+            border-top: 1px dashed rgba(13, 27, 42, 0.12);
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-stats div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .company-stats strong {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--navy);
+            line-height: 1;
+            letter-spacing: -0.01em;
+        }
+
+        .company-stats span {
+            font-size: 0.74rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+
+        /* ─── REVEAL ANIMATION ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible { opacity: 1; transform: none; }
+
+        .stagger > .reveal { transition-delay: calc(var(--i, 0) * 0.08s); }
+
+        /* ─── ROTATE-X FLIP-IN for Waste Management cards (01–08) ─── */
+        .section-dark .principle-grid { perspective: 1400px; }
+
+        .section-dark .principle-card.reveal {
+            transform: perspective(1400px) rotateX(-25deg) translateY(60px);
+            transform-origin: 50% 100%;
+            opacity: 0;
+            transition:
+                opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .section-dark .principle-card.reveal.visible {
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px);
+            opacity: 1;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .section-dark .principle-card.reveal,
+            .section-dark .principle-card.reveal.visible {
+                transform: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* ─── DECOR LEAVES ─── */
+        .decor-leaf {
+            position: absolute;
+            color: rgba(46, 125, 79, 0.1);
+            font-size: 8rem;
+            pointer-events: none;
+            animation: leaf-sway 6s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        .decor-leaf.l1 { top: 60px; left: -20px; }
+        .decor-leaf.l2 { bottom: 60px; right: -10px; animation-delay: 1s; transform: rotate(180deg); }
+
+        @media(max-width:768px) {
+            .em-hero { padding: 160px 18px 120px; min-height: auto; }
+            .section { padding: 80px 20px 60px; }
+            .stats-bar { margin-top: -60px; }
+            .stat-cell:nth-child(2)::after { display: none; }
+            .decor-leaf { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER / NAVIGATION -->
+    <!-- ─── MARINE HEADER ─── -->
+    <header id="header" class="marine-header">
+        <div class="mh-topbar">
+            <div class="mh-topbar-inner">
+                <div class="mh-topbar-left">
+                    <a href="mailto:info@sachdevagroup.in"><i class="fas fa-envelope"></i> info@sachdevagroup.in</a>
+                    <a href="tel:+919925499123"><i class="fas fa-phone"></i> +91 99254 99123</a>
+                </div>
+                <div class="mh-topbar-right">
+                    <span class="mh-tb-label">Follow:</span>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://wa.me/919925499123" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="mh-main">
+            <div class="mh-main-inner">
+                <a href="index.html" class="mh-logo">
+                    <img src="images/logo.png" alt="Sachdeva Group">
+                    <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
+                </a>
+                <nav class="mh-nav">
+                    <ul class="mh-nav-list">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li class="mh-has-submenu">
+                            <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
+                            <ul class="mh-submenu" style="min-width: 300px;">
+                                <li><a href="sspsb.html">Sachdeva Steel Products (Ship Breakers)</a></li>
+                                <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
+                            </ul>
+                        </li>
+                        <li class="mh-has-submenu">
+                            <a href="news.html">News &amp; Media <i class="fas fa-chevron-down"></i></a>
+                            <ul class="mh-submenu">
+                                <li><a href="news.html">News</a></li>
+                                <li><a href="gallery.html">Media</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+                <a href="Contact.html" class="mh-cta">
+                    <i class="fas fa-anchor"></i> Get Quote
+                </a>
+                <button class="mh-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <script src="js/marine-header.js"></script>
+
+    <!-- ─── HERO ─── -->
+    <section class="em-hero">
+        <!-- Floating bubbles -->
+        <div class="bubbles" id="bubbles"></div>
+
+        <!-- Sailing ship -->
+        <svg class="sailing-ship" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
+            <g fill="rgba(201, 168, 76, 0.85)">
+                <polygon points="80,20 80,70 130,70" fill="rgba(255,255,255,0.7)"/>
+                <polygon points="85,30 85,68 122,68" fill="rgba(201,168,76,0.6)"/>
+                <line x1="80" y1="20" x2="80" y2="80" stroke="rgba(255,255,255,0.7)" stroke-width="1.5"/>
+                <path d="M40,80 L160,80 L150,95 L50,95 Z" fill="rgba(13,27,42,0.95)" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
+                <rect x="60" y="72" width="80" height="10" fill="rgba(255,255,255,0.6)"/>
+            </g>
+        </svg>
+
+        <div class="em-hero-content">
+            <span class="em-badge">Marine Sustainability · HKC · ISO 14001</span>
+            <h1>Environment <span class="gold-shimmer">Management</span></h1>
+            <p>Where every dismantled vessel becomes a story of renewal. We pioneer safe, sustainable, and globally
+                compliant ship recycling — protecting our oceans, ecosystems, and the communities we serve.</p>
+
+            <div class="hero-meta">
+                <div class="meta-item"><i class="fas fa-leaf"></i> Eco-Friendly Operations</div>
+                <div class="meta-item"><i class="fas fa-shield-halved"></i> Globally Compliant</div>
+                <div class="meta-item"><i class="fas fa-recycle"></i> 90%+ Material Recovery</div>
+            </div>
+        </div>
+
+        <!-- Animated waves -->
+        <div class="hero-waves">
+            <svg class="wave-svg w3" viewBox="0 0 1440 200" preserveAspectRatio="none">
+                <path d="M0,120 C200,80 400,160 720,120 C1040,80 1240,160 1440,120 L1440,200 L0,200 Z"
+                      fill="rgba(70, 197, 216, 0.08)"/>
+                <path d="M1440,120 C1640,80 1840,160 2160,120 C2480,80 2680,160 2880,120 L2880,200 L1440,200 Z"
+                      fill="rgba(70, 197, 216, 0.08)"/>
+            </svg>
+            <svg class="wave-svg w2" viewBox="0 0 1440 200" preserveAspectRatio="none">
+                <path d="M0,140 C240,100 480,180 720,140 C960,100 1200,180 1440,140 L1440,200 L0,200 Z"
+                      fill="rgba(46, 125, 79, 0.18)"/>
+                <path d="M1440,140 C1680,100 1920,180 2160,140 C2400,100 2640,180 2880,140 L2880,200 L1440,200 Z"
+                      fill="rgba(46, 125, 79, 0.18)"/>
+            </svg>
+            <svg class="wave-svg w1" viewBox="0 0 1440 200" preserveAspectRatio="none">
+                <path d="M0,160 C220,130 440,190 720,160 C1000,130 1220,190 1440,160 L1440,200 L0,200 Z"
+                      fill="rgba(13, 27, 42, 0.85)"/>
+                <path d="M1440,160 C1660,130 1880,190 2160,160 C2440,130 2660,190 2880,160 L2880,200 L1440,200 Z"
+                      fill="rgba(13, 27, 42, 0.85)"/>
+            </svg>
+        </div>
+
+        <div class="scroll-indicator">Scroll <i class="fas fa-chevron-down"></i></div>
+    </section>
+
+    <!-- ─── STATS BAR ─── -->
+    <div class="stats-bar reveal">
+        <div class="stats-inner">
+            <div class="stat-cell">
+                <div class="stat-icon-wrap"><i class="fas fa-recycle"></i></div>
+                <div class="stat-num" data-count="90">0<small>%+</small></div>
+                <div class="stat-label">Material Recycled</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-icon-wrap"><i class="fas fa-ship"></i></div>
+                <div class="stat-num" data-count="71">0<small>+</small></div>
+                <div class="stat-label">Ships Recycled</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-icon-wrap"><i class="fas fa-award"></i></div>
+                <div class="stat-num" data-count="40">0<small>+</small></div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-cell">
+                <div class="stat-icon-wrap"><i class="fas fa-globe"></i></div>
+                <div class="stat-num" data-count="0">100<small>%</small></div>
+                <div class="stat-label">HKC Compliant</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── ENVIRONMENT MANAGEMENT — 8 PRINCIPLES ─── -->
+    <section class="section section-light">
+        <i class="fas fa-leaf decor-leaf l1"></i>
+        <i class="fas fa-leaf decor-leaf l2"></i>
+        <div class="section-inner">
+            <div class="section-head reveal">
+                <span class="section-tag"><i class="fas fa-seedling"></i> Environment Management</span>
+                <h2 class="section-title">Our Environmental <span>Principles</span></h2>
+                <div class="gold-line"></div>
+                <p class="section-sub">Eight pillars guiding every step of our recycling operations — from intake of
+                    end-of-life vessels to final material recovery, with marine ecosystems always in mind.</p>
+            </div>
+
+            <div class="principle-grid stagger">
+                <div class="principle-card reveal" style="--i:0">
+                    <div class="principle-num-pill">01</div>
+                    <div class="icon-wrap"><i class="fas fa-globe-asia"></i></div>
+                    <h3>Commitment to Environmental Sustainability</h3>
+                    <ul>
+                        <li>Dedicated to minimizing the environmental impact of ship recycling.</li>
+                        <li>Adheres to internationally recognized standards — Hong Kong International Convention (HKC)
+                            and ISO 14001.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:1">
+                    <div class="principle-num-pill">02</div>
+                    <div class="icon-wrap"><i class="fas fa-recycle"></i></div>
+                    <h3>Eco-Friendly Recycling Processes</h3>
+                    <ul>
+                        <li>Maximum material recovery and minimal waste — supporting a circular economy.</li>
+                        <li>Advanced techniques to manage hazardous materials like asbestos, lead-based paints, and
+                            residual oils.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:2">
+                    <div class="principle-num-pill">03</div>
+                    <div class="icon-wrap"><i class="fas fa-smog"></i></div>
+                    <h3>Pollution Control Measures</h3>
+                    <ul>
+                        <li>Stringent measures prevent pollution of air, water, and soil during dismantling.</li>
+                        <li>State-of-the-art containment systems prevent runoff and ensure safe disposal of contaminants.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:3">
+                    <div class="principle-num-pill">04</div>
+                    <div class="icon-wrap"><i class="fas fa-biohazard"></i></div>
+                    <h3>Hazardous Material Disposal</h3>
+                    <ul>
+                        <li>Safe handling, storage, and disposal of hazardous waste in full regulatory compliance.</li>
+                        <li>All hazardous materials treated or disposed at licensed facilities — zero environmental harm.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:4">
+                    <div class="principle-num-pill">05</div>
+                    <div class="icon-wrap"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Compliance with International Standards</h3>
+                    <ul>
+                        <li>Aligned with the Basel Convention and other global agreements for sustainable recycling.</li>
+                        <li>Active members of green recycling initiatives championing responsible practices.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:5">
+                    <div class="principle-num-pill">06</div>
+                    <div class="icon-wrap"><i class="fas fa-fish"></i></div>
+                    <h3>Biodiversity Protection</h3>
+                    <ul>
+                        <li>Strict environmental controls protect nearby marine and terrestrial ecosystems from
+                            recycling impacts.</li>
+                        <li>Active care for coastal habitats, fisheries, and surrounding wildlife corridors.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:6">
+                    <div class="principle-num-pill">07</div>
+                    <div class="icon-wrap"><i class="fas fa-chart-line"></i></div>
+                    <h3>Monitoring &amp; Continuous Improvement</h3>
+                    <ul>
+                        <li>Regular environmental audits and monitoring identify improvement opportunities.</li>
+                        <li>Ongoing investment in workforce training for environmentally sound operations.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:7">
+                    <div class="principle-num-pill">08</div>
+                    <div class="icon-wrap"><i class="fas fa-people-roof"></i></div>
+                    <h3>Community Engagement</h3>
+                    <ul>
+                        <li>Working closely with local communities to promote awareness about sustainable practices.</li>
+                        <li>Supporting environmental conservation initiatives across the region.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── ECO PROCESS TIMELINE ─── -->
+    <section class="section eco-timeline-section">
+        <div class="section-inner">
+            <div class="section-head reveal">
+                <span class="section-tag"><i class="fas fa-route"></i> Our Eco Process</span>
+                <h2 class="section-title">From Vessel to <span>Renewable Resource</span></h2>
+                <div class="gold-line"></div>
+                <p class="section-sub">Every step of our operation is designed for safety, transparency, and
+                    environmental stewardship.</p>
+            </div>
+
+            <div class="eco-timeline">
+                <div class="timeline-track">
+                    <div class="timeline-step reveal" style="--i:0">
+                        <div class="step-circle"><i class="fas fa-anchor"></i></div>
+                        <h4>1. Vessel Intake</h4>
+                        <p>Beaching &amp; pre-cleaning under HKC protocols</p>
+                    </div>
+                    <div class="timeline-step reveal" style="--i:1">
+                        <div class="step-circle"><i class="fas fa-clipboard-list"></i></div>
+                        <h4>2. Hazard Survey</h4>
+                        <p>IHM inventory &amp; risk mapping</p>
+                    </div>
+                    <div class="timeline-step reveal" style="--i:2">
+                        <div class="step-circle"><i class="fas fa-tools"></i></div>
+                        <h4>3. Safe Dismantling</h4>
+                        <p>Trained crews with EHS controls</p>
+                    </div>
+                    <div class="timeline-step reveal" style="--i:3">
+                        <div class="step-circle"><i class="fas fa-recycle"></i></div>
+                        <h4>4. Material Recovery</h4>
+                        <p>90%+ steel &amp; non-ferrous recycled</p>
+                    </div>
+                    <div class="timeline-step reveal" style="--i:4">
+                        <div class="step-circle"><i class="fas fa-leaf"></i></div>
+                        <h4>5. Eco Disposal</h4>
+                        <p>Licensed treatment for residuals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── WASTE MANAGEMENT — 8 PRINCIPLES ─── -->
+    <section id="waste-management" class="section section-dark">
+        <div class="section-inner">
+            <div class="section-head reveal">
+                <span class="section-tag gold"><i class="fas fa-dumpster"></i> Waste Management</span>
+                <h2 class="section-title">Responsible Practices for a <span>Sustainable Future</span></h2>
+                <div class="gold-line"></div>
+                <p class="section-sub">From segregation to zero-waste — every stream is engineered for accountability,
+                    traceability, and global compliance.</p>
+            </div>
+
+            <div class="principle-grid stagger">
+                <div class="principle-card reveal" style="--i:0">
+                    <div class="principle-num-pill">01</div>
+                    <div class="icon-wrap"><i class="fas fa-layer-group"></i></div>
+                    <h3>Comprehensive Waste Segregation</h3>
+                    <ul>
+                        <li>Robust process separates steel, non-ferrous metals, plastics, and hazardous substances
+                            efficiently.</li>
+                        <li>Each material is categorized for recycling, reuse, or safe disposal — minimizing landfill.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:1">
+                    <div class="principle-num-pill">02</div>
+                    <div class="icon-wrap"><i class="fas fa-radiation"></i></div>
+                    <h3>Hazardous Waste Handling</h3>
+                    <ul>
+                        <li>Asbestos, lead-based paints, residual fuels, and PCBs handled per international standards.</li>
+                        <li>Trained specialists use advanced techniques — zero harm to workers and environment.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:2">
+                    <div class="principle-num-pill">03</div>
+                    <div class="icon-wrap"><i class="fas fa-arrows-spin"></i></div>
+                    <h3>Recycling &amp; Reuse Focus</h3>
+                    <ul>
+                        <li>Over 90% of materials from dismantled ships recycled — supporting circular-economy goals.</li>
+                        <li>Reusable components like machinery, spare parts, and fittings are refurbished and repurposed.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:3">
+                    <div class="principle-num-pill">04</div>
+                    <div class="icon-wrap"><i class="fas fa-water"></i></div>
+                    <h3>Pollution Prevention Measures</h3>
+                    <ul>
+                        <li>Advanced containment systems and impermeable surfaces prevent soil and water contamination.</li>
+                        <li>Effluent treatment plants treat and recycle wastewater (GEPIL standards).</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:4">
+                    <div class="principle-num-pill">05</div>
+                    <div class="icon-wrap"><i class="fas fa-scale-balanced"></i></div>
+                    <h3>Compliance with International Standards</h3>
+                    <ul>
+                        <li>Aligned with HKC, Basel Convention, IMO and ILO guidelines, plus GEPIL norms.</li>
+                        <li>Operating procedures follow MoEF&amp;CC and SPCB regulations for sustainable recycling.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:5">
+                    <div class="principle-num-pill">06</div>
+                    <div class="icon-wrap"><i class="fas fa-clipboard-check"></i></div>
+                    <h3>Monitoring &amp; Documentation</h3>
+                    <ul>
+                        <li>All waste streams tracked and documented for accountability and regulatory compliance.</li>
+                        <li>Regular audits and inspections continually improve our waste management systems.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:6">
+                    <div class="principle-num-pill">07</div>
+                    <div class="icon-wrap"><i class="fas fa-handshake"></i></div>
+                    <h3>Partnering with Certified Facilities</h3>
+                    <ul>
+                        <li>Collaborations with licensed waste treatment and disposal facilities.</li>
+                        <li>Ensures proper treatment, transport, and disposal of hazardous and non-recyclable waste.</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card reveal" style="--i:7">
+                    <div class="principle-num-pill">08</div>
+                    <div class="icon-wrap"><i class="fas fa-leaf"></i></div>
+                    <h3>Commitment to Zero Waste</h3>
+                    <ul>
+                        <li>Ultimate goal: achieve zero waste through continuous innovation.</li>
+                        <li>Optimizing recycling and waste-management processes year on year.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── CERTIFICATIONS BAND ─── -->
+    <section class="certs-band">
+        <div class="certs-inner">
+            <p class="reveal">CERTIFICATIONS &amp; COMPLIANCE STANDARDS</p>
+            <div class="certs-grid stagger">
+                <div class="cert-chip reveal" style="--i:0">
+                    <i class="fas fa-globe"></i>
+                    <div class="ct">Hong Kong Convention</div>
+                    <div class="cs">HKC</div>
+                </div>
+                <div class="cert-chip reveal" style="--i:1">
+                    <i class="fas fa-leaf"></i>
+                    <div class="ct">ISO 14001</div>
+                    <div class="cs">Environment</div>
+                </div>
+                <div class="cert-chip reveal" style="--i:2">
+                    <i class="fas fa-shield-halved"></i>
+                    <div class="ct">Basel Convention</div>
+                    <div class="cs">UN Treaty</div>
+                </div>
+                <div class="cert-chip reveal" style="--i:3">
+                    <i class="fas fa-anchor"></i>
+                    <div class="ct">IMO Guidelines</div>
+                    <div class="cs">Maritime</div>
+                </div>
+                <div class="cert-chip reveal" style="--i:4">
+                    <i class="fas fa-people-group"></i>
+                    <div class="ct">ILO Standards</div>
+                    <div class="cs">Labour</div>
+                </div>
+                <div class="cert-chip reveal" style="--i:5">
+                    <i class="fas fa-award"></i>
+                    <div class="ct">GEPIL Norms</div>
+                    <div class="cs">India Eco</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── OUR COMPANIES ─── -->
+    <section class="section section-light">
+        <div class="section-inner">
+            <div class="section-head reveal">
+                <span class="section-tag"><i class="fas fa-building"></i> Our Companies</span>
+                <h2 class="section-title">Driving Sustainable <span>Recycling Together</span></h2>
+                <div class="gold-line"></div>
+                <p class="section-sub">Two proud entities under the Sachdeva Group umbrella — united by a shared
+                    commitment to responsible, world-class ship recycling.</p>
+            </div>
+
+            <div class="companies-grid">
+                <div class="company-card reveal">
+                    <div class="company-icon"><i class="fas fa-industry"></i></div>
+                    <span class="since">Since 1997</span>
+                    <h3>Sachdeva Steel Products (Ship Breakers)</h3>
+                    <p>A key player in the ship recycling industry, operating with a strong focus on environmental
+                        responsibility and rigorous compliance with international standards.</p>
+                    <div class="company-stats">
+                        <div><strong>36+</strong><span>Ships Recycled</span></div>
+                        <div><strong>HKC</strong><span>Compliant</span></div>
+                    </div>
+                </div>
+                <div class="company-card reveal">
+                    <div class="company-icon"><i class="fas fa-water"></i></div>
+                    <span class="since">Since 1998</span>
+                    <h3>Jai Jagdish Ship Breakers</h3>
+                    <p>Carrying forward the group's legacy of safe, sustainable, and fully compliant ship recycling —
+                        with ongoing investment in eco-friendly infrastructure.</p>
+                    <div class="company-stats">
+                        <div><strong>35+</strong><span>Ships Recycled</span></div>
+                        <div><strong>ISO</strong><span>Certified</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─── MARINE ANIMATED FOOTER ─── -->
+    <footer id="footer" class="marine-footer">
+        <div class="footer-bubbles" id="footerBubbles"></div>
+
+        <div class="marine-footer-inner">
+            <div class="marine-footer-grid">
+                <div class="ftr-col">
+                    <div class="ftr-logo">
+                        <img src="images/logo-white.png" alt="Sachdeva Group">
+                        <div class="ftr-logo-text">
+                            Sachdeva Group
+                            <span>Ship Recycling · Since 1983</span>
+                        </div>
+                    </div>
+                    <p class="ftr-about-text">
+                        Leading India's ship recycling industry from Alang, Gujarat with over four decades of expertise,
+                        sustainable practices, and unwavering commitment to environmental responsibility.
+                    </p>
+                    <div class="ftr-trust-badge">
+                        <i class="fas fa-shield-halved"></i>
+                        ISO Certified · HKC Compliant
+                    </div>
+                </div>
+
+                <div class="ftr-col">
+                    <h4>Quick Links</h4>
+                    <ul class="ftr-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="sspsb.html">Sachdeva Steel Products</a></li>
+                        <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="gallery.html">Media</a></li>
+                        <li><a href="Contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="ftr-col">
+                    <h4>Our Companies</h4>
+                    <ul class="ftr-companies">
+                        <li>
+                            <a href="sspsb.html">
+                                <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
+                                <span class="cmp-text">
+                                    Sachdeva Steel Products (Ship Breaking Unit) LLP
+                                    <small>Since 1997 · 36+ Ships</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="jjsb.html">
+                                <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
+                                <span class="cmp-text">
+                                    Jai Jagdish Ship Breakers Pvt. Ltd.
+                                    <small>Since 1998 · 35+ Ships</small>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ftr-col">
+                    <h4>Get In Touch</h4>
+                    <ul class="ftr-contact">
+                        <li>
+                            <span class="ci-icon"><i class="fas fa-location-dot"></i></span>
+                            <div class="ci-meta">
+                                <b>Address</b>
+                                Alang Ship Recycling Yard,<br>Bhavnagar, Gujarat – 364 210
+                            </div>
+                        </li>
+                        <li>
+                            <span class="ci-icon"><i class="fas fa-envelope"></i></span>
+                            <div class="ci-meta">
+                                <b>Email</b>
+                                <a href="mailto:info@sachdevagroup.in">info@sachdevagroup.in</a>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="ci-icon"><i class="fas fa-phone-volume"></i></span>
+                            <div class="ci-meta">
+                                <b>Call Us</b>
+                                <a href="tel:+919925499123">+91 99254 99123</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="ftr-social-row">
+                        <a href="#" class="ftr-social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="ftr-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="ftr-social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="ftr-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="marine-footer-bottom">
+            <p>© 2026 Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
+            <div class="ftr-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <span>•</span>
+                <a href="#">Terms of Service</a>
+                <span>•</span>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/marine-footer.js"></script>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+
+    <script src="agentapp_static/180193f0_40d1_70d0_7dcd_e2aaa36334c6/f39xi1f8zu/script.js"></script>
+
+    <script>
+        /* ─── Bubble generator ─── */
+        (function () {
+            const container = document.getElementById('bubbles');
+            if (!container) return;
+            const N = 22;
+            for (let i = 0; i < N; i++) {
+                const b = document.createElement('span');
+                b.className = 'bubble';
+                const size = 8 + Math.random() * 32;
+                b.style.width = size + 'px';
+                b.style.height = size + 'px';
+                b.style.left = Math.random() * 100 + 'vw';
+                b.style.animationDuration = (12 + Math.random() * 18) + 's';
+                b.style.animationDelay = (-Math.random() * 30) + 's';
+                b.style.opacity = (0.25 + Math.random() * 0.5).toFixed(2);
+                container.appendChild(b);
+            }
+        })();
+
+        /* ─── Reveal-on-scroll ─── */
+        (function () {
+            const reveals = document.querySelectorAll('.reveal');
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add('visible');
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { threshold: 0.12 });
+                reveals.forEach((el) => io.observe(el));
+            } else {
+                reveals.forEach((el) => el.classList.add('visible'));
+            }
+        })();
+
+        /* ─── Animated counters ─── */
+        (function () {
+            const counters = document.querySelectorAll('.stat-num[data-count]');
+            const animate = (el) => {
+                const target = +el.getAttribute('data-count');
+                if (!target) return; // skip "100%" cell
+                const small = el.querySelector('small');
+                const suffix = small ? small.outerHTML : '';
+                const duration = 1800;
+                const start = performance.now();
+                const tick = (now) => {
+                    const p = Math.min(1, (now - start) / duration);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    const val = Math.round(target * eased);
+                    el.innerHTML = val + suffix;
+                    if (p < 1) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+            };
+
+            if ('IntersectionObserver' in window) {
+                const io2 = new IntersectionObserver((entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) { animate(e.target); io2.unobserve(e.target); }
+                    });
+                }, { threshold: 0.4 });
+                counters.forEach((c) => io2.observe(c));
+            }
+        })();
+
+        /* ─── 3D tilt on principle / company cards (matches home-page commitment cards) ─── */
+        (function () {
+            const isTouch = window.matchMedia('(hover: none)').matches;
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (isTouch || reduced) return;
+
+            const cards = document.querySelectorAll('.principle-card, .company-card');
+            cards.forEach((card) => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -5;
+                    const rotateY = ((x - centerX) / centerX) *  5;
+                    card.style.transform =
+                        `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-15px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                });
+            });
+        })();
+
+        /* ─── Back to top + mobile menu ─── */
+        (function () {
+            const btt = document.getElementById('backToTop');
+            if (btt) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 400) btt.classList.add('show');
+                    else btt.classList.remove('show');
+                });
+                btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            }
+            const mt = document.getElementById('mobileMenuToggle');
+            const nm = document.getElementById('navMenu');
+            if (mt && nm) {
+                mt.addEventListener('click', () => {
+                    mt.classList.toggle('active');
+                    nm.classList.toggle('active');
+                });
+            }
+        })();
+    </script>
+</body>
+
+</html>

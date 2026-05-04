@@ -782,32 +782,32 @@
         </div>
         <div class="mh-main">
             <div class="mh-main-inner">
-                <a href="index.html" class="mh-logo">
+                <a href="index.php" class="mh-logo">
                     <img src="images/logo.png" alt="Sachdeva Group">
                     <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
                 </a>
                 <nav class="mh-nav">
                     <ul class="mh-nav-list">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
                         <li class="mh-has-submenu">
                             <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
                             <ul class="mh-submenu" style="min-width: 300px;">
-                                <li><a href="sspsb.html">Sachdeva Steel Products (Ship Breakers)</a></li>
-                                <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
+                                <li><a href="sspsb.php">Sachdeva Steel Products (Ship Breakers)</a></li>
+                                <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
                             </ul>
                         </li>
                         <li class="mh-has-submenu">
-                            <a href="news.html" class="active">News &amp; Media <i class="fas fa-chevron-down"></i></a>
+                            <a href="javascript:void(0)" class="active" role="button" aria-haspopup="true">News &amp; Media <i class="fas fa-chevron-down"></i></a>
                             <ul class="mh-submenu">
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="gallery.html" class="active">Media</a></li>
+                                <li><a href="news.php">News</a></li>
+                                <li><a href="gallery.php" class="active">Media</a></li>
                             </ul>
                         </li>
-                        <li><a href="Contact.html">Contact</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </nav>
-                <a href="Contact.html" class="mh-cta">
+                <a href="contact.php" class="mh-cta">
                     <i class="fas fa-anchor"></i> Get Quote
                 </a>
                 <button class="mh-toggle" aria-label="Menu">
@@ -1262,13 +1262,13 @@
                 <div class="ftr-col">
                     <h4>Quick Links</h4>
                     <ul class="ftr-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="sspsb.html">Sachdeva Steel Products</a></li>
-                        <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="gallery.html">Media</a></li>
-                        <li><a href="Contact.html">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="sspsb.php">Sachdeva Steel Products</a></li>
+                        <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
+                        <li><a href="news.php">News</a></li>
+                        <li><a href="gallery.php">Media</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
@@ -1276,7 +1276,7 @@
                     <h4>Our Companies</h4>
                     <ul class="ftr-companies">
                         <li>
-                            <a href="sspsb.html">
+                            <a href="sspsb.php">
                                 <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
                                 <span class="cmp-text">
                                     Sachdeva Steel Products (Ship Breaking Unit) LLP
@@ -1285,7 +1285,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="jjsb.html">
+                            <a href="jjsb.php">
                                 <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
                                 <span class="cmp-text">
                                     Jai Jagdish Ship Breakers Pvt. Ltd.
@@ -1334,7 +1334,7 @@
         </div>
 
         <div class="marine-footer-bottom">
-            <p>© 2026 Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
+            <p>© <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
             <div class="ftr-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <span>•</span>

@@ -18,6 +18,8 @@
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=600&amp;q=80">
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&amp;q=80">
     <link rel="stylesheet" href="css/inline_styles.css">
+    <link rel="stylesheet" href="css/marine-footer.css">
+    <link rel="stylesheet" href="css/marine-header.css">
     <style>
         *,
         *::before,
@@ -145,7 +147,7 @@
             text-align: center;
             font-size: clamp(1.6rem, 3vw, 2.4rem);
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             margin-bottom: 12px;
         }
 
@@ -216,7 +218,7 @@
         .stat-number {
             font-size: 2.2rem;
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             display: block;
         }
 
@@ -296,7 +298,7 @@
             top: 0;
             width: 56px;
             height: 56px;
-            background: var(--navy);
+            background: var(--navy-blue);
             border-radius: 50%;
             border: 3px solid var(--gold);
             display: flex;
@@ -311,7 +313,7 @@
 
         .tl-item:hover .tl-icon {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             transform: translateX(-50%) scale(1.1);
         }
 
@@ -346,7 +348,7 @@
         .tl-badge {
             display: inline-block;
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             font-size: 11px;
             font-weight: 700;
             padding: 4px 14px;
@@ -358,7 +360,7 @@
         .tl-card h3 {
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--navy);
+            color: var(--navy-blue);
             margin-bottom: 10px;
         }
 
@@ -370,7 +372,7 @@
 
         /* ─── VISION & MISSION ─── */
         .vm-section {
-            background: var(--navy);
+            background: var(--navy-blue);
         }
 
         .vm-section .section-title {
@@ -499,7 +501,7 @@
         .company-icon {
             width: 60px;
             height: 60px;
-            background: var(--navy);
+            background: var(--navy-blue);
             border-radius: 16px;
             display: flex;
             align-items: center;
@@ -517,7 +519,7 @@
         .company-card h3 {
             font-size: 1.05rem;
             font-weight: 700;
-            color: var(--navy);
+            color: var(--navy-blue);
             margin-bottom: 14px;
             line-height: 1.4;
         }
@@ -535,7 +537,7 @@
             margin-top: 20px;
             background: rgba(201, 168, 76, 0.1);
             border: 1px solid var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             font-size: 12px;
             font-weight: 700;
             padding: 6px 16px;
@@ -631,7 +633,7 @@
         }
 
         .cred-section .section-title {
-            color: var(--navy);
+            color: var(--navy-blue);
             position: relative;
         }
 
@@ -668,19 +670,48 @@
         /* individual certificate card */
         .cert-card {
             background: #fff;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.10);
+            border-radius: 14px;
             overflow: hidden;
             position: relative;
             cursor: pointer;
-            transition: transform 0.38s cubic-bezier(.22, .68, 0, 1.15), box-shadow 0.38s ease;
-            border: 1px solid #e0d8c4;
-            /* paper-like feel */
+            transition: transform 0.32s ease, box-shadow 0.32s ease;
+            border: 1px solid rgba(224, 216, 196, 0.8);
+            min-height: 240px;
+            display: grid;
+        }
+
+        .cert-card img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .cert-card.cert-image-card::after {
+            content: 'View certificate';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 16px;
+            color: #fff;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            pointer-events: none;
         }
 
         .cert-card:hover {
-            transform: translateY(-12px) rotate(-0.5deg) scale(1.02);
-            box-shadow: 0 28px 60px rgba(0, 0, 0, 0.20), 0 4px 12px rgba(201, 168, 76, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
+        }
+
+        .cert-card.cert-image-card:hover::after {
+            opacity: 1;
         }
 
         /* top red accent bar (like Bureau Veritas red) */
@@ -731,7 +762,7 @@
 
         .cert-logo.gold-bg {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         .cert-card:hover .cert-logo {
@@ -745,7 +776,7 @@
         .cert-issuer-name {
             font-size: 0.72rem;
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             text-transform: uppercase;
             letter-spacing: 0.8px;
             line-height: 1.3;
@@ -801,7 +832,7 @@
         .cert-company-name {
             font-size: 0.82rem;
             font-weight: 800;
-            color: var(--navy);
+            color: var(--navy-blue);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 14px;
@@ -826,7 +857,7 @@
         .cert-standard {
             font-size: 1.6rem;
             font-weight: 900;
-            color: var(--navy);
+            color: var(--navy-blue);
             letter-spacing: 1px;
             line-height: 1;
             margin-bottom: 6px;
@@ -896,12 +927,12 @@
         .cert-meta-item span {
             font-size: 0.72rem;
             font-weight: 700;
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         /* bottom strip */
         .cert-footer-strip {
-            background: var(--navy);
+            background: var(--navy-blue);
             color: var(--gold);
             font-size: 0.65rem;
             font-weight: 700;
@@ -928,12 +959,12 @@
 
         .cert-footer-strip.gold-ft {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         .cert-card:hover .cert-footer-strip {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
         }
 
         /* verified tick overlay on hover */
@@ -951,7 +982,7 @@
 
         .cert-verified-badge {
             background: var(--gold);
-            color: var(--navy);
+            color: var(--navy-blue);
             font-size: 0.7rem;
             font-weight: 800;
             padding: 6px 16px;
@@ -1055,15 +1086,25 @@
         }
 
         .lightbox-inner {
-            background: #fff;
+            background: transparent;
             border-radius: 12px;
-            max-width: 520px;
+            max-width: 95vw;
             width: 100%;
+            max-height: 95vh;
             overflow: hidden;
             box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
             cursor: default;
             animation: fadeUp 0.3s ease both;
             position: relative;
+        }
+
+        .lb-cert-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            max-height: 95vh;
+            background: #000;
         }
 
         .lightbox-close {
@@ -1080,8 +1121,9 @@
             justify-content: center;
             cursor: pointer;
             font-size: 1rem;
-            color: var(--navy);
+            color: var(--navy-blue);
             transition: background 0.2s;
+            z-index: 2;
         }
 
         .lightbox-close:hover {
@@ -1091,37 +1133,75 @@
 </head>
 
 <body>
-    <header id="header" class="header scrolled">
-        <nav class="nav-container">
-            <div class="logo" data-aos="fade-right">
-                <!-- <img src="images/logo-white.png" alt="Sachdeva Group Logo" class="logo-img"> -->
-                <img src="images/logo.png" alt="Sachdeva Group Logo" class="logo-img">
+    <!-- ─── MARINE HEADER ─── -->
+    <header id="header" class="marine-header">
+        <div class="mh-topbar">
+            <div class="mh-topbar-inner">
+                <div class="mh-topbar-left">
+                    <a href="mailto:info@sachdevagroup.in"><i class="fas fa-envelope"></i> info@sachdevagroup.in</a>
+                    <a href="tel:+919925499123"><i class="fas fa-phone"></i> +91 99254 99123</a>
+                </div>
+                <div class="mh-topbar-right">
+                    <span class="mh-tb-label">Follow:</span>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://wa.me/919925499123" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link active-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About Us</a></li>
-                <li><a href="#companies" class="nav-link">Our Journey</a></li>
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#news" class="nav-link">News &amp; Media</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="mobile-menu-toggle" id="mobileMenuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+        </div>
+        <div class="mh-main">
+            <div class="mh-main-inner">
+                <a href="index.php" class="mh-logo">
+                    <img src="images/logo.png" alt="Sachdeva Group">
+                    <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
+                </a>
+                <nav class="mh-nav">
+                    <ul class="mh-nav-list">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php" class="active">About Us</a></li>
+                        <li class="mh-has-submenu">
+                            <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
+                            <ul class="mh-submenu" style="min-width: 300px;">
+                                <li><a href="sspsb.php">Sachdeva Steel Products (Ship Breakers)</a></li>
+                                <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
+                            </ul>
+                        </li>
+                        <li class="mh-has-submenu">
+                            <a href="javascript:void(0)" role="button" aria-haspopup="true">News &amp; Media <i class="fas fa-chevron-down"></i></a>
+                            <ul class="mh-submenu">
+                                <li><a href="news.php">News</a></li>
+                                <li><a href="gallery.php">Media</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.php">Contact</a></li>
+                    </ul>
+                </nav>
+                <a href="contact.php" class="mh-cta">
+                    <i class="fas fa-anchor"></i> Get Quote
+                </a>
+                <button class="mh-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-        </nav>
+        </div>
     </header>
+    <script src="js/marine-header.js"></script>
     <!-- ─── HERO ─── -->
 
-    <section class="hero" style="padding-top: 220px;">
+    <section class="hero"
+        style="padding-top: 220px; background-image: url('images/banner/about.jpeg'); background-size: cover; background-position: center; background-attachment: fixed;">
         <div class="hero-shape hs1"></div>
         <div class="hero-shape hs2"></div>
-        <div class="hero-badge">Est. 1983 · Alang, Gujarat</div>
-        <h1>About <span>Sachdeva Group</span></h1>
-        <p class="hero-sub">A cornerstone in the ship recycling industry — combining decades of expertise with an
-            unwavering commitment to sustainability, safety, and global standards.</p>
-        <div class="hero-divider"></div>
+        <div
+            style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(13, 27, 42, 0.75) 0%, rgba(26, 53, 83, 0.7) 60%, rgba(13, 27, 42, 0.75) 100%); pointer-events: none;">
+        </div>
+        <div class="hero-badge" style="position: relative; z-index: 1;">Est. 1983 · Alang, Gujarat</div>
+        <h1 style="position: relative; z-index: 1;">About <span>Sachdeva Group</span></h1>
+        <p class="hero-sub" style="position: relative; z-index: 1;">A cornerstone in the ship recycling industry —
+            combining decades of expertise with an unwavering commitment to sustainability, safety, and global
+            standards.</p>
+        <div class="hero-divider" style="position: relative; z-index: 1;"></div>
     </section>
 
     <!-- ─── GROUP PROFILE INTRO ─── -->
@@ -1130,7 +1210,7 @@
             <div class="intro-grid">
                 <div class="intro-text fade-up">
                     <div class="hero-badge"
-                        style="background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy);font-size:11px;display:inline-block;margin-bottom:16px;">
+                        style="background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy-blue);font-size:11px;display:inline-block;margin-bottom:16px;">
                         Group Profile</div>
                     <h2 class="section-title" style="text-align:left;margin-bottom:16px;">Sachdeva Group
                         <span>Profile</span>
@@ -1171,7 +1251,7 @@
     <!-- <section class="section timeline-wrap">
         <div class="section-inner">
             <p class="hero-badge"
-                style="text-align:center;display:block;width:fit-content;margin:0 auto 12px;background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy);font-size:11px;">
+                style="text-align:center;display:block;width:fit-content;margin:0 auto 12px;background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy-blue);font-size:11px;">
                 Our Journey</p>
             <h2 class="section-title">Sachdeva Group <span>Journey</span></h2>
             <div class="gold-line"></div>
@@ -1331,290 +1411,114 @@
      ══════════════════════════════════════════════════ -->
     <section class="cred-section">
         <div style="max-width:1100px;margin:0 auto;position:relative;">
-            <h2 class="section-title" style="color:var(--navy);">Our <span>Credentials</span></h2>
+            <h2 class="section-title" style="color:var(--navy-blue);">Our <span>Credentials</span></h2>
             <div class="gold-line"></div>
             <p class="section-sub" style="color:var(--muted);">Certified by the world's most respected maritime and
                 international standards bodies.</p>
 
-            <div class="cert-grid">
-
-                <!-- CERT 1: Bureau Veritas ISO 30000:2009 — Jai Jagdish (Original Cycle) -->
-                <div class="cert-card fade-up" onclick="openLightbox('lb1')">
-                    <div class="cert-verified-overlay"><span class="cert-verified-badge"><i
-                                class="fas fa-check-circle"></i> View Certificate</span></div>
-                    <div class="cert-top-bar"></div><!-- red -->
-                    <div class="cert-header">
-                        <div class="cert-logo red-bg"><i class="fas fa-certificate"></i></div>
-                        <div class="cert-issuer-info">
-                            <div class="cert-issuer-name">Bureau Veritas</div>
-                            <div class="cert-issuer-type">Certification Body</div>
-                        </div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-watermark"><i class="fas fa-award"></i></div>
-                        <div class="cert-to">This is to certify that</div>
-                        <div class="cert-company-name">Jai Jagdish Ship Breakers<br>Pvt. Ltd.</div>
-                        <div class="cert-divider"></div>
-                        <div class="cert-standard-label">Certified Standard</div>
-                        <div class="cert-standard"><span>ISO</span> 30000:2009</div>
-                        <div class="cert-scope-label">Scope of Certification</div>
-                        <div class="cert-scope">Ship Recycling Activities and Sale of Recyclable Material such as Steel,
-                            Equipments, Machineries and Sale of Other Material obtained from Ship</div>
-                        <div class="cert-meta">
-                            <div class="cert-meta-item">
-                                <label>Original Cycle Start</label>
-                                <span>26 Jan 2014</span>
-                            </div>
-                            <div class="cert-meta-item">
-                                <label>Certificate No.</label>
-                                <span>IND/S.24915M</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-footer-strip red-ft"><i class="fas fa-shield-alt"></i> Accredited · Bureau Veritas
-                        India Pvt. Ltd.</div>
-                </div>
-
-                <!-- CERT 2: Bureau Veritas ISO 30000:2009 — Sachdeva Steel (Recertification) -->
-                <div class="cert-card fade-up" style="transition-delay:0.1s;" onclick="openLightbox('lb2')">
-                    <div class="cert-verified-overlay"><span class="cert-verified-badge"><i
-                                class="fas fa-check-circle"></i> View Certificate</span></div>
-                    <div class="cert-top-bar"></div><!-- red -->
-                    <div class="cert-header">
-                        <div class="cert-logo red-bg"><i class="fas fa-certificate"></i></div>
-                        <div class="cert-issuer-info">
-                            <div class="cert-issuer-name">Bureau Veritas</div>
-                            <div class="cert-issuer-type">Certification Body</div>
-                        </div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-watermark"><i class="fas fa-award"></i></div>
-                        <div class="cert-to">This is to certify that</div>
-                        <div class="cert-company-name">Sachdeva Steel Products<br>(Ship Breakers) LLP</div>
-                        <div class="cert-divider"></div>
-                        <div class="cert-standard-label">Certified Standard</div>
-                        <div class="cert-standard"><span>ISO</span> 30000:2009</div>
-                        <div class="cert-scope-label">Scope of Certification</div>
-                        <div class="cert-scope">Ship Recycling Activities and Sale of Recyclable Material such as Steel,
-                            Equipments, Machineries and Sale of Other Material obtained from Ship</div>
-                        <div class="cert-meta">
-                            <div class="cert-meta-item">
-                                <label>Recertification</label>
-                                <span>20 Jan 2020</span>
-                            </div>
-                            <div class="cert-meta-item">
-                                <label>Certificate No.</label>
-                                <span>IND/S.24915M</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-footer-strip red-ft"><i class="fas fa-shield-alt"></i> Accredited · Bureau Veritas
-                        India Pvt. Ltd.</div>
-                </div>
-
-                <!-- CERT 3: Nippon Kaiji Kyokai — EU Ship Recycling Regulation -->
-                <div class="cert-card fade-up" style="transition-delay:0.2s;" onclick="openLightbox('lb3')">
-                    <div class="cert-verified-overlay"><span class="cert-verified-badge"><i
-                                class="fas fa-check-circle"></i> View Certificate</span></div>
-                    <div class="cert-top-bar blue"></div>
-                    <div class="cert-header">
-                        <div class="cert-logo blue-bg"><i class="fas fa-globe-asia"></i></div>
-                        <div class="cert-issuer-info">
-                            <div class="cert-issuer-name">Nippon Kaiji Kyokai</div>
-                            <div class="cert-issuer-type">(Netherlands) B.V. · ClassNK</div>
-                        </div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-watermark"><i class="fas fa-award"></i></div>
-                        <div class="cert-to">Certificate of Compliance Issued to</div>
-                        <div class="cert-company-name">Sachdeva Steel Products<br>(Ship Breakers) LLP &<br>Jai Jagdish
-                            Ship Breakers Pvt. Ltd.</div>
-                        <div class="cert-divider"></div>
-                        <div class="cert-standard-label">Regulation</div>
-                        <div class="cert-standard sm blue-std"><span>EU Ship Recycling</span><br>Regulation (EU) No.
-                            1257/2013</div>
-                        <div class="cert-scope-label">Facility Location</div>
-                        <div class="cert-scope">Plot No. 63 &amp; 64, Alang Ship Recycling Yard, Alang, 364002,
-                            Bhavnagar, Gujarat, India</div>
-                        <div class="cert-meta">
-                            <div class="cert-meta-item">
-                                <label>Certificate No.</label>
-                                <span>SRF-010</span>
-                            </div>
-                            <div class="cert-meta-item">
-                                <label>Date of Expiry</label>
-                                <span>16 March 2025</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-footer-strip blue-ft"><i class="fas fa-anchor"></i> EU Regulation (EC) No.
-                        1013/2006 · Compliant</div>
-                </div>
-
-                <!-- CERT 4: ISO/IEC 17020 Inspection -->
-                <div class="cert-card fade-up" style="transition-delay:0.3s;" onclick="openLightbox('lb4')">
-                    <div class="cert-verified-overlay"><span class="cert-verified-badge"><i
-                                class="fas fa-check-circle"></i> View Certificate</span></div>
-                    <div class="cert-top-bar gold"></div>
-                    <div class="cert-header">
-                        <div class="cert-logo gold-bg"><i class="fas fa-search"></i></div>
-                        <div class="cert-issuer-info">
-                            <div class="cert-issuer-name">IMO Compliant</div>
-                            <div class="cert-issuer-type">International Maritime Organization</div>
-                        </div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-watermark"><i class="fas fa-award"></i></div>
-                        <div class="cert-to">Certifies compliance with</div>
-                        <div class="cert-company-name">Sachdeva Group<br>Ship Recycling Facilities</div>
-                        <div class="cert-divider"></div>
-                        <div class="cert-standard-label">Convention</div>
-                        <div class="cert-standard sm gold-std"><span>Hong Kong</span><br>International Convention, 2009
-                        </div>
-                        <div class="cert-scope-label">Compliance Area</div>
-                        <div class="cert-scope">Safe and Environmentally Sound Recycling of Ships — Occupational Health
-                            &amp; Safety Standards Compliant</div>
-                        <div class="cert-meta">
-                            <div class="cert-meta-item">
-                                <label>Standard</label>
-                                <span>HKC 2009</span>
-                            </div>
-                            <div class="cert-meta-item">
-                                <label>Jurisdiction</label>
-                                <span>International</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-footer-strip gold-ft"><i class="fas fa-leaf"></i> Green Recycling · Environmentally
-                        Sound</div>
-                </div>
-
-                <!-- CERT 5: ILO -->
-                <div class="cert-card fade-up" style="transition-delay:0.4s;" onclick="openLightbox('lb5')">
-                    <div class="cert-verified-overlay"><span class="cert-verified-badge"><i
-                                class="fas fa-check-circle"></i> View Certificate</span></div>
-                    <div class="cert-top-bar blue"></div>
-                    <div class="cert-header">
-                        <div class="cert-logo blue-bg"><i class="fas fa-hard-hat"></i></div>
-                        <div class="cert-issuer-info">
-                            <div class="cert-issuer-name">ILO Compliance</div>
-                            <div class="cert-issuer-type">International Labour Organization</div>
-                        </div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-watermark"><i class="fas fa-award"></i></div>
-                        <div class="cert-to">Occupational Health &amp; Safety Standards</div>
-                        <div class="cert-company-name">Sachdeva Group<br>Alang Facility, Gujarat</div>
-                        <div class="cert-divider"></div>
-                        <div class="cert-standard-label">Standard</div>
-                        <div class="cert-standard sm blue-std"><span>ILO</span> Safety &amp; Health<br>in Shipbreaking
-                            Guidelines</div>
-                        <div class="cert-scope-label">Compliance</div>
-                        <div class="cert-scope">Worker Safety, Health Protection, and Welfare Standards compliant with
-                            ILO guidelines for shipbreaking and recycling yards.</div>
-                        <div class="cert-meta">
-                            <div class="cert-meta-item">
-                                <label>Framework</label>
-                                <span>ILO 2004</span>
-                            </div>
-                            <div class="cert-meta-item">
-                                <label>Scope</label>
-                                <span>Alang, Gujarat</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-footer-strip blue-ft"><i class="fas fa-hard-hat"></i> Workforce Safety · ILO
-                        Compliant</div>
-                </div>
-
-                <!-- CERT 6: Basel Convention -->
-                <div class="cert-card fade-up" style="transition-delay:0.5s;" onclick="openLightbox('lb6')">
-                    <div class="cert-verified-overlay"><span class="cert-verified-badge"><i
-                                class="fas fa-check-circle"></i> View Certificate</span></div>
-                    <div class="cert-top-bar gold"></div>
-                    <div class="cert-header">
-                        <div class="cert-logo gold-bg"><i class="fas fa-recycle"></i></div>
-                        <div class="cert-issuer-info">
-                            <div class="cert-issuer-name">Basel Convention</div>
-                            <div class="cert-issuer-type">Hazardous Waste Management</div>
-                        </div>
-                    </div>
-                    <div class="cert-body">
-                        <div class="cert-watermark"><i class="fas fa-award"></i></div>
-                        <div class="cert-to">Compliance Certification for</div>
-                        <div class="cert-company-name">Sachdeva Group<br>Ship Recycling Operations</div>
-                        <div class="cert-divider"></div>
-                        <div class="cert-standard-label">Convention</div>
-                        <div class="cert-standard sm gold-std"><span>Basel</span> Convention<br>on Hazardous Wastes
-                        </div>
-                        <div class="cert-scope-label">Compliance</div>
-                        <div class="cert-scope">Environmentally sound management of hazardous wastes arising from ship
-                            recycling, including asbestos, PCBs, and heavy metals.</div>
-                        <div class="cert-meta">
-                            <div class="cert-meta-item">
-                                <label>Convention</label>
-                                <span>Basel 1989</span>
-                            </div>
-                            <div class="cert-meta-item">
-                                <label>Category</label>
-                                <span>Hazardous Waste</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cert-footer-strip gold-ft"><i class="fas fa-recycle"></i> Hazardous Waste · Basel
-                        Compliant</div>
-                </div>
-
-            </div><!-- /cert-grid -->
+            <div class="cert-grid fade-up" style="margin-top:50px;">
+                <article class="cert-card cert-image-card" onclick="openCertLb(0)" role="button" tabindex="0"
+                    aria-label="Open certificate 1">
+                    <img src="images/cert/1.jpg" alt="Certificate 1">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(1)" role="button" tabindex="0"
+                    aria-label="Open certificate 2">
+                    <img src="images/cert/2.jpg" alt="Certificate 2">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(2)" role="button" tabindex="0"
+                    aria-label="Open certificate 3">
+                    <img src="images/cert/3.jpg" alt="Certificate 3">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(3)" role="button" tabindex="0"
+                    aria-label="Open certificate 4">
+                    <img src="images/cert/4.jpg" alt="Certificate 4">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(4)" role="button" tabindex="0"
+                    aria-label="Open certificate 5">
+                    <img src="images/cert/5.jpg" alt="Certificate 5">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(5)" role="button" tabindex="0"
+                    aria-label="Open certificate 6">
+                    <img src="images/cert/6.jpg" alt="Certificate 6">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(6)" role="button" tabindex="0"
+                    aria-label="Open certificate 7">
+                    <img src="images/cert/7.jpg" alt="Certificate 7">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(7)" role="button" tabindex="0"
+                    aria-label="Open certificate 8">
+                    <img src="images/cert/8.jpg" alt="Certificate 8">
+                </article>
+                <article class="cert-card cert-image-card" onclick="openCertLb(8)" role="button" tabindex="0"
+                    aria-label="Open certificate 9">
+                    <img src="images/cert/9.jpg" alt="Certificate 9">
+                </article>
+            </div>
         </div>
     </section>
 
-    <!-- ─── LIGHTBOX MODALS ─── -->
-    <div class="lightbox" id="lb1" onclick="closeLightbox(event, 'lb1')">
-        <div class="lightbox-inner">
-            <button class="lightbox-close" onclick="document.getElementById('lb1').classList.remove('open')"><i
-                    class="fas fa-times"></i></button>
-            <img class="lb-cert-image" src="images/cert-bv-jaijagdish.jpg" alt="Certificate">
-        </div>
-    </div>
+    <!-- ─── SHARED CERT LIGHTBOX (with prev / next) ─── -->
+    <style>
+        .lightbox .lb-cert-image.swap { animation: cert-fade 0.35s ease; }
+        @keyframes cert-fade {
+            from { opacity: 0; transform: scale(0.97); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        .lb-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: rgba(13, 27, 42, 0.78);
+            color: #fff;
+            border: 1.5px solid rgba(201, 168, 76, 0.45);
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.25s ease, transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s ease;
+            z-index: 4;
+            backdrop-filter: blur(6px);
+        }
+        .lb-prev { left: -68px; }
+        .lb-next { right: -68px; }
+        .lb-nav:hover {
+            background: #c9a84c;
+            color: #0d1b2a;
+            border-color: #e4c46e;
+            transform: translateY(-50%) scale(1.10);
+        }
+        .lb-prev:hover { transform: translateY(-50%) translateX(-3px) scale(1.10); }
+        .lb-next:hover { transform: translateY(-50%) translateX(3px) scale(1.10); }
+        .lb-counter {
+            position: absolute;
+            top: 14px; left: 16px;
+            background: rgba(13, 27, 42, 0.78);
+            color: #e4c46e;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 8px 14px;
+            border-radius: 50px;
+            z-index: 5;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(201, 168, 76, 0.4);
+        }
+        .lb-counter .lb-cur { color: #fff; }
+        @media (max-width: 920px) {
+            .lb-prev { left: 10px; }
+            .lb-next { right: 10px; }
+            .lb-nav { width: 44px; height: 44px; background: rgba(13,27,42,0.85); }
+        }
+    </style>
 
-    <div class="lightbox" id="lb2" onclick="closeLightbox(event, 'lb2')">
-        <div class="lightbox-inner">
-            <button class="lightbox-close" onclick="document.getElementById('lb2').classList.remove('open')"><i
-                    class="fas fa-times"></i></button>
-            <img class="lb-cert-image" src="images/cert-bv-sachdeva.jpg" alt="Certificate">
-        </div>
-    </div>
-
-    <div class="lightbox" id="lb3" onclick="closeLightbox(event, 'lb3')">
-        <div class="lightbox-inner">
-            <button class="lightbox-close" onclick="document.getElementById('lb3').classList.remove('open')"><i
-                    class="fas fa-times"></i></button>
-            <img class="lb-cert-image" src="images/cert-classnk-eu.jpg" alt="Certificate">
-        </div>
-    </div>
-
-    <div class="lightbox" id="lb4" onclick="closeLightbox(event, 'lb4')">
-        <div class="lightbox-inner">
-            <button class="lightbox-close" onclick="document.getElementById('lb4').classList.remove('open')"><i
-                    class="fas fa-times"></i></button>
-            <img class="lb-cert-image" src="images/cert-imo-hkc.jpg" alt="Certificate">
-        </div>
-    </div>
-
-    <div class="lightbox" id="lb5" onclick="closeLightbox(event, 'lb5')">
-        <div class="lightbox-inner">
-            <button class="lightbox-close" onclick="document.getElementById('lb5').classList.remove('open')"><i
-                    class="fas fa-times"></i></button>
-            <img class="lb-cert-image" src="images/cert-ilo.jpg" alt="Certificate">
-        </div>
-    </div>
-
-    <div class="lightbox" id="lb6" onclick="closeLightbox(event, 'lb6')">
-        <div class="lightbox-inner">
-            <button class="lightbox-close" onclick="document.getElementById('lb6').classList.remove('open')"><i
-                    class="fas fa-times"></i></button>
-            <img class="lb-cert-image" src="images/cert-basel.jpg" alt="Certificate">
+    <div class="lightbox" id="certLb" onclick="closeCertLb(event)">
+        <div class="lightbox-inner" onclick="event.stopPropagation()">
+            <div class="lb-counter"><span class="lb-cur" id="certLbCur">1</span> <span style="opacity:0.6;">/</span> <span id="certLbTot">9</span></div>
+            <button class="lightbox-close" onclick="closeCertLb(event, true)"><i class="fas fa-times"></i></button>
+            <button class="lb-nav lb-prev" onclick="certLbPrev()" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <button class="lb-nav lb-next" onclick="certLbNext()" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+            <img class="lb-cert-image" id="certLbImg" src="" alt="Certificate">
         </div>
     </div>
 
@@ -1653,20 +1557,46 @@
         }, { threshold: 0.5 });
         counters.forEach(c => numObserver.observe(c));
 
-        // Lightbox
+        // ─── Shared certificate lightbox with prev/next ───
+        const CERT_IMAGES = [
+            'images/cert/1.jpg',
+            'images/cert/2.jpg',
+            'images/cert/3.jpg',
+            'images/cert/4.jpg',
+            'images/cert/5.jpg',
+            'images/cert/6.jpg',
+            'images/cert/7.jpg',
+            'images/cert/8.jpg',
+            'images/cert/9.jpg'
+        ];
+        let certIndex = 0;
         let scrollPosition = 0;
 
-        function openLightbox(id) {
+        function paintCertLb() {
+            const img = document.getElementById('certLbImg');
+            img.src = CERT_IMAGES[certIndex];
+            img.classList.remove('swap');
+            void img.offsetWidth;
+            img.classList.add('swap');
+            document.getElementById('certLbCur').textContent = (certIndex + 1);
+            document.getElementById('certLbTot').textContent = CERT_IMAGES.length;
+        }
+
+        function openCertLb(idx) {
+            certIndex = idx;
+            paintCertLb();
+            document.getElementById('certLb').classList.add('open');
             scrollPosition = window.scrollY;
-            document.getElementById(id).classList.add('open');
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.top = -scrollPosition + 'px';
             document.body.style.width = '100%';
         }
-        function closeLightbox(e, id) {
-            if (e.target === document.getElementById(id)) {
-                document.getElementById(id).classList.remove('open');
+
+        function closeCertLb(e, force) {
+            const lb = document.getElementById('certLb');
+            if (force || (e && (e.target === lb || (e.target.closest && e.target.closest('.lightbox-close'))))) {
+                lb.classList.remove('open');
                 document.body.style.overflow = '';
                 document.body.style.position = '';
                 document.body.style.top = '';
@@ -1674,148 +1604,152 @@
                 window.scrollTo(0, scrollPosition);
             }
         }
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.lightbox.open').forEach(lb => {
-                    lb.classList.remove('open');
-                    document.body.style.overflow = '';
-                    document.body.style.position = '';
-                    document.body.style.top = '';
-                    document.body.style.width = '';
-                    window.scrollTo(0, scrollPosition);
-                });
-            }
+
+        function certLbPrev() {
+            certIndex = (certIndex - 1 + CERT_IMAGES.length) % CERT_IMAGES.length;
+            paintCertLb();
+        }
+
+        function certLbNext() {
+            certIndex = (certIndex + 1) % CERT_IMAGES.length;
+            paintCertLb();
+        }
+
+        // Keyboard: Esc / Arrow Left / Arrow Right
+        document.addEventListener('keydown', (e) => {
+            const lbOpen = document.getElementById('certLb').classList.contains('open');
+            if (e.key === 'Escape') { closeCertLb(null, true); return; }
+            if (!lbOpen) return;
+            if (e.key === 'ArrowLeft')  certLbPrev();
+            if (e.key === 'ArrowRight') certLbNext();
         });
+
+        // Touch swipe on cert lightbox
+        (function () {
+            const lb = document.getElementById('certLb');
+            let startX = null;
+            lb.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+            lb.addEventListener('touchend', (e) => {
+                if (startX == null) return;
+                const dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) > 50) {
+                    if (dx > 0) certLbPrev(); else certLbNext();
+                }
+                startX = null;
+            }, { passive: true });
+        })();
     </script>
 
-    <footer id="footer" class="footer">
-        <div class="footer-wave">
-            <svg viewBox="0 0 1200 100" preserveAspectRatio="none">
-                <path d="M0,50 Q300,0 600,50 T1200,50 L1200,100 L0,100 Z" fill="rgba(212,175,55,0.1)"></path>
-            </svg>
-        </div>
+    <!-- ─── MARINE ANIMATED FOOTER ─── -->
+    <footer id="footer" class="marine-footer">
+        <div class="footer-bubbles" id="footerBubbles"></div>
 
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <div class="footer-logo">
-                        <img src="images/logo-white.png" alt="Logo" class="footer-logo-img">
-                        <img src="images/logo.png" alt="Logo" class="footer-logo-img">
+        <div class="marine-footer-inner">
+            <div class="marine-footer-grid">
+                <div class="ftr-col">
+                    <div class="ftr-logo">
+                        <img src="images/logo-white.png" alt="Sachdeva Group">
+                        <div class="ftr-logo-text">
+                            Sachdeva Group
+                            <span>Ship Recycling · Since 1983</span>
+                        </div>
                     </div>
-                    <p>Leading the ship recycling industry with sustainable practices and environmental responsibility
-                        since 1983.</p>
-                    <div class="footer-certification">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
-                        <span>ISO Certified &amp; Compliant</span>
+                    <p class="ftr-about-text">
+                        Leading India's ship recycling industry from Alang, Gujarat with over four decades of expertise,
+                        sustainable practices, and unwavering commitment to environmental responsibility.
+                    </p>
+                    <div class="ftr-trust-badge">
+                        <i class="fas fa-shield-halved"></i>
+                        ISO Certified · HKC Compliant
                     </div>
                 </div>
 
-                <div class="footer-col">
+                <div class="ftr-col">
                     <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#companies">Our Journey</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#news">News &amp; Media</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                    <ul class="ftr-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="sspsb.php">Sachdeva Steel Products</a></li>
+                        <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
+                        <li><a href="news.php">News</a></li>
+                        <li><a href="gallery.php">Media</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-col">
+                <div class="ftr-col">
                     <h4>Our Companies</h4>
-                    <ul class="footer-links">
+                    <ul class="ftr-companies">
                         <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37"
-                                stroke-width="2">
-                                <polyline points="9 11 12 14 22 4"></polyline>
-                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                            </svg>
-                            Sachdeva Steel Products (Ship Breaking Unit) LLP
+                            <a href="sspsb.php">
+                                <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
+                                <span class="cmp-text">
+                                    Sachdeva Steel Products (Ship Breaking Unit) LLP
+                                    <small>Since 1997 · 36+ Ships</small>
+                                </span>
+                            </a>
                         </li>
                         <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37"
-                                stroke-width="2">
-                                <polyline points="9 11 12 14 22 4"></polyline>
-                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                            </svg>
-                            Jai Jagdish Ship Breakers Pvt. Ltd.
+                            <a href="jjsb.php">
+                                <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
+                                <span class="cmp-text">
+                                    Jai Jagdish Ship Breakers Pvt. Ltd.
+                                    <small>Since 1998 · 35+ Ships</small>
+                                </span>
+                            </a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="footer-col">
-                    <h4>Contact Info</h4>
-                    <ul class="footer-contact">
+                <div class="ftr-col">
+                    <h4>Get In Touch</h4>
+                    <ul class="ftr-contact">
                         <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                <circle cx="12" cy="10" r="3"></circle>
-                            </svg>
-                            <span>Alang, Gujarat, India</span>
+                            <span class="ci-icon"><i class="fas fa-location-dot"></i></span>
+                            <div class="ci-meta">
+                                <b>Address</b>
+                                Alang Ship Recycling Yard,<br>Bhavnagar, Gujarat – 364 210
+                            </div>
                         </li>
                         <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
-                                </path>
-                                <polyline points="22,6 12,13 2,6"></polyline>
-                            </svg>
-                            <span>info@sachdevagroup.com</span>
+                            <span class="ci-icon"><i class="fas fa-envelope"></i></span>
+                            <div class="ci-meta">
+                                <b>Email</b>
+                                <a href="mailto:info@sachdevagroup.in">info@sachdevagroup.in</a>
+                            </div>
                         </li>
                         <li>
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
-                                </path>
-                            </svg>
-                            <span>+91 XXX XXX XXXX</span>
+                            <span class="ci-icon"><i class="fas fa-phone-volume"></i></span>
+                            <div class="ci-meta">
+                                <b>Call Us</b>
+                                <a href="tel:+919925499123">+91 99254 99123</a>
+                            </div>
                         </li>
                     </ul>
 
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
-                                </path>
-                            </svg>
-                        </a>
-                        <a href="#" aria-label="Twitter">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z">
-                                </path>
-                            </svg>
-                        </a>
-                        <a href="#" aria-label="Facebook">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
-                                </path>
-                            </svg>
-                        </a>
+                    <div class="ftr-social-row">
+                        <a href="#" class="ftr-social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="ftr-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="ftr-social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="ftr-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="footer-bottom">
-                <p>© 2026 Sachdeva Group. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <span>|</span>
-                    <a href="#">Terms of Service</a>
-                    <span>|</span>
-                    <a href="#">Sitemap</a>
-                </div>
+        <div class="marine-footer-bottom">
+            <p>© <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
+            <div class="ftr-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <span>•</span>
+                <a href="#">Terms of Service</a>
+                <span>•</span>
+                <a href="#">Sitemap</a>
             </div>
         </div>
     </footer>
+    <script src="js/marine-footer.js"></script>
 
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="Back to top">

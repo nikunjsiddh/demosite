@@ -17,10 +17,6 @@
     <link rel="stylesheet" href="css/marine-footer.css">
     <link rel="stylesheet" href="css/marine-header.css">
 
-    <!-- GSAP core + ScrollTrigger (free) — drives the hero parallax + reveal animations -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-
     <!-- ─── INDEX-ONLY HEADER (sailing ship + wave ripple) ─── -->
     <style>
         /* Ship sailing across the header */
@@ -43,9 +39,17 @@
         }
 
         @keyframes mh-ship-go {
-            0%   { transform: translateX(-160%) translateY(0) rotate(0); }
-            50%  { transform: translateX(50vw) translateY(-4px) rotate(-1deg); }
-            100% { transform: translateX(110vw) translateY(0) rotate(0); }
+            0% {
+                transform: translateX(-160%) translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateX(50vw) translateY(-4px) rotate(-1deg);
+            }
+
+            100% {
+                transform: translateX(110vw) translateY(0) rotate(0);
+            }
         }
 
         /* Wave ripple at the bottom of the header */
@@ -59,103 +63,158 @@
         }
 
         @keyframes mh-ripple-shift {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
         }
 
         /* Lift the inner content above the ship */
-        .marine-header--hero .mh-main-inner { position: relative; z-index: 2; }
+        .marine-header--hero .mh-main-inner {
+            position: relative;
+            z-index: 2;
+        }
 
-        /* Index-only: remove body padding so hero video flows behind the
-           transparent fixed header. Other pages keep the standard padding. */
-        body.has-marine-header { padding-top: 0 !important; }
-
-        /* Push the video hero down so its visible content isn't hidden under header */
+        /* Index hero: video starts below the standard fixed header (130px) */
         .hero-section {
-            padding-top: 130px;
             position: relative;
         }
+
         /* Confine the parallax video shift inside the hero only */
-        .hero-section .video-background { overflow: hidden; }
-
-        @media (max-width: 700px) {
-            .hero-section { padding-top: 96px; }
-        }
-
-        /* ──────────────────────────────────────
-           PARALLAX layers
-           ────────────────────────────────────── */
         .hero-section .video-background {
-            will-change: transform;
+            overflow: hidden;
         }
 
-        .hero-section .video-background video {
-            /* Slight zoom so parallax shift never reveals the edge */
-            transform: scale(1.08);
-            transform-origin: center;
-        }
-
-        .hero-section .hero-content {
-            will-change: transform, opacity;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero-section .video-background,
-            .hero-section .hero-content {
-                transform: none !important;
-                will-change: auto;
-            }
-        }
+        /* Native scroll — no parallax. Hero video sits naturally. */
 
         /* ──────────────────────────────────────
            INDEX-ONLY LIGHT HEADER THEME
            (so the color logo shows properly)
            ────────────────────────────────────── */
 
-        /* Very translucent — mostly see-through with frosted glass */
+        /* ════════════════════════════════════════════════
+           ADAPTIVE HEADER — dark over hero, light when scrolled
+           ════════════════════════════════════════════════ */
+
+        /* ─── INITIAL STATE: warm cream glass with subtle gold glow (matches submenu) ─── */
         .marine-header--hero .mh-main {
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.18) 0%,
-                rgba(250, 251, 253, 0.16) 50%,
-                rgba(253, 245, 220, 0.22) 100%);
-            backdrop-filter: blur(18px) saturate(1.2);
-            -webkit-backdrop-filter: blur(18px) saturate(1.2);
-            border-bottom: 1px solid rgba(201, 146, 42, 0.28);
-            box-shadow: 0 4px 18px rgba(13, 27, 42, 0.08);
+            background:
+                radial-gradient(ellipse 60% 80% at 78% 50%,
+                    rgba(244, 198, 110, 0.30) 0%,
+                    rgba(244, 198, 110, 0.10) 40%,
+                    transparent 70%),
+                linear-gradient(135deg,
+                    rgba(248, 240, 218, 0.92) 0%,
+                    rgba(245, 233, 200, 0.90) 45%,
+                    rgba(240, 222, 178, 0.92) 100%);
+            backdrop-filter: blur(18px) saturate(1.25);
+            -webkit-backdrop-filter: blur(18px) saturate(1.25);
+            border-bottom: 1px solid rgba(201, 146, 42, 0.35);
+            box-shadow:
+                0 10px 32px rgba(13, 27, 42, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55),
+                inset 0 -1px 0 rgba(201, 146, 42, 0.20);
+            transition: background 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
+            position: relative;
         }
 
-        .marine-header--hero.scrolled .mh-main {
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.40) 0%,
-                rgba(250, 251, 253, 0.36) 50%,
-                rgba(253, 245, 220, 0.45) 100%);
-            backdrop-filter: blur(22px) saturate(1.25);
-            -webkit-backdrop-filter: blur(22px) saturate(1.25);
-            box-shadow: 0 8px 24px rgba(13, 27, 42, 0.18);
+        /* Subtle gold glow line at the top edge — soft cream feel */
+        .marine-header--hero .mh-main::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(201, 146, 42, 0.45),
+                    rgba(245, 217, 139, 0.65),
+                    rgba(201, 146, 42, 0.45),
+                    transparent);
+            opacity: 0.85;
+            pointer-events: none;
         }
 
-        /* Submenu — same light translucent style as header */
+        /* Logo — color version with soft drop shadow on cream bg */
+        .marine-header--hero .mh-logo img {
+            filter:
+                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.20)) drop-shadow(0 0 18px rgba(201, 146, 42, 0.28));
+            transition: filter 0.4s ease;
+        }
+
+        .marine-header--hero .mh-logo:hover img {
+            filter:
+                drop-shadow(0 4px 10px rgba(13, 27, 42, 0.28)) drop-shadow(0 0 26px rgba(201, 146, 42, 0.42));
+        }
+
+        /* Nav links — DARK navy text on cream bg */
+        .marine-header--hero .mh-nav-list>li>a {
+            color: rgba(13, 27, 42, 0.88);
+            font-weight: 600;
+            transition: color 0.35s ease, background 0.35s ease;
+        }
+
+        .marine-header--hero .mh-nav-list>li>a:hover {
+            color: #c9922a;
+            background: rgba(201, 146, 42, 0.16);
+        }
+
+        .marine-header--hero .mh-nav-list>li>a.active {
+            color: #c9922a;
+        }
+
+        /* Chevron — dark navy on cream */
+        .marine-header--hero .mh-nav-list>li>a i.fa-chevron-down {
+            color: rgba(13, 27, 42, 0.6);
+            transition: color 0.35s ease;
+        }
+
+        /* Mobile hamburger — dark navy on cream */
+        .marine-header--hero .mh-toggle {
+            background: rgba(201, 146, 42, 0.14);
+            border-color: rgba(201, 146, 42, 0.55);
+            transition: background 0.35s ease, border-color 0.35s ease;
+        }
+
+        .marine-header--hero .mh-toggle span {
+            background: #0a1628;
+            transition: background 0.35s ease;
+        }
+
+        /* Submenu — light cream themed (matches the screenshot reference) */
         .marine-header--hero .mh-submenu {
-            background: linear-gradient(135deg,
-                rgba(255, 255, 255, 0.85) 0%,
-                rgba(253, 245, 220, 0.85) 100%);
-            backdrop-filter: blur(18px) saturate(1.2);
-            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            background:
+                radial-gradient(ellipse 60% 80% at 78% 50%,
+                    rgba(244, 198, 110, 0.28) 0%,
+                    rgba(244, 198, 110, 0.08) 40%,
+                    transparent 70%),
+                linear-gradient(135deg,
+                    rgba(250, 244, 224, 0.96) 0%,
+                    rgba(245, 233, 200, 0.96) 100%);
+            backdrop-filter: blur(20px) saturate(1.2);
+            -webkit-backdrop-filter: blur(20px) saturate(1.2);
             border: 1px solid rgba(201, 146, 42, 0.45);
-            box-shadow: 0 18px 40px rgba(13, 27, 42, 0.18);
+            box-shadow:
+                0 18px 40px rgba(13, 27, 42, 0.20),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
-        /* Triangle arrow above submenu — match light background */
         .marine-header--hero .mh-submenu::before {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(250, 244, 224, 0.96);
             border-left-color: rgba(201, 146, 42, 0.45);
             border-top-color: rgba(201, 146, 42, 0.45);
+            transition: background 0.4s ease, border-color 0.4s ease;
         }
 
-        /* Submenu items: dark navy text on light translucent bg */
         .marine-header--hero .mh-submenu li a {
             color: rgba(13, 27, 42, 0.88);
             font-weight: 500;
+            transition: color 0.3s ease, background 0.3s ease;
         }
 
         .marine-header--hero .mh-submenu li a::before {
@@ -163,7 +222,7 @@
         }
 
         .marine-header--hero .mh-submenu li a:hover {
-            background: rgba(201, 146, 42, 0.16);
+            background: rgba(201, 146, 42, 0.18);
             color: #c9922a;
         }
 
@@ -173,54 +232,96 @@
 
         .marine-header--hero .mh-submenu li a.active {
             color: #c9922a;
-            background: rgba(201, 146, 42, 0.10);
+            background: rgba(201, 146, 42, 0.12);
+        }
+
+        /* Get Quote CTA — gold pill */
+        .marine-header--hero .mh-cta {
+            background: linear-gradient(135deg, #c9922a, #f0b94a);
+            color: #0a1628;
+            border: 1px solid rgba(201, 146, 42, 0.6);
+            transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        /* ─── SCROLLED STATE: page scrolled past hero → CREAM bg + DARK text ─── */
+        .marine-header--hero.scrolled .mh-main {
+            background: linear-gradient(135deg,
+                    rgba(225, 218, 204, 0.98) 0%,
+                    rgba(232, 225, 212, 0.97) 50%,
+                    rgba(220, 212, 192, 0.98) 100%);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            box-shadow: 0 10px 28px rgba(13, 27, 42, 0.22);
         }
 
         .marine-header--hero.scrolled .mh-main::before {
             background: linear-gradient(90deg, transparent, #c9922a, transparent);
         }
 
-        /* Color logo stays sharp on the light background */
-        .marine-header--hero .mh-logo img {
+        .marine-header--hero.scrolled .mh-logo img {
             filter:
-                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.18))
-                drop-shadow(0 0 18px rgba(201, 146, 42, 0.20));
-        }
-        .marine-header--hero .mh-logo:hover img {
-            filter:
-                drop-shadow(0 4px 10px rgba(13, 27, 42, 0.25))
-                drop-shadow(0 0 26px rgba(201, 146, 42, 0.32));
+                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.20)) drop-shadow(0 0 18px rgba(201, 146, 42, 0.25));
         }
 
-        /* Nav links: dark navy text on light background */
-        .marine-header--hero .mh-nav-list > li > a {
-            color: rgba(13, 27, 42, 0.85);
-            font-weight: 600;
+        .marine-header--hero.scrolled .mh-nav-list>li>a {
+            color: rgba(13, 27, 42, 0.88);
         }
-        .marine-header--hero .mh-nav-list > li > a:hover {
+
+        .marine-header--hero.scrolled .mh-nav-list>li>a:hover {
             color: #c9922a;
-            background: rgba(201, 146, 42, 0.10);
+            background: rgba(201, 146, 42, 0.12);
         }
-        .marine-header--hero .mh-nav-list > li > a.active {
+
+        .marine-header--hero.scrolled .mh-nav-list>li>a.active {
             color: #c9922a;
         }
 
-        /* Chevron icon dark on light bg */
-        .marine-header--hero .mh-nav-list > li > a i.fa-chevron-down {
+        .marine-header--hero.scrolled .mh-nav-list>li>a i.fa-chevron-down {
             color: rgba(13, 27, 42, 0.6);
         }
 
-        /* Mobile hamburger lines — dark gold for contrast on light bg */
-        .marine-header--hero .mh-toggle {
-            background: rgba(201, 146, 42, 0.12);
-            border-color: rgba(201, 146, 42, 0.5);
+        .marine-header--hero.scrolled .mh-toggle {
+            background: rgba(201, 146, 42, 0.14);
+            border-color: rgba(201, 146, 42, 0.55);
         }
-        .marine-header--hero .mh-toggle span {
+
+        .marine-header--hero.scrolled .mh-toggle span {
             background: #0a1628;
         }
 
+        /* Submenu when scrolled — light themed */
+        .marine-header--hero.scrolled .mh-submenu {
+            background: linear-gradient(135deg,
+                    rgba(248, 244, 234, 0.98) 0%,
+                    rgba(238, 230, 212, 0.98) 100%);
+            border-color: rgba(201, 146, 42, 0.5);
+            box-shadow: 0 18px 40px rgba(13, 27, 42, 0.20);
+        }
+
+        .marine-header--hero.scrolled .mh-submenu::before {
+            background: rgba(248, 244, 234, 0.98);
+            border-left-color: rgba(201, 146, 42, 0.5);
+            border-top-color: rgba(201, 146, 42, 0.5);
+        }
+
+        .marine-header--hero.scrolled .mh-submenu li a {
+            color: rgba(13, 27, 42, 0.88);
+        }
+
+        .marine-header--hero.scrolled .mh-submenu li a:hover {
+            background: rgba(201, 146, 42, 0.16);
+            color: #c9922a;
+        }
+
+        .marine-header--hero.scrolled .mh-submenu li a.active {
+            color: #c9922a;
+            background: rgba(201, 146, 42, 0.10);
+        }
+
         /* Hide the sailing ship — its white sail is invisible on light bg */
-        .marine-header--hero .mh-sailing-ship { display: none; }
+        .marine-header--hero .mh-sailing-ship {
+            display: none;
+        }
 
         /* Wave ripple at the bottom — recolor to gold for visibility */
         .marine-header--hero .mh-ripple path {
@@ -237,15 +338,32 @@
                 opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .reveal.visible { opacity: 1; transform: none; }
 
-        .reveal.from-left  { transform: translateX(-60px) translateY(20px); }
-        .reveal.from-right { transform: translateX(60px) translateY(20px); }
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .reveal.from-left {
+            transform: translateX(-60px) translateY(20px);
+        }
+
+        .reveal.from-right {
+            transform: translateX(60px) translateY(20px);
+        }
+
         .reveal.from-left.visible,
-        .reveal.from-right.visible { transform: none; }
+        .reveal.from-right.visible {
+            transform: none;
+        }
 
-        .reveal.scale-in { transform: scale(0.88) translateY(28px); }
-        .reveal.scale-in.visible { transform: scale(1) translateY(0); }
+        .reveal.scale-in {
+            transform: scale(0.88) translateY(28px);
+        }
+
+        .reveal.scale-in.visible {
+            transform: scale(1) translateY(0);
+        }
 
         .reveal.flip-x {
             transform: perspective(1400px) rotateX(-22deg) translateY(50px);
@@ -254,6 +372,7 @@
                 opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
         .reveal.flip-x.visible {
             transform: perspective(1000px) rotateX(0) rotateY(0) translateY(0);
         }
@@ -264,9 +383,14 @@
                 opacity 0.7s ease,
                 transform 0.7s cubic-bezier(0.34, 1.65, 0.64, 1);
         }
-        .reveal.bounce-in.visible { transform: scale(1) translateY(0); }
 
-        .stagger > .reveal { transition-delay: calc(var(--i, 0) * 0.08s); }
+        .reveal.bounce-in.visible {
+            transform: scale(1) translateY(0);
+        }
+
+        .stagger>.reveal {
+            transition-delay: calc(var(--i, 0) * 0.08s);
+        }
 
         /* Hero word-by-word reveal */
         .hero-title .word {
@@ -275,8 +399,12 @@
             transform: translateY(40px) rotateX(-30deg);
             animation: word-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
         @keyframes word-up {
-            to { opacity: 1; transform: translateY(0) rotateX(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
         }
 
         /* ───────────────────────────────
@@ -337,7 +465,9 @@
             letter-spacing: -0.01em;
         }
 
-        .why-choose h2 span { color: #c9a84c; }
+        .why-choose h2 span {
+            color: #c9a84c;
+        }
 
         .why-choose .wc-line {
             display: inline-block;
@@ -376,7 +506,9 @@
         .wc-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 4px;
             background: linear-gradient(90deg, #2e7d4f, #c9a84c);
             transform: scaleX(0);
@@ -390,7 +522,9 @@
             border-color: rgba(201, 168, 76, 0.4);
         }
 
-        .wc-card:hover::before { transform: scaleX(1); }
+        .wc-card:hover::before {
+            transform: scaleX(1);
+        }
 
         .wc-icon {
             width: 64px;
@@ -406,7 +540,9 @@
             transition: transform 0.4s ease;
         }
 
-        .wc-card:hover .wc-icon { transform: rotate(-6deg) scale(1.05); }
+        .wc-card:hover .wc-icon {
+            transform: rotate(-6deg) scale(1.05);
+        }
 
         .wc-card h3 {
             color: #0d1b2a;
@@ -465,7 +601,9 @@
             letter-spacing: -0.01em;
         }
 
-        .yard-gallery h2 span { color: #c9a84c; }
+        .yard-gallery h2 span {
+            color: #c9a84c;
+        }
 
         .yard-gallery .yg-sub {
             color: #64748b;
@@ -483,13 +621,25 @@
         }
 
         @media (max-width: 900px) {
-            .yg-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
-            .yg-grid .yg-tile:nth-child(1) { grid-column: span 2; }
+            .yg-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 200px 200px 200px;
+            }
+
+            .yg-grid .yg-tile:nth-child(1) {
+                grid-column: span 2;
+            }
         }
 
         @media (max-width: 600px) {
-            .yg-grid { grid-template-columns: 1fr; grid-template-rows: repeat(5, 220px); }
-            .yg-grid .yg-tile:nth-child(1) { grid-column: auto; }
+            .yg-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(5, 220px);
+            }
+
+            .yg-grid .yg-tile:nth-child(1) {
+                grid-column: auto;
+            }
         }
 
         .yg-tile {
@@ -501,7 +651,9 @@
             cursor: pointer;
         }
 
-        .yg-tile:nth-child(1) { grid-row: span 2; }
+        .yg-tile:nth-child(1) {
+            grid-row: span 2;
+        }
 
         .yg-tile img {
             width: 100%;
@@ -551,13 +703,20 @@
             filter: brightness(1.05);
         }
 
-        .yg-tile:hover .yg-caption { transform: translateY(-4px); }
+        .yg-tile:hover .yg-caption {
+            transform: translateY(-4px);
+        }
 
         /* Section reveal padding fix */
-        .why-choose, .yard-gallery { scroll-margin-top: 120px; }
+        .why-choose,
+        .yard-gallery {
+            scroll-margin-top: 120px;
+        }
 
         @media (prefers-reduced-motion: reduce) {
-            .reveal, .reveal.visible,
+
+            .reveal,
+            .reveal.visible,
             .hero-title .word {
                 transform: none !important;
                 opacity: 1 !important;
@@ -591,7 +750,9 @@
         }
 
         @media (max-width: 768px) {
-            .contact-preview-section { background-attachment: scroll !important; }
+            .contact-preview-section {
+                background-attachment: scroll !important;
+            }
         }
     </style>
 </head>
@@ -611,62 +772,7 @@
         </div>
     </div>
 
-    <!-- ─── MARINE HEADER (index variant — ship animation, taller bar) ─── -->
-    <header id="header" class="marine-header marine-header--hero">
-        <!-- Sailing ship animation (index only) -->
-        <div class="mh-ship-track" aria-hidden="true">
-            <svg class="mh-sailing-ship" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg">
-                <g>
-                    <polygon points="80,20 80,70 130,70" fill="rgba(255,255,255,0.55)"/>
-                    <polygon points="85,30 85,68 122,68" fill="rgba(201,146,42,0.55)"/>
-                    <line x1="80" y1="20" x2="80" y2="80" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
-                    <path d="M40,80 L160,80 L150,95 L50,95 Z" fill="rgba(10,22,40,0.95)" stroke="rgba(201,146,42,0.55)" stroke-width="1"/>
-                    <rect x="60" y="72" width="80" height="10" fill="rgba(245,217,139,0.5)"/>
-                </g>
-            </svg>
-            <!-- Wave ripple at the bottom edge -->
-            <svg class="mh-ripple" viewBox="0 0 1440 22" preserveAspectRatio="none">
-                <path d="M0,12 C240,2 480,22 720,12 C960,2 1200,22 1440,12 L1440,22 L0,22 Z" fill="rgba(46,125,79,0.18)"/>
-                <path d="M1440,12 C1680,2 1920,22 2160,12 C2400,2 2640,22 2880,12 L2880,22 L1440,22 Z" fill="rgba(46,125,79,0.18)"/>
-            </svg>
-        </div>
-        <div class="mh-main">
-            <div class="mh-main-inner">
-                <a href="index.html" class="mh-logo">
-                    <img src="images/logo.png" alt="Sachdeva Group">
-                    <div class="mh-logo-text">Sachdeva Group<span>Ship Recycling · Since 1983</span></div>
-                </a>
-                <nav class="mh-nav">
-                    <ul class="mh-nav-list">
-                        <li><a href="index.html" class="active">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li class="mh-has-submenu">
-                            <a href="javascript:void(0)" role="button" aria-haspopup="true">Our Companies <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu" style="min-width: 300px;">
-                                <li><a href="sspsb.html">Sachdeva Steel Products (Ship Breakers)</a></li>
-                                <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
-                            </ul>
-                        </li>
-                        <li class="mh-has-submenu">
-                            <a href="news.html">News &amp; Media <i class="fas fa-chevron-down"></i></a>
-                            <ul class="mh-submenu">
-                                <li><a href="news.html">News</a></li>
-                                <li><a href="gallery.html">Media</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="Contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <a href="Contact.html" class="mh-cta">
-                    <i class="fas fa-anchor"></i> Get Quote
-                </a>
-                <button class="mh-toggle" aria-label="Menu">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-    <script src="js/marine-header.js"></script>
+    <?php include __DIR__ . '/includes/menu.php'; ?>
 
     <!-- HERO SECTION WITH VIDEO BACKGROUND -->
     <section id="home" class="hero-section">
@@ -1118,42 +1224,49 @@
             <div class="yg-head reveal">
                 <span class="yg-tag"><i class="fas fa-camera"></i> Glimpse of Our Yard</span>
                 <h2>Inside <span>Alang Ship Recycling Yard</span></h2>
-                <div style="display:inline-block; width:70px; height:4px; background:linear-gradient(90deg,#c9a84c,#e4c46e,#c9a84c); margin: 8px 0 22px; border-radius:2px;"></div>
+                <div
+                    style="display:inline-block; width:70px; height:4px; background:linear-gradient(90deg,#c9a84c,#e4c46e,#c9a84c); margin: 8px 0 22px; border-radius:2px;">
+                </div>
                 <p class="yg-sub">A visual journey through the world's largest ship recycling destination —
                     cargo ships, tankers, and the dedicated workforce making it all happen safely.</p>
             </div>
 
             <div class="yg-grid stagger">
                 <div class="yg-tile reveal scale-in" style="--i:0">
-                    <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1100&amp;q=80" alt="Cargo ship at port" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1100&amp;q=80"
+                        alt="Cargo ship at port" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Featured</span>
                         <h4>End-of-Life Vessel Beached</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:1">
-                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=700&amp;q=80" alt="Port crane and ship" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=700&amp;q=80"
+                        alt="Port crane and ship" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Operations</span>
                         <h4>Heavy Lift Cranes</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:2">
-                    <img src="https://images.unsplash.com/photo-1517414204297-9d527e1ddccd?w=700&amp;q=80" alt="Container ship at sea" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1517414204297-9d527e1ddccd?w=700&amp;q=80"
+                        alt="Container ship at sea" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Vessels</span>
                         <h4>Container Ships</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:3">
-                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=700&amp;q=80" alt="Industrial worker with PPE" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=700&amp;q=80"
+                        alt="Industrial worker with PPE" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Safety</span>
                         <h4>HSE Trained Workforce</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:4">
-                    <img src="https://images.unsplash.com/photo-1565895405127-481853366cf8?w=700&amp;q=80" alt="Steel scrap processing" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1565895405127-481853366cf8?w=700&amp;q=80"
+                        alt="Steel scrap processing" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Recovery</span>
                         <h4>Steel &amp; Scrap Processing</h4>
@@ -1178,19 +1291,19 @@
             <div class="news-grid">
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
-                    onclick="window.location.href='environment-management.html';">
-                    <a href="environment-management.html" class="news-image"
+                    onclick="window.location.href='environment-management.php';">
+                    <a href="environment-management.php" class="news-image"
                         style="display:block; text-decoration:none;">
                         <img src="images/environment1.jpg" alt="Environment Management">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="environment-management.html"
+                        <h3><a href="environment-management.php"
                                 style="color:inherit; text-decoration:none;">Environment Management</a></h3>
                         <p>We take proactive steps to minimize our ecological footprint. From
                             energy-efficient systems to eco-conscious operations, we integrate sustainable practices at
                             every level.</p>
-                        <a href="environment-management.html" class="read-more">
+                        <a href="environment-management.php" class="read-more">
                             <span>Read More</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1203,19 +1316,18 @@
 
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
-                    onclick="window.location.href='health-safety.html';">
-                    <a href="health-safety.html" class="news-image"
-                        style="display:block; text-decoration:none;">
+                    onclick="window.location.href='health-safety.php';">
+                    <a href="health-safety.php" class="news-image" style="display:block; text-decoration:none;">
                         <img src="images/Health&Safety.png" alt="Health & Safety">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="health-safety.html"
-                                style="color:inherit; text-decoration:none;">Health &amp; Safety</a></h3>
+                        <h3><a href="health-safety.php" style="color:inherit; text-decoration:none;">Health &amp;
+                                Safety</a></h3>
                         <p>The health and safety of our people and partners come first. We
                             follow stringent
                             safety protocols and foster a culture of awareness for secure environments.</p>
-                        <a href="health-safety.html" class="read-more">
+                        <a href="health-safety.php" class="read-more">
                             <span>Read More</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1228,20 +1340,19 @@
 
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
-                    onclick="window.location.href='waste-management.html';">
-                    <a href="waste-management.html" class="news-image"
-                        style="display:block; text-decoration:none;">
+                    onclick="window.location.href='waste-management.php';">
+                    <a href="waste-management.php" class="news-image" style="display:block; text-decoration:none;">
                         <img src="images/WasteManagement.png" alt="Waste Management">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="waste-management.html"
-                                style="color:inherit; text-decoration:none;">Waste Management</a></h3>
+                        <h3><a href="waste-management.php" style="color:inherit; text-decoration:none;">Waste
+                                Management</a></h3>
                         <p>Our waste management strategies prioritize reduction, reuse, and
                             recycling. We
                             implement smart disposal methods and ensure compliance with global standards.
                         </p>
-                        <a href="waste-management.html" class="read-more">
+                        <a href="waste-management.php" class="read-more">
                             <span>Read More</span>
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
@@ -1320,13 +1431,13 @@
                 <div class="ftr-col">
                     <h4>Quick Links</h4>
                     <ul class="ftr-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="sspsb.html">Sachdeva Steel Products</a></li>
-                        <li><a href="jjsb.html">Jai Jagdish Ship Breakers</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="gallery.html">Media</a></li>
-                        <li><a href="Contact.html">Contact</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="sspsb.php">Sachdeva Steel Products</a></li>
+                        <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
+                        <li><a href="news.php">News</a></li>
+                        <li><a href="gallery.php">Media</a></li>
+                        <li><a href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
@@ -1334,20 +1445,20 @@
                     <h4>Our Companies</h4>
                     <ul class="ftr-companies">
                         <li>
-                            <a href="sspsb.html">
+                            <a href="sspsb.php">
                                 <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
                                 <span class="cmp-text">
                                     Sachdeva Steel Products (Ship Breaking Unit) LLP
-                                    <small>Since 1997 · 36+ Ships</small>
+                                    <small>Since 1997 — 36+ Ships</small>
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <a href="jjsb.html">
+                            <a href="jjsb.php">
                                 <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
                                 <span class="cmp-text">
                                     Jai Jagdish Ship Breakers Pvt. Ltd.
-                                    <small>Since 1998 · 35+ Ships</small>
+                                    <small>Since 1998 — 35+ Ships</small>
                                 </span>
                             </a>
                         </li>
@@ -1383,16 +1494,19 @@
                     <div class="ftr-social-row">
                         <a href="#" class="ftr-social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" class="ftr-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="ftr-social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
                         <a href="#" class="ftr-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="marine-footer-bottom">
-            <p>© 2026 Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
+            <p>©
+                <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights
+                reserved.
+            </p>
             <div class="ftr-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <span>•</span>
@@ -1417,77 +1531,9 @@
     <!-- ─── INDEX SCROLL-REVEAL + HERO WORD ANIMATION ─── -->
     <script>
         // ──────────────────────────────────────
-        //  GSAP SCROLLTRIGGER PARALLAX (native scroll)
-        //  No smooth-scroll lib — page scrolls natively, GSAP only drives parallax
+        //  NATIVE SCROLL — no parallax library, no GSAP.
+        //  Just regular browser scrolling.
         // ──────────────────────────────────────
-        function initParallax() {
-            if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-                console.warn('[parallax] GSAP not loaded — open via http://localhost/demosite/');
-                return;
-            }
-            gsap.registerPlugin(ScrollTrigger);
-
-            // HERO — video drifts down, content rises and fades
-            const heroSec = document.querySelector('.hero-section');
-            const videoBg = document.querySelector('.hero-section .video-background');
-            const heroContent = document.querySelector('.hero-section .hero-content');
-
-            if (heroSec && videoBg) {
-                gsap.to(videoBg, {
-                    yPercent: 30,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: heroSec,
-                        start: 'top top',
-                        end: 'bottom top',
-                        scrub: 0.6,
-                    }
-                });
-            }
-
-            if (heroSec && heroContent) {
-                gsap.to(heroContent, {
-                    yPercent: -25,
-                    opacity: 0,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: heroSec,
-                        start: 'top top',
-                        end: '75% top',
-                        scrub: 0.6,
-                    }
-                });
-            }
-
-            // data-speed parallax for any element
-            gsap.utils.toArray('[data-speed]').forEach((el) => {
-                const speed = parseFloat(el.dataset.speed);
-                if (!speed || speed === 1) return;
-                gsap.fromTo(el,
-                    { y: 0 },
-                    {
-                        y: () => (1 - speed) * window.innerHeight * 0.4,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 0.6,
-                            invalidateOnRefresh: true,
-                        }
-                    }
-                );
-            });
-
-            window.addEventListener('load', () => ScrollTrigger.refresh());
-            console.info('[parallax] GSAP ScrollTrigger initialized');
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initParallax);
-        } else {
-            initParallax();
-        }
 
         // Hero word-by-word reveal — splits each word in .title-line into spans
         (function () {

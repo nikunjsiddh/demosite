@@ -1243,7 +1243,7 @@
                                 <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
                                 <span class="cmp-text">
                                     Sachdeva Steel Products (Ship Breaking Unit) LLP
-                                    <small>Since 1994 · 36+ Ships</small>
+                                    <small>Since 1994 — 36+ Ships</small>
                                 </span>
                             </a>
                         </li>
@@ -1252,7 +1252,7 @@
                                 <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
                                 <span class="cmp-text">
                                     Jai Jagdish Ship Breakers Pvt. Ltd.
-                                    <small>Since 1998 · 35+ Ships</small>
+                                    <small>Since 1998 — 35+ Ships</small>
                                 </span>
                             </a>
                         </li>

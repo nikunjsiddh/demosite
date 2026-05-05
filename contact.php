@@ -115,12 +115,17 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background:
+            background-color: #0a1929; /* fallback while image loads */
+            background-image:
                 linear-gradient(180deg, rgba(6, 14, 28, 0.45) 0%, rgba(6, 14, 28, 0.78) 100%),
-                /* url('images/banner/aboutusbanner.png') center/cover no-repeat; */
-                url('images/banner/contacus .png') center/cover no-repeat;
+                url('images/banner/aboutusbanner.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             animation: heroZoom 22s ease-in-out infinite alternate;
             transform-origin: center;
+            /* prevent first-paint flash by ensuring layer stays opaque from the start */
+            will-change: transform;
         }
 
         @keyframes heroZoom {
@@ -2633,7 +2638,7 @@
                                 <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
                                 <span class="cmp-text">
                                     Sachdeva Steel Products (Ship Breaking Unit) LLP
-                                    <small>Since 1997 · 36+ Ships</small>
+                                    <small>Since 1997 — 36+ Ships</small>
                                 </span>
                             </a>
                         </li>
@@ -2642,7 +2647,7 @@
                                 <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
                                 <span class="cmp-text">
                                     Jai Jagdish Ship Breakers Pvt. Ltd.
-                                    <small>Since 1998 · 35+ Ships</small>
+                                    <small>Since 1998 — 35+ Ships</small>
                                 </span>
                             </a>
                         </li>

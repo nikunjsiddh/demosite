@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/inline_styles.css">
     <link rel="stylesheet" href="css/marine-footer.css">
     <link rel="stylesheet" href="css/marine-header.css">
-    <!-- About page styles (extracted) -->
+        <!-- About-page-only styles (extracted from inline <style>) -->
     <link rel="stylesheet" href="css/about-page.css">
 </head>
 
@@ -86,6 +86,73 @@
         </div>
     </section>
 
+    <!-- ─── TIMELINE / JOURNEY ─── -->
+    <!-- <section class="section timeline-wrap">
+        <div class="section-inner">
+            <p class="hero-badge"
+                style="text-align:center;display:block;width:fit-content;margin:0 auto 12px;background:rgba(201,168,76,0.12);border:1px solid var(--gold);color:var(--navy-blue);font-size:11px;">
+                Our Journey</p>
+            <h2 class="section-title">Sachdeva Group <span>Journey</span></h2>
+            <div class="gold-line"></div>
+            <p class="section-sub">Four decades of commitment, growth, and responsible ship recycling.</p>
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-icon"><i class="fas fa-anchor"></i></div>
+                    <div class="tl-card">
+                        <span class="tl-badge">Since 1983</span>
+                        <h3>Our Foundation</h3>
+                        <p>Since our inception in 1983, Sachdeva Group has been a pioneer in the ship recycling industry
+                            at Alang, committed to sustainable practices and innovative solutions.</p>
+                    </div>
+                </div>
+                <div class="tl-item right">
+                    <div class="tl-icon"><i class="fas fa-clock"></i></div>
+                    <div class="tl-card">
+                        <span class="tl-badge">1983–1997</span>
+                        <h3>Early Years</h3>
+                        <p>Operating as <strong>Madhav Industrial Corporation</strong>, we established our foundation
+                            with a skilled workforce, modern facilities, and strong environmental stewardship.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-icon"><i class="fas fa-building"></i></div>
+                    <div class="tl-card">
+                        <span class="tl-badge">1994</span>
+                        <h3>Sachdeva Steel Products</h3>
+                        <p>Formally established under the name <strong>Sachdeva Steel Products (Ship Breakers)</strong>,
+                            solidifying our identity and expanding our recycling capabilities.</p>
+                    </div>
+                </div>
+                <div class="tl-item right">
+                    <div class="tl-icon"><i class="fas fa-retweet"></i></div>
+                    <div class="tl-card">
+                        <span class="tl-badge">1997</span>
+                        <h3>Rebranding</h3>
+                        <p>Rebranded to <strong>Sachdeva Steel Products (Ship Breakers)</strong>, successfully recycled
+                            37 ships, and began scaling operations to meet growing global demand.</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-icon"><i class="fas fa-ship"></i></div>
+                    <div class="tl-card">
+                        <span class="tl-badge">1998</span>
+                        <h3>Jai Jagdish Established</h3>
+                        <p>To expand operations, <strong>Jai Jagdish Ship Breakers Pvt. Ltd.</strong> was established,
+                            which has since successfully recycled 36 ships with international compliance.</p>
+                    </div>
+                </div>
+                <div class="tl-item right">
+                    <div class="tl-icon"><i class="fas fa-leaf"></i></div>
+                    <div class="tl-card">
+                        <span class="tl-badge">Today</span>
+                        <h3>Global Leadership</h3>
+                        <p>Leading responsible ship recycling with 73+ ships recycled, adherence to IMO, ILO, Basel,
+                            Hong Kong Convention, and EU regulations — building a greener maritime future.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
 
     <!-- ─── VISION & MISSION ─── -->
     <section class="section vm-section">
@@ -245,7 +312,142 @@
     </div>
 
     <?php
-    /* Per-page JS bucket — picked up by includes/footer.php */
+    // Per-page JS bucket — picked up by includes/footer.php
     $extra_js = ['about-page'];
     include __DIR__ . '/includes/footer.php';
     ?>
+    <!-- /// END · everything below this line is REMOVED — the footer include
+         already provides marine footer markup, back-to-top button,
+         common JS, and closing </body></html> tags. /// -->
+    <?php /*
+                <div class="ftr-col">
+                    <div class="ftr-logo">
+                        <img src="images/logo-white.png" alt="Sachdeva Group">
+                        <div class="ftr-logo-text">
+                            Sachdeva Group
+                            <span>Ship Recycling · Since 1983</span>
+                        </div>
+                    </div>
+                    <p class="ftr-about-text">
+                        Leading India's ship recycling industry from Alang, Gujarat with over four decades of expertise,
+                        sustainable practices, and unwavering commitment to environmental responsibility.
+                    </p>
+                    <div class="ftr-trust-badge">
+                        <i class="fas fa-shield-halved"></i>
+                        ISO Certified · HKC Compliant
+                    </div>
+                </div>
+
+                <div class="ftr-col">
+                    <h4>Quick Links</h4>
+                    <ul class="ftr-links">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="about.php">About Us</a></li>
+                        <li><a href="sspsb.php">Sachdeva Steel Products</a></li>
+                        <li><a href="jjsb.php">Jai Jagdish Ship Breakers</a></li>
+                        <li><a href="news.php">News</a></li>
+                        <li><a href="gallery.php">Media</a></li>
+                        <li><a href="contact.php">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="ftr-col">
+                    <h4>Our Companies</h4>
+                    <ul class="ftr-companies">
+                        <li>
+                            <a href="sspsb.php">
+                                <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
+                                <span class="cmp-text">
+                                    Sachdeva Steel Products (Ship Breaking Unit) LLP
+                                    <small>Since 1997 — 36+ Ships</small>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="jjsb.php">
+                                <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
+                                <span class="cmp-text">
+                                    Jai Jagdish Ship Breakers Pvt. Ltd.
+                                    <small>Since 1998 — 35+ Ships</small>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="ftr-col">
+                    <h4>Get In Touch</h4>
+                    <ul class="ftr-contact">
+                        <li>
+                            <span class="ci-icon"><i class="fas fa-location-dot"></i></span>
+                            <div class="ci-meta">
+                                <b>Address</b>
+                                Alang Ship Recycling Yard,<br>Bhavnagar, Gujarat – 364 210
+                            </div>
+                        </li>
+                        <li>
+                            <span class="ci-icon"><i class="fas fa-envelope"></i></span>
+                            <div class="ci-meta">
+                                <b>Email</b>
+                                <a href="mailto:info@sachdevagroup.in">info@sachdevagroup.in</a>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="ci-icon"><i class="fas fa-phone-volume"></i></span>
+                            <div class="ci-meta">
+                                <b>Call Us</b>
+                                <a href="tel:+919925499123">+91 99254 99123</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="ftr-social-row">
+                        <a href="#" class="ftr-social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="ftr-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="ftr-social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="ftr-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="marine-footer-bottom">
+            <p>©
+                <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights
+                reserved.
+            </p>
+            <div class="ftr-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <span>•</span>
+                <a href="#">Terms of Service</a>
+                <span>•</span>
+                <a href="#">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+    <script src="js/marine-footer.js"></script>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+
+    <script src="agentapp_static/180193f0_40d1_70d0_7dcd_e2aaa36334c6/f39xi1f8zu/script.js"></script>
+
+    <div class="custom-cursor"
+        style="position: fixed; width: 20px; height: 20px; border: 2px solid var(--gold-accent); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); transition: 0.15s; z-index: 9999; opacity: 0; left: 1163px; top: 0px; background: transparent;">
+    </div>
+    <div
+        style="position: fixed; top: 0px; left: 0px; width: 0%; height: 4px; background: linear-gradient(90deg, var(--gold-accent), #ffd700); z-index: 10001; transition: width 0.1s;">
+    </div>
+    <!-- About-page-only behaviour (extracted from inline <script>) -->
+    <script src="js/about-page.js" defer></script>
+</body>
+
+</html>
+*/ ?>

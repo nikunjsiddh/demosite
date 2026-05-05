@@ -2,10 +2,16 @@
 /**
  * Shared footer — marine footer block, scripts, closing tags.
  *
- * Pages may set $extra_scripts BEFORE including this file to inject
- * page-specific <script> tags just before </body>.
+ * Pages may set BEFORE including:
+ *   $extra_js        — array of file basenames in /js (e.g. ['about-page'])
+ *   $extra_scripts   — raw HTML/script string (legacy passthrough)
+ *
+ * This include auto-loads config.php so SITE_NAME, CONTACT_EMAIL, etc.
+ * are always available even when the page didn't load header.php.
  */
+require_once __DIR__ . '/config.php';
 $extra_scripts = $extra_scripts ?? '';
+$extra_js      = $extra_js      ?? array();
 ?>
 
     <!-- ─── MARINE FOOTER ─── -->
@@ -53,7 +59,7 @@ $extra_scripts = $extra_scripts ?? '';
                                 <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
                                 <span class="cmp-text">
                                     Sachdeva Steel Products (Ship Breaking Unit) LLP
-                                    <small>Since 1997 · 36+ Ships</small>
+                                    <small>Since 1997 — 36+ Ships</small>
                                 </span>
                             </a>
                         </li>
@@ -62,7 +68,7 @@ $extra_scripts = $extra_scripts ?? '';
                                 <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
                                 <span class="cmp-text">
                                     Jai Jagdish Ship Breakers Pvt. Ltd.
-                                    <small>Since 1998 · 35+ Ships</small>
+                                    <small>Since 1998 — 35+ Ships</small>
                                 </span>
                             </a>
                         </li>
@@ -118,8 +124,26 @@ $extra_scripts = $extra_scripts ?? '';
             </div>
         </div>
     </footer>
-    <script src="js/marine-footer.js"></script>
 
-    <?= $extra_scripts ?>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </button>
+
+    <!-- Site-wide JS — load once for every page -->
+    <script src="js/marine-footer.js"></script>
+    <script src="agentapp_static/180193f0_40d1_70d0_7dcd_e2aaa36334c6/f39xi1f8zu/script.js"></script>
+
+    <!-- Per-page JS (loaded only on the page that needs it) -->
+    <?php foreach ((array) ($extra_js ?? []) as $js): ?>
+        <script src="js/<?= htmlspecialchars($js) ?>.js" defer></script>
+    <?php endforeach; ?>
+
+    <!-- Legacy passthrough — pages that supplied raw extra_scripts string still work -->
+    <?php if (!empty($extra_scripts)) echo $extra_scripts; ?>
 </body>
 </html>
+

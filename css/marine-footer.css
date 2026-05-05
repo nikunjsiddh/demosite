@@ -219,41 +219,61 @@
     margin: 0;
 }
 
-.marine-footer .ftr-links li { margin-bottom: 11px; }
+.marine-footer .ftr-links li {
+    margin-bottom: 11px;
+    /* Reserve space for the chevron so text-wrap point never moves on hover */
+    padding-left: 18px;
+    position: relative;
+}
 
 .marine-footer .ftr-links a {
     color: rgba(245, 240, 232, 0.7);
     text-decoration: none;
     font-size: 0.92rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: color 0.3s ease, gap 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    line-height: 1.5;
+    transition: color 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
 }
 
-.marine-footer .ftr-links a::before {
+/* Chevron lives on the LI (not the A) so its position is fixed and
+   hovering / wrapping the text never reflows the layout */
+.marine-footer .ftr-links li::before {
     content: '\f0da';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     font-size: 0.7rem;
     color: var(--mf-gold);
     opacity: 0.6;
-    transition: 0.3s;
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    transition: opacity 0.3s ease, color 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.marine-footer .ftr-links li:hover::before {
+    opacity: 1;
+    color: var(--mf-gold-light);
+    transform: translateX(2px);
 }
 
 .marine-footer .ftr-links a:hover {
     color: var(--mf-gold-light);
-    gap: 14px;
-    transform: translateX(2px);
+    transform: translateX(4px);
 }
 
-.marine-footer .ftr-links a:hover::before {
-    opacity: 1;
-    color: var(--mf-gold-light);
+/* Cleaner selection style — gold tint instead of harsh browser blue */
+.marine-footer .ftr-links ::selection {
+    background: rgba(201, 146, 42, 0.45);
+    color: #fff;
+}
+.marine-footer .ftr-links ::-moz-selection {
+    background: rgba(201, 146, 42, 0.45);
+    color: #fff;
 }
 
-/* Companies */
+/* ─── OUR COMPANIES (premium minimal — matches Quick Links proportions) ─── */
 .marine-footer .ftr-companies {
     list-style: none;
     padding: 0;
@@ -262,110 +282,107 @@
 
 .marine-footer .ftr-companies li {
     position: relative;
-    margin-bottom: 14px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(201, 146, 42, 0.04));
-    border: 1px solid rgba(201, 146, 42, 0.18);
-    border-radius: 14px;
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
+    margin-bottom: 4px;
+    border-bottom: 1px solid rgba(201, 146, 42, 0.10);
+    transition: border-color 0.35s ease;
 }
+.marine-footer .ftr-companies li:last-child { border-bottom: none; margin-bottom: 0; }
 
-/* Gold accent bar on the left edge */
-.marine-footer .ftr-companies li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: linear-gradient(180deg, var(--mf-gold), var(--mf-gold-light), var(--mf-gold));
-    transform: scaleY(0.4);
-    transform-origin: center;
-    transition: transform 0.4s ease, opacity 0.3s ease;
-    opacity: 0.55;
-}
-
-/* Right-side chevron arrow that fades in on hover */
-.marine-footer .ftr-companies li::after {
-    content: '\f054';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translate(8px, -50%);
-    color: var(--mf-gold-light);
-    font-size: 0.78rem;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-}
-
-.marine-footer .ftr-companies li:hover {
-    background: linear-gradient(135deg, rgba(201, 146, 42, 0.12), rgba(201, 146, 42, 0.04));
-    border-color: rgba(201, 146, 42, 0.55);
-    transform: translateX(6px);
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.30), 0 0 22px rgba(201, 146, 42, 0.15);
-}
-
-.marine-footer .ftr-companies li:hover::before {
-    transform: scaleY(1);
-    opacity: 1;
-}
-
-.marine-footer .ftr-companies li:hover::after {
-    opacity: 1;
-    transform: translate(0, -50%);
-}
-
-/* Whole card is the click target */
 .marine-footer .ftr-companies li a {
     display: flex;
     gap: 14px;
     align-items: center;
-    padding: 16px 38px 16px 18px;
+    padding: 14px 0;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Subtle gold left accent line that grows on hover */
+
+
+/* Right-side arrow fades in on hover */
+.marine-footer .ftr-companies li a::after {
+    content: '\f054';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(-6px, -50%);
+    color: var(--mf-gold-light);
+    font-size: 0.7rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.marine-footer .ftr-companies li:hover {
+    border-bottom-color: rgba(201, 146, 42, 0.35);
+}
+.marine-footer .ftr-companies li:hover a {
+    transform: translateX(8px);
+}
+.marine-footer .ftr-companies li:hover a::before {
+    width: 10px;
+}
+.marine-footer .ftr-companies li:hover a::after {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+/* Slim circular icon — refined, not the heavy yellow box */
 .marine-footer .ftr-companies .cmp-icon {
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--mf-gold), var(--mf-gold-light));
-    color: var(--mf-deep);
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    background: rgba(201, 146, 42, 0.10);
+    color: var(--mf-gold-light);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    box-shadow:
-        0 6px 14px rgba(0, 0, 0, 0.25),
-        0 0 0 1px rgba(201, 146, 42, 0.45),
-        inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    font-size: 0.78rem;
+    border: 1px solid rgba(201, 146, 42, 0.30);
+    transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 0.4s ease;
 }
-
 .marine-footer .ftr-companies li:hover .cmp-icon {
-    transform: rotate(-8deg) scale(1.06);
+    background: linear-gradient(135deg, var(--mf-gold), var(--mf-gold-light));
+    border-color: var(--mf-gold-light);
+    color: var(--mf-deep);
+    transform: scale(1.06);
 }
 
+/* Typography */
 .marine-footer .ftr-companies .cmp-text {
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: rgba(245, 240, 232, 0.95);
-    line-height: 1.35;
-    letter-spacing: -0.01em;
+    flex: 1;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(245, 240, 232, 0.92);
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    transition: color 0.3s ease;
+    padding-right: 18px; /* room for the chevron */
+}
+.marine-footer .ftr-companies li:hover .cmp-text {
+    color: #fff;
 }
 
 .marine-footer .ftr-companies .cmp-text small {
     display: block;
-    color: var(--mf-gold-light);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    font-family: 'Inter', sans-serif;
+    color: rgba(245, 217, 139, 0.70);
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 1.6px;
     text-transform: uppercase;
-    margin-top: 6px;
-    opacity: 0.85;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+.marine-footer .ftr-companies li:hover .cmp-text small {
+    color: var(--mf-gold-light);
 }
 
 /* Contact Info */

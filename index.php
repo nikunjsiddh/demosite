@@ -18,643 +18,8 @@
     <link rel="stylesheet" href="css/marine-header.css">
 
     <!-- ─── INDEX-ONLY HEADER (sailing ship + wave ripple) ─── -->
-    <style>
-        /* Ship sailing across the header */
-        .marine-header--hero .mh-ship-track {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .marine-header--hero .mh-sailing-ship {
-            position: absolute;
-            top: 22%;
-            left: 0;
-            width: 88px;
-            opacity: 0.85;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.35));
-            animation: mh-ship-go 38s linear infinite;
-        }
-
-        @keyframes mh-ship-go {
-            0%   { transform: translateX(-160%) translateY(0) rotate(0); }
-            50%  { transform: translateX(50vw) translateY(-4px) rotate(-1deg); }
-            100% { transform: translateX(110vw) translateY(0) rotate(0); }
-        }
-
-        /* Wave ripple at the bottom of the header */
-        .marine-header--hero .mh-ripple {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 200%;
-            height: 22px;
-            animation: mh-ripple-shift 22s linear infinite;
-        }
-
-        @keyframes mh-ripple-shift {
-            from { transform: translateX(0); }
-            to   { transform: translateX(-50%); }
-        }
-
-        /* Lift the inner content above the ship */
-        .marine-header--hero .mh-main-inner { position: relative; z-index: 2; }
-
-        /* Index hero: video starts below the standard fixed header (130px) */
-        .hero-section {
-            position: relative;
-        }
-        /* Confine the parallax video shift inside the hero only */
-        .hero-section .video-background { overflow: hidden; }
-
-        /* Native scroll — no parallax. Hero video sits naturally. */
-
-        /* ──────────────────────────────────────
-           INDEX-ONLY LIGHT HEADER THEME
-           (so the color logo shows properly)
-           ────────────────────────────────────── */
-
-        /* ════════════════════════════════════════════════
-           ADAPTIVE HEADER — dark over hero, light when scrolled
-           ════════════════════════════════════════════════ */
-
-        /* ─── INITIAL STATE: warm cream glass with subtle gold glow (matches submenu) ─── */
-        .marine-header--hero .mh-main {
-            background:
-                radial-gradient(ellipse 60% 80% at 78% 50%,
-                    rgba(244, 198, 110, 0.30) 0%,
-                    rgba(244, 198, 110, 0.10) 40%,
-                    transparent 70%),
-                linear-gradient(135deg,
-                    rgba(248, 240, 218, 0.92) 0%,
-                    rgba(245, 233, 200, 0.90) 45%,
-                    rgba(240, 222, 178, 0.92) 100%);
-            backdrop-filter: blur(18px) saturate(1.25);
-            -webkit-backdrop-filter: blur(18px) saturate(1.25);
-            border-bottom: 1px solid rgba(201, 146, 42, 0.35);
-            box-shadow:
-                0 10px 32px rgba(13, 27, 42, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.55),
-                inset 0 -1px 0 rgba(201, 146, 42, 0.20);
-            transition: background 0.45s ease, box-shadow 0.45s ease, border-color 0.45s ease;
-            position: relative;
-        }
-
-        /* Subtle gold glow line at the top edge — soft cream feel */
-        .marine-header--hero .mh-main::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 12%;
-            right: 12%;
-            height: 1px;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(201, 146, 42, 0.45),
-                rgba(245, 217, 139, 0.65),
-                rgba(201, 146, 42, 0.45),
-                transparent);
-            opacity: 0.85;
-            pointer-events: none;
-        }
-
-        /* Logo — color version with soft drop shadow on cream bg */
-        .marine-header--hero .mh-logo img {
-            filter:
-                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.20))
-                drop-shadow(0 0 18px rgba(201, 146, 42, 0.28));
-            transition: filter 0.4s ease;
-        }
-        .marine-header--hero .mh-logo:hover img {
-            filter:
-                drop-shadow(0 4px 10px rgba(13, 27, 42, 0.28))
-                drop-shadow(0 0 26px rgba(201, 146, 42, 0.42));
-        }
-
-        /* Nav links — DARK navy text on cream bg */
-        .marine-header--hero .mh-nav-list > li > a {
-            color: rgba(13, 27, 42, 0.88);
-            font-weight: 600;
-            transition: color 0.35s ease, background 0.35s ease;
-        }
-        .marine-header--hero .mh-nav-list > li > a:hover {
-            color: #c9922a;
-            background: rgba(201, 146, 42, 0.16);
-        }
-        .marine-header--hero .mh-nav-list > li > a.active {
-            color: #c9922a;
-        }
-
-        /* Chevron — dark navy on cream */
-        .marine-header--hero .mh-nav-list > li > a i.fa-chevron-down {
-            color: rgba(13, 27, 42, 0.6);
-            transition: color 0.35s ease;
-        }
-
-        /* Mobile hamburger — dark navy on cream */
-        .marine-header--hero .mh-toggle {
-            background: rgba(201, 146, 42, 0.14);
-            border-color: rgba(201, 146, 42, 0.55);
-            transition: background 0.35s ease, border-color 0.35s ease;
-        }
-        .marine-header--hero .mh-toggle span {
-            background: #0a1628;
-            transition: background 0.35s ease;
-        }
-
-        /* Submenu — light cream themed (matches the screenshot reference) */
-        .marine-header--hero .mh-submenu {
-            background:
-                radial-gradient(ellipse 60% 80% at 78% 50%,
-                    rgba(244, 198, 110, 0.28) 0%,
-                    rgba(244, 198, 110, 0.08) 40%,
-                    transparent 70%),
-                linear-gradient(135deg,
-                    rgba(250, 244, 224, 0.96) 0%,
-                    rgba(245, 233, 200, 0.96) 100%);
-            backdrop-filter: blur(20px) saturate(1.2);
-            -webkit-backdrop-filter: blur(20px) saturate(1.2);
-            border: 1px solid rgba(201, 146, 42, 0.45);
-            box-shadow:
-                0 18px 40px rgba(13, 27, 42, 0.20),
-                inset 0 1px 0 rgba(255, 255, 255, 0.55);
-            transition: background 0.4s ease, border-color 0.4s ease;
-        }
-        .marine-header--hero .mh-submenu::before {
-            background: rgba(250, 244, 224, 0.96);
-            border-left-color: rgba(201, 146, 42, 0.45);
-            border-top-color: rgba(201, 146, 42, 0.45);
-            transition: background 0.4s ease, border-color 0.4s ease;
-        }
-        .marine-header--hero .mh-submenu li a {
-            color: rgba(13, 27, 42, 0.88);
-            font-weight: 500;
-            transition: color 0.3s ease, background 0.3s ease;
-        }
-        .marine-header--hero .mh-submenu li a::before {
-            color: #c9922a;
-        }
-        .marine-header--hero .mh-submenu li a:hover {
-            background: rgba(201, 146, 42, 0.18);
-            color: #c9922a;
-        }
-        .marine-header--hero .mh-submenu li a:hover::before {
-            color: #c9922a;
-        }
-        .marine-header--hero .mh-submenu li a.active {
-            color: #c9922a;
-            background: rgba(201, 146, 42, 0.12);
-        }
-
-        /* Get Quote CTA — gold pill */
-        .marine-header--hero .mh-cta {
-            background: linear-gradient(135deg, #c9922a, #f0b94a);
-            color: #0a1628;
-            border: 1px solid rgba(201, 146, 42, 0.6);
-            transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-        }
-
-        /* ─── SCROLLED STATE: page scrolled past hero → CREAM bg + DARK text ─── */
-        .marine-header--hero.scrolled .mh-main {
-            background: linear-gradient(135deg,
-                rgba(225, 218, 204, 0.98) 0%,
-                rgba(232, 225, 212, 0.97) 50%,
-                rgba(220, 212, 192, 0.98) 100%);
-            backdrop-filter: blur(18px) saturate(1.2);
-            -webkit-backdrop-filter: blur(18px) saturate(1.2);
-            box-shadow: 0 10px 28px rgba(13, 27, 42, 0.22);
-        }
-        .marine-header--hero.scrolled .mh-main::before {
-            background: linear-gradient(90deg, transparent, #c9922a, transparent);
-        }
-        .marine-header--hero.scrolled .mh-logo img {
-            filter:
-                drop-shadow(0 2px 6px rgba(13, 27, 42, 0.20))
-                drop-shadow(0 0 18px rgba(201, 146, 42, 0.25));
-        }
-        .marine-header--hero.scrolled .mh-nav-list > li > a {
-            color: rgba(13, 27, 42, 0.88);
-        }
-        .marine-header--hero.scrolled .mh-nav-list > li > a:hover {
-            color: #c9922a;
-            background: rgba(201, 146, 42, 0.12);
-        }
-        .marine-header--hero.scrolled .mh-nav-list > li > a.active {
-            color: #c9922a;
-        }
-        .marine-header--hero.scrolled .mh-nav-list > li > a i.fa-chevron-down {
-            color: rgba(13, 27, 42, 0.6);
-        }
-        .marine-header--hero.scrolled .mh-toggle {
-            background: rgba(201, 146, 42, 0.14);
-            border-color: rgba(201, 146, 42, 0.55);
-        }
-        .marine-header--hero.scrolled .mh-toggle span {
-            background: #0a1628;
-        }
-
-        /* Submenu when scrolled — light themed */
-        .marine-header--hero.scrolled .mh-submenu {
-            background: linear-gradient(135deg,
-                rgba(248, 244, 234, 0.98) 0%,
-                rgba(238, 230, 212, 0.98) 100%);
-            border-color: rgba(201, 146, 42, 0.5);
-            box-shadow: 0 18px 40px rgba(13, 27, 42, 0.20);
-        }
-        .marine-header--hero.scrolled .mh-submenu::before {
-            background: rgba(248, 244, 234, 0.98);
-            border-left-color: rgba(201, 146, 42, 0.5);
-            border-top-color: rgba(201, 146, 42, 0.5);
-        }
-        .marine-header--hero.scrolled .mh-submenu li a {
-            color: rgba(13, 27, 42, 0.88);
-        }
-        .marine-header--hero.scrolled .mh-submenu li a:hover {
-            background: rgba(201, 146, 42, 0.16);
-            color: #c9922a;
-        }
-        .marine-header--hero.scrolled .mh-submenu li a.active {
-            color: #c9922a;
-            background: rgba(201, 146, 42, 0.10);
-        }
-
-        /* Hide the sailing ship — its white sail is invisible on light bg */
-        .marine-header--hero .mh-sailing-ship { display: none; }
-
-        /* Wave ripple at the bottom — recolor to gold for visibility */
-        .marine-header--hero .mh-ripple path {
-            fill: rgba(201, 146, 42, 0.16) !important;
-        }
-
-        /* ───────────────────────────────
-           SCROLL-REVEAL ANIMATION SYSTEM
-           ─────────────────────────────── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition:
-                opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.visible { opacity: 1; transform: none; }
-
-        .reveal.from-left  { transform: translateX(-60px) translateY(20px); }
-        .reveal.from-right { transform: translateX(60px) translateY(20px); }
-        .reveal.from-left.visible,
-        .reveal.from-right.visible { transform: none; }
-
-        .reveal.scale-in { transform: scale(0.88) translateY(28px); }
-        .reveal.scale-in.visible { transform: scale(1) translateY(0); }
-
-        .reveal.flip-x {
-            transform: perspective(1400px) rotateX(-22deg) translateY(50px);
-            transform-origin: 50% 100%;
-            transition:
-                opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.flip-x.visible {
-            transform: perspective(1000px) rotateX(0) rotateY(0) translateY(0);
-        }
-
-        .reveal.bounce-in {
-            transform: scale(0.6) translateY(20px);
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s cubic-bezier(0.34, 1.65, 0.64, 1);
-        }
-        .reveal.bounce-in.visible { transform: scale(1) translateY(0); }
-
-        .stagger > .reveal { transition-delay: calc(var(--i, 0) * 0.08s); }
-
-        /* Hero word-by-word reveal */
-        .hero-title .word {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(40px) rotateX(-30deg);
-            animation: word-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes word-up {
-            to { opacity: 1; transform: translateY(0) rotateX(0); }
-        }
-
-        /* ───────────────────────────────
-           NEW SECTION — WHY CHOOSE US
-           ─────────────────────────────── */
-        .why-choose {
-            position: relative;
-            padding: 110px 24px;
-            background:
-                linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 247, 251, 0.96)),
-                url('images/Environmental-Concerns.jpg') center/cover no-repeat fixed;
-            overflow: hidden;
-        }
-
-        .why-choose::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle at 18% 20%, rgba(46, 125, 79, 0.08), transparent 40%),
-                radial-gradient(circle at 82% 80%, rgba(201, 168, 76, 0.10), transparent 40%);
-            pointer-events: none;
-        }
-
-        .why-choose .wc-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .why-choose .wc-head {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .why-choose .wc-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(201, 168, 76, 0.12);
-            color: #c9a84c;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            padding: 8px 20px;
-            border-radius: 50px;
-            margin-bottom: 16px;
-        }
-
-        .why-choose h2 {
-            font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-            font-weight: 800;
-            color: #0d1b2a;
-            line-height: 1.2;
-            margin-bottom: 14px;
-            letter-spacing: -0.01em;
-        }
-
-        .why-choose h2 span { color: #c9a84c; }
-
-        .why-choose .wc-line {
-            display: inline-block;
-            width: 70px;
-            height: 4px;
-            background: linear-gradient(90deg, #c9a84c, #e4c46e, #c9a84c);
-            margin: 8px 0 22px;
-            border-radius: 2px;
-        }
-
-        .why-choose .wc-sub {
-            color: #64748b;
-            font-size: 1rem;
-            max-width: 720px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-
-        .wc-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 26px;
-        }
-
-        .wc-card {
-            position: relative;
-            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
-            border-radius: 20px;
-            padding: 34px 28px;
-            box-shadow: 0 6px 24px rgba(13, 27, 42, 0.06);
-            border: 1px solid rgba(13, 27, 42, 0.04);
-            overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
-        }
-
-        .wc-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #2e7d4f, #c9a84c);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-        }
-
-        .wc-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 22px 44px rgba(13, 27, 42, 0.13);
-            border-color: rgba(201, 168, 76, 0.4);
-        }
-
-        .wc-card:hover::before { transform: scaleX(1); }
-
-        .wc-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 18px;
-            background: linear-gradient(135deg, #0d1b2a, #14304d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #e4c46e;
-            font-size: 1.5rem;
-            margin-bottom: 22px;
-            transition: transform 0.4s ease;
-        }
-
-        .wc-card:hover .wc-icon { transform: rotate(-6deg) scale(1.05); }
-
-        .wc-card h3 {
-            color: #0d1b2a;
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .wc-card p {
-            color: #2c3e50;
-            font-size: 0.94rem;
-            line-height: 1.75;
-        }
-
-        /* ───────────────────────────────
-           NEW SECTION — YARD GLIMPSE
-           ─────────────────────────────── */
-        .yard-gallery {
-            padding: 110px 24px;
-            background: linear-gradient(180deg, #f3f7fb 0%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .yard-gallery .yg-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .yard-gallery .yg-head {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .yard-gallery .yg-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(46, 125, 79, 0.10);
-            color: #2e7d4f;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            padding: 8px 20px;
-            border-radius: 50px;
-            margin-bottom: 16px;
-        }
-
-        .yard-gallery h2 {
-            font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-            font-weight: 800;
-            color: #0d1b2a;
-            line-height: 1.2;
-            margin-bottom: 14px;
-            letter-spacing: -0.01em;
-        }
-
-        .yard-gallery h2 span { color: #c9a84c; }
-
-        .yard-gallery .yg-sub {
-            color: #64748b;
-            font-size: 1rem;
-            max-width: 720px;
-            margin: 0 auto 0;
-            line-height: 1.8;
-        }
-
-        .yg-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            grid-template-rows: 240px 240px;
-            gap: 20px;
-        }
-
-        @media (max-width: 900px) {
-            .yg-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
-            .yg-grid .yg-tile:nth-child(1) { grid-column: span 2; }
-        }
-
-        @media (max-width: 600px) {
-            .yg-grid { grid-template-columns: 1fr; grid-template-rows: repeat(5, 220px); }
-            .yg-grid .yg-tile:nth-child(1) { grid-column: auto; }
-        }
-
-        .yg-tile {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
-            background: #0d1b2a;
-            box-shadow: 0 10px 28px rgba(13, 27, 42, 0.14);
-            cursor: pointer;
-        }
-
-        .yg-tile:nth-child(1) { grid-row: span 2; }
-
-        .yg-tile img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
-        }
-
-        .yg-tile::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 40%, rgba(13, 27, 42, 0.85) 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .yg-caption {
-            position: absolute;
-            left: 22px;
-            right: 22px;
-            bottom: 18px;
-            color: #fff;
-            z-index: 2;
-            transition: transform 0.5s ease;
-        }
-
-        .yg-caption .yc-tag {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #ffd47a;
-            margin-bottom: 4px;
-        }
-
-        .yg-caption h4 {
-            font-size: 1.02rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .yg-tile:hover img {
-            transform: scale(1.08);
-            filter: brightness(1.05);
-        }
-
-        .yg-tile:hover .yg-caption { transform: translateY(-4px); }
-
-        /* Section reveal padding fix */
-        .why-choose, .yard-gallery { scroll-margin-top: 120px; }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal, .reveal.visible,
-            .hero-title .word {
-                transform: none !important;
-                opacity: 1 !important;
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-
-        /* ─── CONTACT PREVIEW SECTION — ship background with transparent overlay ─── */
-        .contact-preview-section {
-            background-image:
-                linear-gradient(135deg, rgba(13, 27, 42, 0.62) 0%, rgba(20, 48, 77, 0.55) 50%, rgba(13, 27, 42, 0.68) 100%),
-                url('https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1800&q=85') !important;
-            background-size: cover !important;
-            background-position: center !important;
-            background-attachment: fixed !important;
-            position: relative;
-            isolation: isolate;
-        }
-
-        .contact-preview-section .contact-overlay {
-            background:
-                radial-gradient(ellipse at 25% 30%, rgba(201, 168, 76, 0.18), transparent 55%),
-                radial-gradient(ellipse at 75% 70%, rgba(46, 125, 79, 0.14), transparent 55%),
-                linear-gradient(135deg, rgba(13, 27, 42, 0.30) 0%, rgba(20, 48, 77, 0.20) 100%) !important;
-        }
-
-        .contact-preview-section .contact-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            .contact-preview-section { background-attachment: scroll !important; }
-        }
-    </style>
+    <!-- Index-page-only styles (extracted from inline <style>) -->
+    <link rel="stylesheet" href="css/index-page.css">
 </head>
 
 <body class="loaded">
@@ -1124,42 +489,49 @@
             <div class="yg-head reveal">
                 <span class="yg-tag"><i class="fas fa-camera"></i> Glimpse of Our Yard</span>
                 <h2>Inside <span>Alang Ship Recycling Yard</span></h2>
-                <div style="display:inline-block; width:70px; height:4px; background:linear-gradient(90deg,#c9a84c,#e4c46e,#c9a84c); margin: 8px 0 22px; border-radius:2px;"></div>
+                <div
+                    style="display:inline-block; width:70px; height:4px; background:linear-gradient(90deg,#c9a84c,#e4c46e,#c9a84c); margin: 8px 0 22px; border-radius:2px;">
+                </div>
                 <p class="yg-sub">A visual journey through the world's largest ship recycling destination —
                     cargo ships, tankers, and the dedicated workforce making it all happen safely.</p>
             </div>
 
             <div class="yg-grid stagger">
                 <div class="yg-tile reveal scale-in" style="--i:0">
-                    <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1100&amp;q=80" alt="Cargo ship at port" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1494412651409-8963ce7935a7?w=1100&amp;q=80"
+                        alt="Cargo ship at port" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Featured</span>
                         <h4>End-of-Life Vessel Beached</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:1">
-                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=700&amp;q=80" alt="Port crane and ship" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=700&amp;q=80"
+                        alt="Port crane and ship" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Operations</span>
                         <h4>Heavy Lift Cranes</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:2">
-                    <img src="https://images.unsplash.com/photo-1517414204297-9d527e1ddccd?w=700&amp;q=80" alt="Container ship at sea" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1517414204297-9d527e1ddccd?w=700&amp;q=80"
+                        alt="Container ship at sea" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Vessels</span>
                         <h4>Container Ships</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:3">
-                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=700&amp;q=80" alt="Industrial worker with PPE" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=700&amp;q=80"
+                        alt="Industrial worker with PPE" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Safety</span>
                         <h4>HSE Trained Workforce</h4>
                     </div>
                 </div>
                 <div class="yg-tile reveal scale-in" style="--i:4">
-                    <img src="https://images.unsplash.com/photo-1565895405127-481853366cf8?w=700&amp;q=80" alt="Steel scrap processing" loading="lazy" />
+                    <img src="https://images.unsplash.com/photo-1565895405127-481853366cf8?w=700&amp;q=80"
+                        alt="Steel scrap processing" loading="lazy" />
                     <div class="yg-caption">
                         <span class="yc-tag">Recovery</span>
                         <h4>Steel &amp; Scrap Processing</h4>
@@ -1210,14 +582,13 @@
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
                     onclick="window.location.href='health-safety.php';">
-                    <a href="health-safety.php" class="news-image"
-                        style="display:block; text-decoration:none;">
+                    <a href="health-safety.php" class="news-image" style="display:block; text-decoration:none;">
                         <img src="images/Health&Safety.png" alt="Health & Safety">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="health-safety.php"
-                                style="color:inherit; text-decoration:none;">Health &amp; Safety</a></h3>
+                        <h3><a href="health-safety.php" style="color:inherit; text-decoration:none;">Health &amp;
+                                Safety</a></h3>
                         <p>The health and safety of our people and partners come first. We
                             follow stringent
                             safety protocols and foster a culture of awareness for secure environments.</p>
@@ -1235,14 +606,13 @@
                 <div class="news-card"
                     style="transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px); cursor: pointer;"
                     onclick="window.location.href='waste-management.php';">
-                    <a href="waste-management.php" class="news-image"
-                        style="display:block; text-decoration:none;">
+                    <a href="waste-management.php" class="news-image" style="display:block; text-decoration:none;">
                         <img src="images/WasteManagement.png" alt="Waste Management">
                         <div class="news-overlay"></div>
                     </a>
                     <div class="news-content">
-                        <h3><a href="waste-management.php"
-                                style="color:inherit; text-decoration:none;">Waste Management</a></h3>
+                        <h3><a href="waste-management.php" style="color:inherit; text-decoration:none;">Waste
+                                Management</a></h3>
                         <p>Our waste management strategies prioritize reduction, reuse, and
                             recycling. We
                             implement smart disposal methods and ensure compliance with global standards.
@@ -1344,7 +714,7 @@
                                 <span class="cmp-icon"><i class="fas fa-anchor"></i></span>
                                 <span class="cmp-text">
                                     Sachdeva Steel Products (Ship Breaking Unit) LLP
-                                    <small>Since 1997 · 36+ Ships</small>
+                                    <small>Since 1997 — 36+ Ships</small>
                                 </span>
                             </a>
                         </li>
@@ -1353,7 +723,7 @@
                                 <span class="cmp-icon"><i class="fas fa-sailboat"></i></span>
                                 <span class="cmp-text">
                                     Jai Jagdish Ship Breakers Pvt. Ltd.
-                                    <small>Since 1998 · 35+ Ships</small>
+                                    <small>Since 1998 — 35+ Ships</small>
                                 </span>
                             </a>
                         </li>
@@ -1389,16 +759,19 @@
                     <div class="ftr-social-row">
                         <a href="#" class="ftr-social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#" class="ftr-social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="ftr-social-btn" title="Twitter / X"><i class="fab fa-x-twitter"></i></a>
                         <a href="#" class="ftr-social-btn" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/919925499123" target="_blank" class="ftr-social-btn" title="WhatsApp"><i
+                                class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="marine-footer-bottom">
-            <p>© <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights reserved.</p>
+            <p>©
+                <?= date('Y') ?> Sachdeva Group. Crafted <i class="fas fa-anchor"></i> for the seas. All rights
+                reserved.
+            </p>
             <div class="ftr-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <span>•</span>
@@ -1421,93 +794,6 @@
     <script src="agentapp_static/180193f0_40d1_70d0_7dcd_e2aaa36334c6/f39xi1f8zu/script.js"></script>
 
     <!-- ─── INDEX SCROLL-REVEAL + HERO WORD ANIMATION ─── -->
-    <script>
-        // ──────────────────────────────────────
-        //  NATIVE SCROLL — no parallax library, no GSAP.
-        //  Just regular browser scrolling.
-        // ──────────────────────────────────────
-
-        // Hero word-by-word reveal — splits each word in .title-line into spans
-        (function () {
-            const lines = document.querySelectorAll('#heroTitle .title-line');
-            if (!lines.length) return;
-            let globalIndex = 0;
-            lines.forEach((line) => {
-                const text = line.textContent;
-                line.textContent = '';
-                text.split(/(\s+)/).forEach((token) => {
-                    if (/^\s+$/.test(token)) {
-                        line.appendChild(document.createTextNode(token));
-                    } else if (token.length) {
-                        const span = document.createElement('span');
-                        span.className = 'word';
-                        span.textContent = token;
-                        span.style.animationDelay = (0.2 + globalIndex * 0.08) + 's';
-                        line.appendChild(span);
-                        globalIndex++;
-                    }
-                });
-            });
-        })();
-
-        // Auto-tag existing section headers and key content blocks with .reveal
-        (function () {
-            const autoTargets = [
-                '.about-section .section-header',
-                '.about-section .about-image',
-                '.about-section .about-text',
-                '.journey-section .section-header',
-                '.journey-section .timeline-item',
-                '.stats-section .stat-item',
-                '.services-section .section-header',
-                '.news-section .section-header',
-                '.contact-preview-section .contact-content'
-            ];
-            autoTargets.forEach((sel) => {
-                document.querySelectorAll(sel).forEach((el, i) => {
-                    if (!el.classList.contains('reveal')) {
-                        el.classList.add('reveal');
-                        // small stagger inside lists
-                        if (sel.includes('timeline-item') ||
-                            sel.includes('stat-item')) {
-                            el.style.transitionDelay = (i * 0.08) + 's';
-                        }
-                    }
-                });
-            });
-
-            // about: image from-left, text from-right
-            document.querySelectorAll('.about-section .about-image').forEach(el => el.classList.add('from-left'));
-            document.querySelectorAll('.about-section .about-text').forEach(el => el.classList.add('from-right'));
-
-            // services + news cards keep their original hover-tilt only — no entrance animation
-
-            // timeline items: flip-x for dramatic reveal
-            document.querySelectorAll('.journey-section .timeline-item').forEach(el => el.classList.add('flip-x'));
-
-            // stats: bounce-in
-            document.querySelectorAll('.stats-section .stat-item').forEach(el => el.classList.add('bounce-in'));
-        })();
-
-        // IntersectionObserver — fire reveal when element enters viewport
-        (function () {
-            const reveals = document.querySelectorAll('.reveal');
-            if ('IntersectionObserver' in window) {
-                const io = new IntersectionObserver((entries) => {
-                    entries.forEach((e) => {
-                        if (e.isIntersecting) {
-                            e.target.classList.add('visible');
-                            io.unobserve(e.target);
-                        }
-                    });
-                }, { threshold: 0.12 });
-                reveals.forEach((el) => io.observe(el));
-            } else {
-                reveals.forEach((el) => el.classList.add('visible'));
-            }
-        })();
-    </script>
-
     <div class="custom-cursor"
         style="position: fixed; width: 20px; height: 20px; border: 2px solid var(--gold-accent); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); transition: 0.15s; z-index: 9999; opacity: 0; left: 1163px; top: 0px; background: transparent;">
     </div>
@@ -1515,6 +801,8 @@
         style="position: fixed; top: 0px; left: 0px; width: 0%; height: 4px; background: linear-gradient(90deg, var(--gold-accent), #ffd700); z-index: 10001; transition: width 0.1s;">
     </div>
 
+    <!-- Index-page-only behaviour (extracted from inline <script>) -->
+    <script src="js/index-page.js" defer></script>
 </body>
 
 </html>
